@@ -1,0 +1,19 @@
+{
+  "name": "cognitvecanvas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm install express --save"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madebyafox/CognitiveCanvas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madebyafox/CognitiveCanvas/issues"
+  },
+  "homepage": "https://github.com/madebyafox/CognitiveCanvas#readme"
+}
