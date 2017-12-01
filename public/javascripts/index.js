@@ -1,17 +1,32 @@
 function setSize() {
     document.getElementById('webstratesHere').style.height = document['body'].offsetHeight +'px';
-    document.getElementById('webstratesHere').style.width = document['body'].offsetWidth +'px';
+    document.getElementById('webstratesHere').style.width = document['body'].offsetWidth + 'px';
 }
 
-window.onmessage = function(event) {
-    console.log('receive message');
-    console.log(event.data);
-    document.getElementById("nodeList").innerHTML+=event.data;
-};
+// window.onmessage = function(event) {
+//     console.log('receive message');
+//     console.log(event.data);
+//     document.getElementById("nodeList").innerHTML+=event.data;
+// };
 
 function listElements() {
-    console.log(document.getElementById('webstratesHere').contentWindow);
-    document.getElementById('webstratesHere').contentWindow.postMessage('','*');
+    // document.getElementById('webstratesHere').contentWindow.postMessage('','*');
+    console.log(document.getElementById('webstratesHere').contentWindow.canvas.childNodes);
+
+    for (i = 0; i < document.getElementById('webstratesHere').contentWindow.canvas.childNodes.length; i++) {
+        if (document.getElementById('webstratesHere').contentWindow.canvas.childNodes[i].nodeName === "#text") {
+            document.getElementById("labelList").innerHTML+=" Find Label ";
+        }
+        else if (document.getElementById('webstratesHere').contentWindow.canvas.childNodes[i].nodeName === "line") {
+            document.getElementById("edgeList").innerHTML+=" Find Edge ";
+        }
+        else if (document.getElementById('webstratesHere').contentWindow.canvas.childNodes[i].nodeName === "circle") {
+            document.getElementById("nodeList").innerHTML+=" Find Node ";
+        }
+
+    }
+
+
 }
 
 // for (i = 0; i < inside.nodes.length; i++){
