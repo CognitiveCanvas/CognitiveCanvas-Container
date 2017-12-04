@@ -1,29 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-	<link href="../public/stylesheets/style.css" rel="stylesheet">
-    <meta charset="UTF-8">
-    <title>CognitiveCanvas Main Page</title>
-</head>
-<body>
-	<div class="title">
-    	<h1>Cognitive Canvas</h1>
-    	<h3 class="subtitle">The Better Way to Learn</h3>
-	</div>
-
-    <iframe id="webstratesHere" src="http://webstrates.ucsd.edu/gaurav_cyto/" onload="setSize()">
-        <p>ERROR: Your browser does not support iframes.</p>
-    </iframe>
-    <div class="player">
-    	<iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/wC36cepdVjg" frameborder="0" allowfullscreen></iframe>
-    </div>
-
-
-</body>
-
-<script src="javascripts/index.js" type="text/javascript"></script>
-<script>
+<html>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/wC36cepdVjg" frameborder="0" allowfullscreen></iframe>
+    <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
 
@@ -65,5 +45,5 @@
         player.stopVideo();
       }
     </script>
-
+  </body>
 </html>

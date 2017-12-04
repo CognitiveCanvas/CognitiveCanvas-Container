@@ -1,8 +1,44 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	top: 0;
+  	padding: 0;
+  	margin: 0;
+	font-family: 'Muli', sans-serif;
+	background-color: #008F95;
 }
 
 a {
   color: #00B7FF;
+}
+.title {
+	background-color: #E24E42;
+	top: 0;
+	margin: 0;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+.title h1{
+	font-size: 42px;
+	text-align: center;
+	color: white;
+	padding-bottom: 0;
+	margin-bottom: 10px;
+}
+.subtitle{
+	padding-top: 0px;
+	margin-top: 0;
+	text-align: center;
+	font-style: italic;
+	color: white;
+	font-size: 14px;
+}
+.player {
+	background-color: #E9B000;
+	float: right;
+	height: 370px;
+	width: 600px;
+}
+.video{
+	padding-left: 20px;
+	padding-top: 20px;
+	margin: 0 auto;
 }
