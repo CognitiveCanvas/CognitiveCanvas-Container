@@ -28,8 +28,31 @@ function listElements() {
 
 
 }
+function menu(x) {
+    x.classList.toggle("change");
+}
+function openTool(evt, toolName) {
+    // Declare all variables
+    var i, tabcontent, anchor;
 
-// for (i = 0; i < inside.nodes.length; i++){
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    anchor = document.getElementsByClassName("anchor");
+    for (i = 0; i < anchor.length; i++) {
+        anchor[i].className = anchor[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(toolName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+
 //     $('.nodeList').append( '<p id="Node-'+ i +'">' + inside.elements.nodes[i].data.id + '</p>' );
 // }
 //
