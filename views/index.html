@@ -3,6 +3,7 @@
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 	<link href="../public/stylesheets/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <title>CognitiveCanvas Main Page</title>
 </head>
@@ -16,9 +17,10 @@
       </div>
     	<h1>Cognitive Canvas</h1>
       <div class="csearch">
-        <form>
-          <input type="text" name="search" placeholder="Search..">
-        </form>
+          <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
       </div>
     	<!--<h3 class="subtitle">The Better Way to Learn</h3>
 	 
@@ -26,25 +28,26 @@
       <li><button class="tablinks" onclick="openTool(event, 'Paris')">Paris</button></li>
       <li><button class="tablinks" onclick="openTool(event, 'Tokyo')">Tokyo</button></li>
     </div>-->
-    <li><a class="anchor" onclick="openTool(event, 'Resources')">Resources</a></li>
-    <li><a class="anchor" onclick="openTool(event, 'Notes')">Notes</a></li>
-    <li><a class="anchor" onclick="openTool(event, 'Tools')">Tools</a></li>
+    <li><a class="anchor" onclick="openTool(event, 'Resources')"><i class="fa fa-file-text-o"></i></a></li>
+    <li><a class="anchor" onclick="openTool(event, 'Notes')"><i class="fa fa-sticky-note-o"></i></a></li>
+    <li><a class="anchor" onclick="openTool(event, 'Tools')"><i class="fa fa-wrench"></i></a></li>
 
   </div>
   </header>
-      <div class="whitespace">
         <div id="Resources" class="tabcontent">
+          <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
           <p>Resources from class goes here</p>
         </div>
 
         <div id="Notes" class="tabcontent">
+          <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
           <p>Notes from students go here</p>
         </div>
 
         <div id="Tools" class="tabcontent">
+          <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
           <p>Tools for CognitiveCanvas go here</p>
         </div>
-      </div>
     <!--<iframe id="webstratesHere" src="http://webstrate.ucsd.edu/joshD3/" onload="setSize(); listElements();">
         <p>ERROR: Your browser does not support iframes.</p>
     </iframe>-->

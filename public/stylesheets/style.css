@@ -12,9 +12,9 @@ a {
   color: #00B7FF;
 }
 .title {
+	position: fixed;
 	background-color: white;
 	top: 0;
-	position: fixed;
 	margin: 0 auto;
 	padding: 0 auto;
 	height: 50px;
@@ -33,14 +33,7 @@ a {
 	color: #0099FA;
 	margin: 0;
 }
-.subtitle{
-	padding-top: 0px;
-	margin-top: 0;
-	text-align: center;
-	font-style: italic;
-	color: white;
-	font-size: 14px;
-}
+
 .player {
 	background-color: #E9B000;
 	float: right;
@@ -82,7 +75,8 @@ li a:hover:not(.active) {
     cursor: pointer;
 }
 .anchor{
-	font-size: 18px;
+	padding: 10px 20px;
+	font-size: 24px;
 }
 .bar1, .bar2, .bar3 {
     width: 35px;
@@ -104,48 +98,83 @@ li a:hover:not(.active) {
     transform: rotate(45deg) translate(-8px, -8px);
 }
 .tabcontent {
+	position: fixed;
+	top:50px;
+	right:0;
+	float:right;
 	background-color: white;
     display: none;
-    padding: 0px 12px;
-    border: 1px solid #ccc;
+    padding: 0px 0px;
+    margin: 0px 0px;
     border-top: none;
-    width: 100%;
-    height: 100%;
+    width: 25%;
+    height: 100vh;
     border: 4px solid #4CAF50;
+    box-shadow: 0 4px 6px 0 rgba(176,186,197,0.60);
     
 }
-.whitespace{
-	box-shadow: 15px 5px black;
-	float: right;
-	padding-top: 50px;
-	height: 94%;
-	width: 25%;
-}
 input[type=text] {
-    width: 130px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+	max-width: 650px;
+  width: 80%;
+  padding: 6px;
+  margin-right: 0px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: 1px solid black;
+  box-shadow: 0 4px 6px 0 rgba(176,186,197,0.60);
+}
+button {
+  float: center;
+  padding: 6px 15px;
+  margin: 8px 5px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px 0 rgba(176,186,197,0.60);
 }
 
-input[type=text]:focus {
-    width: 500px;
+button:hover {
+  background-color: grey;
 }
+
 .csearch{
+	width: 35%;
 	padding: 0px;
-	padding-left: 15%;
+	margin: 0 auto;
+	padding-left: 1.5%;
     float: left;
     cursor: pointer;
+    max-width: 650px;
+    min-width: 375px;
 
 }
 form{
-	width: 100%
+	width: 100%;
+}
+.topright {
+    float: right;
+    cursor: pointer;
+    font-size: 28px;
+}
+@media screen and (max-width: 980px) {
+	input[type=text] {
+	  	width: 70%;
+	}
+	.csearch{
+		min-width: 0;
+		max-width: 280px;
+	}
+	form{
+		width:280px;
+		//margin-right:0px;
+	}
+	.title h1{
+		font-size: 26px;
+
+	}
+	.bar1, .bar2, .bar3 {
+    	width: 30px;
+    	height: 4px;
+	}
 }
