@@ -14,7 +14,7 @@ var DB_ADDRESS = 'mongodb://localhost:27017/test';
 var db = require('./db.js')(DB_ADDRESS);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'client/views'));
+app.set('views', path.join(__dirname, '../client/views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
