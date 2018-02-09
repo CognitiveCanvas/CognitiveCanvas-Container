@@ -1,15 +1,21 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var router = express.Router();
+var DB_ADDRESS = 'mongodb://localhost:27017/test';
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+var index = router.get('/', function(req, res, next) {
+              res.render('index', { title: 'Express' });
+            });
+
+var users = router.get('/', function(req, res, next) {
+              res.send('respond with a resource');
+            });
+
 
 var app = express();
-var DB_ADDRESS = 'mongodb://localhost:27017/test';
 
 var models = require('./models.js')(DB_ADDRESS);
 

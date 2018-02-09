@@ -23,7 +23,8 @@ module.exports = function(DB_ADDRESS) {
       name: String,
       date: Date,
       description: String,
-      path: String
+      path: String,
+      keyword: String
     });
 
     models.user = mongoose.model("User", userSchema);
