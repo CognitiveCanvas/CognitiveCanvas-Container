@@ -1,31 +1,25 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+var index = require('./server/routes/index');
+var users = require('./server/routes/users');
 
 var app = express();
-var pg = require('pg');
-var pool = new pg.Pool()
+var mongoDB = 'mongodb://localhost:27017/test';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
 
-app.get('/db', function (request, response) {
-  pool.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM test_table', function(err, result) {
-      done();
-      if (err)
-       { console.error(err); response.send("Error " + err); }
-      else
-       { response.render('pages/db', {results: result.rows} ); }
-    });
-  });
-});
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'client/views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
@@ -58,4 +52,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = {
+  app: app,
+  db: db
+};
