@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var appModule = require('../app');
+var appModule = require('../server/app');
 var app = appModule.app;
 var debug = require('debug')('cognitivecanvas:server');
 var http = require('http');

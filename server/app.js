@@ -1,22 +1,17 @@
 var express = require('express');
-var mongoose = require('mongoose');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./server/routes/index');
-var users = require('./server/routes/users');
+var index = require('./routes/index');
+var users = require('./routes/users');
 
 var app = express();
-var mongoDB = 'mongodb://localhost:27017/test';
-mongoose.connect(mongoDB);
-mongoose.Promise = global.Promise;
+var DB_ADDRESS = 'mongodb://localhost:27017/test';
 
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+var db = require('./db.js')(DB_ADDRESS);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'client/views'));
