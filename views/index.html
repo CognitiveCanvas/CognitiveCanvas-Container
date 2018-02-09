@@ -36,7 +36,10 @@
   </header>
         <div id="Resources" class="tabcontent">
           <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-          <p>Resources from class goes here</p>
+          <h1>Videos</h1>
+          <iframe width="350" height="215" src="https://www.youtube.com/embed/iMtXqTmfta0" frameborder="0" allowfullscreen></iframe>
+          <h1>Articles</h1>
+          <a href="http://documents.scribd.com.s3.amazonaws.com/docs/6kjcnc9sow229ks8.pdf?t=1358492541">Article Here</a>
         </div>
 
         <div id="Notes" class="tabcontent">
@@ -46,7 +49,23 @@
 
         <div id="Tools" class="tabcontent">
           <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-          <p>Tools for CognitiveCanvas go here</p>
+          <h1>Tools</h1>
+        <div class="dropdown">
+            <button onclick="drop(this)" class="dropbtn">Color <i class="fa fa-caret-down"></i></button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#home" id="color1"></a>
+                <a href="#about" id="color2"></a>
+                <a href="#contact" id="color3"></a>
+              </div>
+          </div>
+          <div class="dropdown1">
+            <button onclick="drop(this)" class="dropbtn">Node <i class="fa fa-caret-down"></i></button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#home"><i class="fa fa-circle"></i></a>
+                <a href="#about"><i class="fa fa-star"></i></a>
+                <a href="#contact"><i class="fa fa-square"></i></a>
+              </div>
+          </div>
         </div>
     <!--<iframe id="webstratesHere" src="http://webstrate.ucsd.edu/joshD3/" onload="setSize(); listElements();">
         <p>ERROR: Your browser does not support iframes.</p>
