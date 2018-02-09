@@ -11,7 +11,7 @@ var users = require('./routes/users');
 var app = express();
 var DB_ADDRESS = 'mongodb://localhost:27017/test';
 
-var db = require('./db.js')(DB_ADDRESS);
+var models = require('./models.js')(DB_ADDRESS);
 
 // view engine setup
 app.set('views', path.join(__dirname, '../client/views'));
@@ -49,5 +49,5 @@ app.use(function(err, req, res, next) {
 
 module.exports = {
   app: app,
-  db: db
+  models: models
 };
