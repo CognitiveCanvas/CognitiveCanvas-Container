@@ -4,7 +4,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var router = express.Router();
-var DB_ADDRESS = 'mongodb://localhost:27017/test';
 
 var index = router.get('/', function(req, res, next) {
               res.render('index', { title: 'Express' });
@@ -16,8 +15,7 @@ var users = router.get('/', function(req, res, next) {
 
 
 var app = express();
-
-var models = require('./models.js')(DB_ADDRESS);
+var db = require('./db');
 
 // view engine setup
 app.set('views', path.join(__dirname, '../client/views'));
@@ -54,6 +52,5 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = {
-  app: app,
-  models: models
+  app: app
 };
