@@ -4,7 +4,7 @@ var userSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
 	id: String
-})
+});
 
 var UserModel = mongoose.model('User', userSchema);
 

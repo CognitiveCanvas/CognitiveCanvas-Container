@@ -1,14 +1,11 @@
 {
-
-	"user1": {
 		"firstName": "Steve",
 		"lastName": "Zhao",
 		"id": "123"
-	},
-	"user2": {
+}
+,
+{
 		"firstName": "Michael",
 		"lastName": "Che",
 		"id": "234"
-	}
-
 }

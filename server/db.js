@@ -29,4 +29,5 @@ process.on('SIGINT', function() {
 });
 
 require('./models/user');
-
+require('./models/keyword');
+require('./models/content');
