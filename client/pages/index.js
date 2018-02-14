@@ -71,11 +71,6 @@ window.onclick = function(event) {
   }
 }
 
-
-
-
-
-
 var tag = document.createElement('script');
 
       tag.src = "https://www.youtube.com/iframe_api";
