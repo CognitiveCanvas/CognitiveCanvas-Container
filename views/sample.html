@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <style>
+        #d3_container {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        #canvas {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        .drag_line {
+            stroke: #999;
+            stroke-width: 5;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .drag_line_hidden {
+            stroke: #999;
+            stroke-width: 0;
+            pointer-events: none;
+        }
+
+        .link {
+            stroke: #999;
+            stroke-width: 5;
+            cursor: crosshair;
+            z-index: 0;
+        }
+
+        .link_selected {
+            stroke: #ff7f0e;
+        }
+
+        .node:hover {
+            fill: #ff9900;
+        }
+
+        .node {
+            z-index: 1;
+            fill: blue;
+        }
+
+        .active_node {
+            fill: orange;
+        }
+    </style>
+    <title>Sample</title>
+</head>
+<body>
+    <h1>Sample Same Origin</h1>
+    <div id="d3_container">
+        <svg id="canvas">
+            <line class="link" x1="653" y1="175" x2="508" y2="325" xmlns="http://www.w3.org/2000/svg"></line><circle class="node active_node" r="20" cx="653" cy="175" xmlns="http://www.w3.org/2000/svg"></circle><circle class="node" r="20" cx="508" cy="325" xmlns="http://www.w3.org/2000/svg"></circle><circle class="node" r="20" cx="598" cy="362" xmlns="http://www.w3.org/2000/svg"></circle>
+        </svg>
+        <div contenteditable="true" z-index="1" style="position: absolute; left: 589px; top: 311px;"><div><br></div></div><div contenteditable="true" z-index="1" style="position: absolute; left: 611px; top: 431.5px;"><div><br></div></div><div contenteditable="true" z-index="1" style="position: absolute; left: 656px; top: 245px;"></div><div contenteditable="true" z-index="1" style="position: absolute; left: 644px; top: 245px;"></div><div contenteditable="true" z-index="1" style="position: absolute; left: 439px; top: 238px;"></div><div contenteditable="true" z-index="1" style="position: absolute; left: 500px; top: 350px;"></div><div contenteditable="true" z-index="1" style="position: absolute; left: 479.5px; top: 304px;"></div><div contenteditable="true" z-index="1" style="position: absolute; left: 569px; top: 281px;"></div><div contenteditable="true" z-index="1" style="position: absolute; left: 643px; top: 165px;">node 1</div><div contenteditable="true" z-index="1" style="position: absolute; left: 498px; top: 315px;">node 2</div><div contenteditable="true" z-index="1" style="position: absolute; left: 580.5px; top: 250px;">edge 1</div>
+    </div>
+</body>
+<script>
+
+var radius = 20
+
+var canvas = document.getElementById("canvas")
+var active_node = null
+var dragged_node = null
+
+var mouseDown = 0
+var mouseUp = 0
+var mouseMoved = false
+var singleClickTimer = null
+var duobleClickDragTimer = null
+
+//Initialize drag line
+var drag_line = null
+var source_node = null
+
+webstrate.on("loaded", (webstrateId, clientId, user) => {
+    // TODO: Each client should have its own drag_line
+    // and only visible to itself
+
+    drag_line =
+        d3.select(canvas).append("line")
+            .attr("class", "drag_line")
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", 0)
+            .attr("y2", 0)
+})
+
+canvas.addEventListener("mousedown", (e) => {
+    //console.log("mousedown")
+    mouseDown++
+
+    if (mouseDown === 2 && mouseUp === 1) {
+    clearTimeout(singleClickTimer)
+    doubleClickDragTimer = setTimeout(() => {
+        console.log("double click drag")
+    revealHiddenLine(e)
+}, 300)
+}
+
+selectLineSource(e)
+})
+
+canvas.addEventListener("mouseup", (e) => {
+    mouseUp++
+    //single click event
+    if (mouseUp === 1 && mouseDown === 1) {
+    singleClickTimer = setTimeout(() => {
+        singleClickEvent(e)
+        resetState()
+    }, 300)
+}
+//double click event
+else if (mouseUp === 2 && mouseDown === 2 && !mouseMoved) {
+    clearTimeout(doubleClickDragTimer)
+    selection = d3.select(e.target)
+    className = selection.attr("class").split(" ")[0]
+    if (className == "node") {
+        x = selection.attr("cx")
+        y = selection.attr("cy")
+        addLabel("node", x - 10, y - 10)
+    }
+    else if (className == "link") {
+        x1 = selection.attr("x1")
+        x2 = selection.attr("x2")
+        y1 = selection.attr("y1")
+        y2 = selection.attr("y2")
+        mx = (parseInt(x1) + parseInt(x2)) / 2
+        my = (parseInt(y1) + parseInt(y2)) / 2
+        addLabel("edge", mx, my)
+    }
+    resetState()
+}
+
+else if (mouseUp === 2 && mouseDown === 2 && mouseMoved) {
+    selectLineDest(e)
+    resetState()
+}
+
+if (mouseDown === 1 && mouseDown === 1 && mouseMoved) {
+    resetState()
+}
+})
+
+function addLabel(text, cx, cy) {
+    var container = document.getElementById("d3_container")
+    var label = document.createElement("div")
+    label.appendChild(document.createTextNode(text))
+    label.setAttribute("contenteditable", "true")
+    label.style.position = "absolute"
+    label.setAttribute("z-index", "1")
+    label.style.left = cx + "px"
+    label.style.top = cy + "px"
+    container.appendChild(label)
+}
+
+function resetState() {
+    mouseDown = 0
+    mouseUp = 0
+    mouseMoved = false
+}
+
+canvas.addEventListener("mousemove", (e) => {
+    console.log(mouseDown)
+if (mouseDown > 0) {
+    mouseMoved = true
+}
+
+if (mouseDown === 1) {
+    drawDragNode(e)
+}
+else if (mouseDown === 2) {
+    drawDragLine(e)
+}
+})
+
+
+
+canvas.addEventListener("contextmenu", (e) => {
+    var selection = d3.select(e.target)
+    if (selection.classed("node") || selection.classed("link")) {
+    selection.remove();
+}
+resetState()
+})
+
+function revealHiddenLine(e) {
+    var selection = d3.select(e.target)
+    console.log(selection.attr("class").split(" ")[0])
+
+    if (selection.attr("class").split(" ")[0] === "node") {
+        console.log(drag_line)
+        drag_line.attr("class", "drag_line")
+        console.log("drage line revealed");
+        source_node = selection;
+        console.log(source_node)
+    }
+}
+
+function selectLineSource(e) {
+    var selection = d3.select(e.target)
+    if (selection.classed("node")) {
+        dragged_node = selection
+        console.log("dragged node is selected")
+    }
+}
+
+function selectLineDest(e) {
+    drag_line.classed("drag_line_hidden", true)
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", 0)
+        .attr("y2", 0)
+    if (dragged_node) {
+        dragged_node = null
+    }
+    var selection = d3.select(e.target)
+    if (source_node && selection.classed("node")) {
+
+        d3.select(canvas).insert("line", ":first-child")
+            .attr("class", "link")
+            .attr("x1", source_node.attr("cx"))
+            .attr("y1", source_node.attr("cy"))
+            .attr("x2", selection.attr("cx"))
+            .attr("y2", selection.attr("cy"))
+            .attr("xmlns", "http://www.w3.org/2000/svg")
+        source_node = null;
+    }
+}
+
+function drawDragLine(e) {
+    console.log(drag_line)
+    console.log(source_node)
+    drag_line
+        .attr("x1", source_node.attr("cx"))
+        .attr("y1", source_node.attr("cy"))
+        .attr("x2", e.pageX)
+        .attr("y2", e.pageY)
+}
+
+function drawDragNode(e) {
+    dragged_node
+        .attr("cx", e.pageX)
+        .attr("cy", e.pageY);
+}
+
+function singleClickEvent(e) {
+    var selection = d3.select(e.target)
+    if (e.target === canvas) {
+        addNode(e.clientX, e.clientY, radius)
+    } else if (selection.classed("node")) {
+        if (active_node) {
+            active_node.classed("active_node", false)
+            //.attr("fill", node_color)
+        }
+        active_node = selection
+        active_node.classed("active_node", true)
+        //.attr("fill", active_color)
+    }
+}
+
+function addNode(cx, cy, r) {
+    d3.select(canvas)
+        .append("circle")
+        .classed("node", true)
+        .attr("r", r)
+        .attr("cx", cx)
+        .attr("cy", cy)
+        .attr("xmlns", "http://www.w3.org/2000/svg")
+    //.call(drag);
+}
+</script>
+</html>
