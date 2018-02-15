@@ -1,31 +1,24 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var router = express.Router();
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+var index = router.get('/', function(req, res, next) {
+              res.render('index', { title: 'Express' });
+            });
+
+var users = router.get('/', function(req, res, next) {
+              res.send('respond with a resource');
+            });
+
 
 var app = express();
-var pg = require('pg');
-var pool = new pg.Pool()
-
-app.get('/db', function (request, response) {
-  pool.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM test_table', function(err, result) {
-      done();
-      if (err)
-       { console.error(err); response.send("Error " + err); }
-      else
-       { response.render('pages/db', {results: result.rows} ); }
-    });
-  });
-});
+var db = require('./db');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../client/views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
@@ -58,4 +51,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = {
+  app: app
+};
