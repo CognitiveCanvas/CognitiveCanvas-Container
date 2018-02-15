@@ -9,7 +9,7 @@ var index = router.get('/', function(req, res, next) {
               res.render('index', { title: 'Express' });
             });
 
-var users = router.get('/', function(req, res, next) {
+var users = router.get('/user', function(req, res, next) {
               res.send('respond with a resource');
             });
 
@@ -35,7 +35,7 @@ var keyword = require('./routes/keyword');
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/keyword', keyword);
+app.use('/searchKeyword', keyword);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

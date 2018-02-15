@@ -1,3 +1,42 @@
+import Vue from 'vue';
+import Router from 'vue-router';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function setSize() {
     document.getElementById('webstratesHere').style.height = document['body'].offsetHeight +'px';
     document.getElementById('webstratesHere').style.width = document['body'].offsetWidth + 'px';
@@ -110,6 +149,11 @@ function onPlayerStateChange(event) {
 function stopVideo() {
   player.stopVideo();
 }
+
+$.get('/searchKeyword', parameters, function(data) {
+});
+
+
 
 
 
