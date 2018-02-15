@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var contentSchema = new mongoose.Schema({
-  contentId: String,
+  contentId: Number,
   title: String,
   url: String,
   type: String
