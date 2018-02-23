@@ -1,42 +1,3 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function setSize() {
     document.getElementById('webstratesHere').style.height = document['body'].offsetHeight +'px';
     document.getElementById('webstratesHere').style.width = document['body'].offsetWidth + 'px';
@@ -149,17 +110,3 @@ function onPlayerStateChange(event) {
 function stopVideo() {
   player.stopVideo();
 }
-
-$.get('/searchKeyword', parameters, function(data) {
-});
-
-
-
-
-
-//     $('.nodeList').append( '<p id="Node-'+ i +'">' + inside.elements.nodes[i].data.id + '</p>' );
-// }
-//
-// for (i = 0; i < inside.edges.length; i++){
-//     $('.edgeList').append( '<p id="Edge-'+ i +'">' + inside.elements.nodes[i].data.id + '</p>' );
-// }
