@@ -2,17 +2,24 @@ import Vue from 'vue'
 import app from './app'
 import container from './pages/container'
 import topbar from './components/topbar'
+import conceptmap from './components/conceptmap'
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
 
 Vue.config.productionTip = false
 
 var index = {
   _main: undefined,
   components: {
+    // Icon components from font-awesome
+    'icon' : Icon,
+
     // Pages
     'container' : container,
 
     //Container Components
-    'topbar' : topbar
+    'topbar' : topbar,
+    'concept-map' : conceptmap
   },
   initiate() {
     this.initiateComponents();

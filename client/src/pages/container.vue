@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <topbar></topbar>
-    <h1>WOW FIRST VUE APP LET GO</h1>
+    <concept-map />
   </div>
 </template>
 
@@ -12,3 +12,12 @@ export default {
   }
 }
 </script>
+
+<style>
+  #container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+</style>
