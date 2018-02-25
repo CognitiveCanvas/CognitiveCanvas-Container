@@ -18,6 +18,5 @@
 .concept-map {
   height: 100%;
   width: 100%;
-  top: -70px;
 }
 </style>

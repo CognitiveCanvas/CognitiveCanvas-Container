@@ -5,15 +5,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var router = express.Router();
 
-var index = router.get('/', function(req, res, next) {
-              res.render('index', { title: 'Express' });
-            });
-
-var users = router.get('/user', function(req, res, next) {
-              res.send('respond with a resource');
-            });
-
-
 var app = express();
 var db = require('./db');
 
@@ -33,8 +24,6 @@ app.use('/client', express.static(path.join(__dirname, '../client')));
 
 var keyword = require('./routes/keyword');
 
-app.use('/', index);
-app.use('/users', users);
 app.use('/searchKeyword', keyword);
 
 // catch 404 and forward to error handler
