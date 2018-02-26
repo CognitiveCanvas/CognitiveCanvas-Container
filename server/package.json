@@ -4,16 +4,28 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node services/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "_moduleAliases": {
+    "@root": ".",
+    "@Container": "./services/ContainerAPI",
+    "@ContainerModels": "./services/ContainerAPI/app/models",
+    "@ContainerAPI": "./services/ContainerAPI/config/app.js",
+    "@config": "./services/ContainerAPI/config/index.js"
+  },
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "consign": "^0.1.6",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.1",
+    "module-alias": "^2.0.6",
     "mongodb": "^3.0.3",
     "mongoose": "^5.0.7",
     "morgan": "^1.9.0"
