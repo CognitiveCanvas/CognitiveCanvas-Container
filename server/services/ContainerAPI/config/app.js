@@ -4,6 +4,7 @@ const express       = require('express'),
       cookieParser  = require('cookie-parser'),
       bodyParser    = require('body-parser'),
       consign       = require('consign'),
+      cors          = require('cors'),
       app           = express(),
       config        = require('./index.js'),
       router        = express.Router(),
@@ -13,13 +14,16 @@ app.use(express.static('.'));
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use(cors());
 app.use(cookieParser());
+app.set('view engine', 'html');
 
 //var keyword = require('../ContainerAPI/app/routes/keyword');
 
 //app.use('/searchKeyword', keyword);
 
 // catch 404 and forward to error handler
+/*
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -36,10 +40,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+*/
 
 consign({ cwd: 'services' })
       .include('ContainerAPI/app/setup')
-      //.then('ContainerAPI/app/routes')
+      .then('ContainerAPI/app/api')
+      .then('ContainerAPI/app/routes')
       .into(app);
 
 module.exports = app;
