@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name : 'container'
+  name : 'Container'
 }
 </script>
 
@@ -17,5 +17,7 @@ export default {
     height: 100%;
     display: flex;
     flex-flow: column;
+    background-color: #008F95;
+    background-color: grey;
   }
 </style>
