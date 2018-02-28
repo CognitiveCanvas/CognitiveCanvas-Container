@@ -7,6 +7,6 @@ var contentSchema = new mongoose.Schema({
   type: String
 });
 
-var contentModel = mongoose.model('Content', contentSchema);
+var ContentModel = mongoose.model('Content', contentSchema);
 
-module.exports = contentModel;
+module.exports = ContentModel;

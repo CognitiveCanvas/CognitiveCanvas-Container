@@ -5,7 +5,7 @@ var keywordSchema = new mongoose.Schema({
   url_ids: [Number]
 });
 
-var keywordModel = mongoose.model('Keyword', keywordSchema);
+var KeywordModel = mongoose.model('Keyword', keywordSchema);
 var contentMode = require('./content');
 
-module.exports = keywordModel;
+module.exports = KeywordModel;

@@ -32,27 +32,6 @@ var keyword = require('./routes/keyword');
 app.use('/', index);
 app.use('/searchKeyword', keyword);
 
-// register new google user
-var UserModel = require('./models/user');
-app.post('/register', function (req, res) {
-  var user = req.body;
-  var newUser = new UserModel({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    token: user.token,
-    email: user.email
-  });
-  UserModel.findOne({'email' : newUser.email}, function(err, foundUser) {
-    if (err) return handleError(err);
-    // Save user if not found
-    if (foundUser === null) {
-      newUser.save(function (err) {
-      if (err) return handleError(err);
-        // saved!
-      });
-    }
-  });
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
