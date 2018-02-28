@@ -10,6 +10,4 @@ var userSchema = new mongoose.Schema({
 
 var UserModel = mongoose.model('User', userSchema);
 
-var newUser = new UserModel({firstName: 'Steve', lastName: 'Do', id: '12344'});
-
 module.exports = UserModel;

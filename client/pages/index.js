@@ -121,7 +121,7 @@ function onSignIn(googleUser) {
     };
     $.ajax({
         type: "POST",
-        url: "/user",
+        url: "/register",
         data: user
     });
 }
