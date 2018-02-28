@@ -1,15 +1,12 @@
 <template>
   <div id="app">
-    <container />
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
   name: 'app',
-  components: {
-    
-  }
 }
 </script>
 
@@ -23,8 +20,6 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Muli', sans-serif;
-  background-color: #008F95;
-  background-color: grey;
   height: 100vh;
 }
 #app {
