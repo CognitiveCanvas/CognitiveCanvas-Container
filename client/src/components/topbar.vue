@@ -12,10 +12,11 @@
 </template>
 
 <script>
-import contentFunctions from '../functions/content'
+import contentStore from '../stores/content'
 
 export default {
   name: 'topbar',
+  contentStore,
   data() {
     return {
       title: "Cognitive Canvas"
@@ -24,7 +25,9 @@ export default {
   methods: {
     menu: function(e) {
       console.log("clicked on menu")
-      contentFunctions.queryContent("diabetes");
+      contentStore.dispatch("queryContent", {
+        label: "diabetes"
+      });
     },
   }
 }
