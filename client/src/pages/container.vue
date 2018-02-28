@@ -7,9 +7,7 @@
 
 <script>
 export default {
-  name : 'container',
-  data: {
-  }
+  name : 'container'
 }
 </script>
 
