@@ -3,9 +3,10 @@ const models = require('@ContainerManager/app/setup');
 
 const api = {}
 
-api.queryContentsByLabel = (Keyword, Content) => (req, res) => {
-  if (error) throw error;
-  let keyword = req.query.search;
+// FIXIT: Polish the API
+api.queryContentsByLabel = (Keyword, Content, req, res) => {
+
+  let keyword = req.query.label;
   // TODO: add error in response
 
   models.Keyword.findOne({'keyword': keyword}, 'url_ids', function(err, keyword) {

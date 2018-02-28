@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import contentFunctions from '../functions/content'
+
 export default {
   name: 'topbar',
   data() {
@@ -22,7 +24,8 @@ export default {
   methods: {
     menu: function(e) {
       console.log("clicked on menu")
-    }
+      contentFunctions.queryContent("diabetes");
+    },
   }
 }
 </script>
