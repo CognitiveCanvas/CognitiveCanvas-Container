@@ -33,6 +33,7 @@
           email: googleUser.getBasicProfile().getEmail(),
           token: googleUser.getAuthResponse().id_token
         }
+
         axios.post(`${API}/register`, user)
           .then(function (response) {
             console.log(response);

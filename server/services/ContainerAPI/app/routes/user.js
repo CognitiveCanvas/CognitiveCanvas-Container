@@ -2,8 +2,7 @@ const models = require('@ContainerManager/app/setup');
 
 module.exports = (app) => {
   var UserModel = require('../models/user');
-  app.route('/register')
-     .post((req, res) => {
+  app.post('/register', function(req, res) {
         // register new google user
         var user = req.body;
         var newUser = new UserModel({
@@ -22,5 +21,5 @@ module.exports = (app) => {
                 });
             }
         });
-    });
+    })
 }

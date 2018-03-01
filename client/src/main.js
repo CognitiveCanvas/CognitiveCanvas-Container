@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueCookie from 'vue-cookie'
+import Vuex from 'vuex'
 import app from './app'
 import container from './pages/container'
 import topbar from './components/topbar'
@@ -13,6 +14,7 @@ import GSignInButton from 'vue-google-signin-button'
 Vue.use(GSignInButton)
 Vue.use(VueCookie)
 Vue.use(Vuetify)
+Vue.use(Vuex)
 Vue.config.productionTip = false
 
 var index = {
