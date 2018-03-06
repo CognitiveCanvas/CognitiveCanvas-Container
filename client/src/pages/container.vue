@@ -1,7 +1,10 @@
 <template>
   <div id="container">
     <topbar></topbar>
-    <concept-map />
+    <div id="map-container">
+      <concept-map />
+      <side-bar />
+    </div>
   </div>
 </template>
 
@@ -19,5 +22,9 @@ export default {
     flex-flow: column;
     background-color: #008F95;
     background-color: grey;
+  }
+  #map-container {
+    width: 100%;
+    height: 100%;
   }
 </style>

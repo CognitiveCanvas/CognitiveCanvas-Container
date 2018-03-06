@@ -1,4 +1,4 @@
-const models = require('@ContainerManager/app/api/queryContent');
+const models = require('@ContainerManager/app/setup');
 
 module.exports = (app) => {
   const api = app.ContainerAPI.app.api.queryContent;
@@ -8,7 +8,6 @@ module.exports = (app) => {
 
   app.route('/queryContent')
      .get((req, res) => {
-      (api.queryContentsByLabel)
-      res.send("successful")
+      api.queryContentsByLabel(models.KeywordModel, models.ContentModel, req, res);
     });
 }

@@ -5,23 +5,35 @@
     </div>
     <h1 class="mr-md-4" style="color: #168FC7"> {{ title }} </h1>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2"v-model="query" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="queryContentByLable">Search</button>
     </form>
   </nav>
 </template>
 
 <script>
+import contentStore from '../stores/content'
+
 export default {
   name: 'topbar',
+  contentStore,
   data() {
     return {
-      title: "Cognitive Canvas"
+      title: "Cognitive Canvas",
+      query: null
     }
   },
   methods: {
     menu: function(e) {
       console.log("clicked on menu")
+    },
+    queryContentByLable: function(e) {
+      let label = this.$data.query;
+      if (label && label != "") {
+        contentStore.dispatch("queryContent", {
+        label: label
+      });
+      }
     }
   }
 }
