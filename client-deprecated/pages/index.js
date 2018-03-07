@@ -102,11 +102,26 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
+  if (event.data === YT.PlayerState.PLAYING && !done) {
     setTimeout(stopVideo, 6000);
     done = true;
   }
 }
 function stopVideo() {
   player.stopVideo();
+}
+
+//Google sign in function
+function onSignIn(googleUser) {
+    var user = {
+        firstName: googleUser.getBasicProfile().getGivenName(),
+        lastName: googleUser.getBasicProfile().getFamilyName(),
+        email: googleUser.getBasicProfile().getEmail(),
+        token:  googleUser.getAuthResponse().id_token
+    };
+    $.ajax({
+        type: "POST",
+        url: "/register",
+        data: user
+    });
 }

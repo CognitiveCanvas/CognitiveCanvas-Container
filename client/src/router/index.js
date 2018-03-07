@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 // Pages
-import Authentication from '../pages/Authentication';
-import Container from '../pages/Container';
+import Authentication from '../pages/authentication'
+import Container from '../pages/container'
 
 Vue.use(VueRouter)
 

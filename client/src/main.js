@@ -11,7 +11,9 @@ import contentCard from './components/contentCard'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import router from './router/index'
+import GSignInButton from 'vue-google-signin-button'
 
+Vue.use(GSignInButton)
 Vue.use(VueCookie)
 Vue.use(Vuetify)
 Vue.use(Vuex)
@@ -32,7 +34,7 @@ var index = {
     'side-bar' : sideBar,
     'content-card': contentCard
   },
-  initiate() {
+  initiate () {
     this.initiateComponents();
     this.initiateMain();
   },
@@ -41,8 +43,8 @@ var index = {
         Vue.component(k, this.components[k]);
       }
   },
-  initiateMain() {
-    this._main = 
+  initiateMain () {
+    this._main =
       new Vue({
         el: '#app',
         router,
@@ -51,7 +53,4 @@ var index = {
   }
 }
 
-index.initiate();
-
-
-
+index.initiate()
