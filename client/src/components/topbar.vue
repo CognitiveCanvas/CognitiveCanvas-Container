@@ -17,7 +17,6 @@ import contentStore from '../stores/content'
 export default {
   name: 'topbar',
   contentStore,
-  data () {
   data() {
     return {
       title: "Cognitive Canvas",
