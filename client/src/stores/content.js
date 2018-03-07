@@ -8,12 +8,14 @@ const API = `http://${window.location.hostname}:8081`
 
 export default new Vuex.Store ({
   state: {
-    contents: []
+    contents: [],
+    label: "haha"
   },
   mutations: {
-    updateContents(state, { contents }) {
-      state.contents = contents;
-      console.log("staet", state.contents);
+    updateContents(state, { params }) {
+      state.contents = params.contents;
+      state.label = params.label;
+      console.log(state.contents)
     }
   },
   actions: {
@@ -24,7 +26,16 @@ export default new Vuex.Store ({
         }
       })
       .then(function (response) {
-        console.log(response);
+        if (response.data === 'Not Found') {
+          let params = { contents: [], 
+                         label: response.data };
+          context.commit('updateContents', { params });
+        }
+        else {
+          let params = { contents: response.data, 
+                         label: label };
+          context.commit('updateContents', { params });
+        }
       })
       .catch(function (error) {
         console.log(error)
