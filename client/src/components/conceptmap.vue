@@ -10,8 +10,8 @@ import contentStore from '../stores/content'
     name: 'topbar',
     data() {
       return {
-        source: "http://localhost:7007/ConceptMap/"
-        //source: "http://webstrates.ucsd.edu/master/"
+        //source: "http://localhost:7007/ConceptMap/"
+        source: "http://webstrates.ucsd.edu/master/"
       }
     },
     contentStore,
