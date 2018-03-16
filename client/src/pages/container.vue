@@ -20,8 +20,8 @@ export default {
     height: 100%;
     display: flex;
     flex-flow: column;
-    background-color: #008F95;
-    background-color: grey;
+/*    background-color: #008F95;*/
+    background-color: lightgray;
   }
   #map-container {
     width: 100%;

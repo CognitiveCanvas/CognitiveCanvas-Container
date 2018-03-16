@@ -9,7 +9,7 @@ const API = `http://${window.location.hostname}:8081`
 export default new Vuex.Store ({
   state: {
     contents: [],
-    label: "haha"
+    label: ""
   },
   mutations: {
     updateContents(state, { params }) {
