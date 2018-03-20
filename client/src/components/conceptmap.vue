@@ -20,7 +20,7 @@ import contentStore from '../stores/content'
         window.addEventListener('message', function(event) { 
 
           // IMPORTANT: Check the origin of the data! 
-          if (~event.origin.indexOf('http://localhost:7007')) { 
+          if (~event.origin.indexOf('http://webstrates.ucsd.edu')) { 
               // The data has been sent from your site 
 
               // The data sent with postMessage is stored in event.data 
