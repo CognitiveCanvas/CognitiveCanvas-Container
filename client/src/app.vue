@@ -8,6 +8,9 @@
 export default {
   name: 'app'
 }
+  window.bugsnagClient = bugsnag('API_KEY')
+  // after Vue has been loaded…
+  bugsnagClient.use(bugsnag__vue(Vue))
 </script>
 
 <style lang="scss">
