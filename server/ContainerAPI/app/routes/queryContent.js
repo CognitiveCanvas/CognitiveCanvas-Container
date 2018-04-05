@@ -7,4 +7,9 @@ module.exports = (app) => {
      .get((req, res) => {
       api.queryContentsByLabel(models.KeywordModel, models.ContentModel, req, res);
     });
+
+  app.route('/api/test')
+     .get((req, res) => {
+      res.send("sadfasdfadf");
+  });
 }
