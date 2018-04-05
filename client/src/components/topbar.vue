@@ -29,7 +29,7 @@ export default {
     },
     queryContentByLable: function(e) {
       let label = this.$data.query;
-      if (label && label != "") {
+      if (label && label !== "") {
         contentStore.dispatch("queryContent", {
         label: label
       });

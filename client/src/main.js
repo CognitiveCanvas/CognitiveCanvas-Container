@@ -6,7 +6,7 @@ import app from './app'
 import container from './pages/container'
 import topbar from './components/topbar'
 import conceptmap from './components/conceptmap'
-import sideBar from './components/sideBar'
+import sideBar from './components/sidebar'
 import contentCard from './components/contentCard'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
@@ -31,7 +31,7 @@ var index = {
     //Container Components
     'topbar' : topbar,
     'concept-map' : conceptmap,
-    'side-bar' : sideBar,
+    'side-bar' : sidebar,
     'content-card': contentCard
   },
   initiate () {
