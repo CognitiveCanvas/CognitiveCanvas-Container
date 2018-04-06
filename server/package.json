@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node services/index.js",
+    "start": "node containerapi.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,10 +12,10 @@
   "license": "ISC",
   "_moduleAliases": {
     "@root": ".",
-    "@ContainerManager": "./services/ContainerAPI",
-    "@ContainerModels": "./services/ContainerAPI/app/models",
-    "@ContainerAPI": "./services/ContainerAPI/config/app.js",
-    "@config": "./services/ContainerAPI/config/index.js"
+    "@ContainerManager": "./ContainerAPI",
+    "@ContainerModels": "./ContainerAPI/app/models",
+    "@ContainerAPI": "./ContainerAPI/config/app.js",
+    "@config": "./ContainerAPI/config/index.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
