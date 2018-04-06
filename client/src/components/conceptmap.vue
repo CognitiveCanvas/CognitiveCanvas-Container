@@ -10,17 +10,17 @@ import contentStore from '../stores/content'
     name: 'topbar',
     data() {
       return {
-        source: "http://localhost:7007/ConceptMapping/"
-//        source: "http://webstrates.ucsd.edu/master/"
+        //source: "http://localhost:7007/ConceptMapping/" //Local Mapping
+        source: "http://webstrates.ucsd.edu/master/"
       }
     },
     contentStore,
     methods: {
       eventListener: function() {
         window.addEventListener('message', function(event) { 
-
+          
           // IMPORTANT: Check the origin of the data! 
-          if (~event.origin.indexOf('http://localhost:7007')) { 
+          if (~event.origin.indexOf('http://webstrates.ucsd.edu')) { 
             // The data has been sent from your site 
 
             // The data sent with postMessage is stored in event.data 

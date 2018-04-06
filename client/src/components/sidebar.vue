@@ -1,5 +1,5 @@
 <template>
-  <div class="sideBar">
+  <div class="sideBar" ref="sideBar">
     <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
     <div v-for="content in contents">
       <content-card :title=content.title :url=content.url :type=content.type></content-card>

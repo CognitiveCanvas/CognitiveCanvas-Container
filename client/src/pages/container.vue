@@ -21,7 +21,7 @@ export default {
     display: flex;
     flex-flow: column;
 /*    background-color: #008F95;*/
-    background-color: lightgray;
+    background-color: whitesmoke;
   }
   #map-container {
     width: 100%;
