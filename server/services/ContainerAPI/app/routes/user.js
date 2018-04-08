@@ -10,10 +10,10 @@ module.exports = (app) => {
             if (err) return handleError(err);
             // Update user if found
             if (foundUser) {
-                newUser.update(function (err) {
+                newUser.save(function (err) {
                     if (err) return handleError(err);
                     // saved
-                });
+                })
                 res.send(true); // user found and update
             } else {
                 res.send(false); // user not found
