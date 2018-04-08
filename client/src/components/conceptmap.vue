@@ -10,7 +10,7 @@ import contentStore from '../stores/content'
     name: 'topbar',
     data() {
       return {
-        //source: "http://localhost:7007/ConceptMap/"
+        //source: "http://localhost:7007/ConceptMapping/" //Local Mapping
         source: "http://webstrates.ucsd.edu/master/"
       }
     },
@@ -18,24 +18,27 @@ import contentStore from '../stores/content'
     methods: {
       eventListener: function() {
         window.addEventListener('message', function(event) { 
-
+          
           // IMPORTANT: Check the origin of the data! 
-          if (~event.origin.indexOf('http://localhost:7007')) { 
-              // The data has been sent from your site 
+          if (~event.origin.indexOf('http://webstrates.ucsd.edu')) { 
+            // The data has been sent from your site 
 
-              // The data sent with postMessage is stored in event.data 
-              console.log(event.data); 
-              contentStore.dispatch("queryContent", {
-              label: event.data
+            // The data sent with postMessage is stored in event.data 
+            console.log(event.data.label); 
+            contentStore.dispatch("queryContent", {
+              label: event.data.label
             });
+            
           } 
           else { 
               // The data hasn't been sent from your site! 
               // Be careful! Do not use it. 
               return;
-          } 
+          }
+          
         }); 
       }
+      
     }
   }
 </script>

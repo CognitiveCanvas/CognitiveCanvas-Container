@@ -8,6 +8,7 @@ import topbar from './components/topbar'
 import conceptmap from './components/conceptmap'
 import sideBar from './components/sideBar'
 import contentCard from './components/contentCard'
+import noteCard from './components/noteCard'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import router from './router/index'
@@ -32,7 +33,8 @@ var index = {
     'topbar' : topbar,
     'concept-map' : conceptmap,
     'side-bar' : sideBar,
-    'content-card': contentCard
+    'content-card': contentCard,
+    'note-card': noteCard
   },
   initiate () {
     this.initiateComponents();
