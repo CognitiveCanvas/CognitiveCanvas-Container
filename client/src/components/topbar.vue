@@ -28,7 +28,6 @@ export default {
       console.log("clicked on menu")
     },
     queryContentByLable: function(e) {
-      //console.log(this);
       let label = this.$data.query;
       if (label && label != "") {
         contentStore.dispatch("queryContent", {

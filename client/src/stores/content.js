@@ -1,4 +1,4 @@
- import Axios from 'axios'
+import Axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
