@@ -11,9 +11,7 @@ import contentCard from './components/contentCard'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import router from './router/index'
-import GSignInButton from 'vue-google-signin-button'
 
-Vue.use(GSignInButton)
 Vue.use(VueCookie)
 Vue.use(Vuetify)
 Vue.use(Vuex)
