@@ -11,7 +11,7 @@ import contentStore from '../stores/content'
     data() {
       return {
         //source: "http://localhost:7007/ConceptMapping/" //Local Mapping
-        source: "http://webstrates.ucsd.edu/master/"
+        source: "http://webstrates.ucsd.edu/moriarty/"
       }
     },
     contentStore,
