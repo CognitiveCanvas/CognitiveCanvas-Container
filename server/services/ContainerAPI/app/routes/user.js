@@ -13,8 +13,8 @@ module.exports = (app) => {
         });
         UserModel.findOne({'email' : newUser.email}, function(err, foundUser) {
             if (err) return handleError(err);
-            // Save user if not found
-            if (foundUser === null) {
+            // Update user if found
+            if (foundUser) {
                 newUser.save(function (err) {
                     if (err) return handleError(err);
                     // saved!
