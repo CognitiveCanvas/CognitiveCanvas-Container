@@ -10,11 +10,13 @@ module.exports = (app) => {
             if (err) return handleError(err);
             // Update user if found
             if (foundUser) {
-                newUser.replaceOne({'email': user.email}, user, function (err) {
+                newUser.update(function (err) {
                     if (err) return handleError(err);
                     // saved
                 });
                 res.send(true); // user found and update
+            } else {
+                res.send(false); // user not found
             }
         });
     })
