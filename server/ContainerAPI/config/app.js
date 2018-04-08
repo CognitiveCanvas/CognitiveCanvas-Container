@@ -42,7 +42,7 @@ app.use(function(err, req, res, next) {
 });
 */
 
-consign({ cwd: 'services' })
+consign()
       .include('ContainerAPI/app/setup')
       .then('ContainerAPI/app/api')
       .then('ContainerAPI/app/routes')

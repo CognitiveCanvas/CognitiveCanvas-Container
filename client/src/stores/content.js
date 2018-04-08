@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const API = `http://${window.location.hostname}:8081`
+const API = `http://${window.location.hostname}/api`
 
 export default new Vuex.Store ({
   state: {
