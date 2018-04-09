@@ -4,11 +4,6 @@
     <div v-for="content in contents">
       <content-card :title=content.title :url=content.url :type=content.type></content-card>
     </div>
-<!--
-    <div v-for="note in notes">
-      
-    </div>
--->
   </div>
 </template>
 
@@ -83,5 +78,7 @@ export default {
     height: 100vh;
     max-width: 90vw;
     background-color: var(--accent-color);
+    display: flex;
+    flex-direction: column;
   }
 </style>
