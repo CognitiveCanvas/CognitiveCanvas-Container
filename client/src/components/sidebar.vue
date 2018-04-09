@@ -9,7 +9,10 @@
       </v-tab>
 
       <v-tab title="Notes">
-        Second tab content
+<!--
+        <iframe class="note-window" id="note-frame" v-on:load="eventListener" v-bind:src="source">
+        </iframe>
+-->
       </v-tab>
 
       <v-tab title="Toolbar">
@@ -49,6 +52,7 @@ export default {
     }
   },
   methods: {
+    
   },
   watch: {
     open: function (open) {
@@ -80,5 +84,9 @@ export default {
     padding: 0 auto;
     width: 100%;
     border-radius: 0px;
+  }
+  .note-window {
+    height: 100%;
+    width: 100%;
   }
 </style>
