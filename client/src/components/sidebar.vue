@@ -1,9 +1,21 @@
 <template>
   <div :class="$style.sidebar">
 <!--    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>-->
-    <div v-for="content in contents">
-      <content-card :title=content.title :url=content.url :type=content.type></content-card>
-    </div>
+    <vue-tabs>
+      <v-tab title="Resources">
+        <div v-for="content in contents">
+          <content-card :title=content.title :url=content.url :type=content.type></content-card>
+        </div>
+      </v-tab>
+
+      <v-tab title="Notes">
+        Second tab content
+      </v-tab>
+
+      <v-tab title="Toolbar">
+        Third tab content
+      </v-tab>
+    </vue-tabs>
   </div>
 </template>
 
@@ -50,25 +62,6 @@ export default {
 }
 </script>
 
-<!--
-<style>
-  .sideBar {
-    position: absolute;
-    height: 100%;
-    width: 25%;
-    background-color: white;
-    overflow: scroll;
-    display: flex;
-    flex-direction: column;
-    z-index: 10;
-    right: 0px;
-  }
-  .topright {
-    cursor: pointer;
-    font-size: 28px;
-  }
-</style>-->
-
 <style module>
   .sidebar{
     position: fixed;
@@ -80,5 +73,12 @@ export default {
     background-color: var(--accent-color);
     display: flex;
     flex-direction: column;
+  }
+  .title {
+    top: 0;
+    margin: 0 auto;
+    padding: 0 auto;
+    width: 100%;
+    border-radius: 0px;
   }
 </style>
