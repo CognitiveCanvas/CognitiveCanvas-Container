@@ -1,6 +1,5 @@
 <template>
   <div :class="$style.sidebar">
-<!--    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>-->
     <vue-tabs>
       <v-tab title="Resources">
         <div v-for="content in contents">
@@ -77,6 +76,7 @@ export default {
     background-color: var(--accent-color);
     display: flex;
     flex-direction: column;
+    overflow: scroll;
   }
   .title {
     top: 0;
