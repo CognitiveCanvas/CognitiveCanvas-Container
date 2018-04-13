@@ -14,7 +14,7 @@ const routes = [
     component: Authentication
   },
   {
-    path: '/Map',
+    path: '/map',
     name: 'Map',
     component: Container
   }
