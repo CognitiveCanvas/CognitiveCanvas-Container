@@ -4,11 +4,14 @@ import VueCookie from 'vue-cookie'
 import Vuex from 'vuex'
 import app from './app'
 import container from './pages/container'
+import management from './pages/management'
 import topbar from './components/topbar'
 import conceptmap from './components/conceptmap'
 import sidebar from './components/sidebar'
 import sidebarToggle from './components/sidebarToggle'
 import contentCard from './components/contentCard'
+import mapCard from './components/mapCard'
+import mapCollection from './components/mapCollection'
 import noteCard from './components/noteCard'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
@@ -16,6 +19,7 @@ import router from './router/index'
 import GSignInButton from 'vue-google-signin-button'
 import VueTabs from 'vue-nav-tabs'
 import 'vue-nav-tabs/themes/vue-tabs.css'
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(GSignInButton)
 Vue.use(VueCookie)
@@ -32,6 +36,7 @@ var index = {
 
     // Pages
     'container' : container,
+    'management' : management,
 
     //Container Components
     'topbar' : topbar,
@@ -39,6 +44,8 @@ var index = {
     'side-bar' : sidebar,
     'side-bar-toggle': sidebarToggle,
     'content-card': contentCard,
+    'map-card': mapCard,
+    'map-collection': mapCollection,
     'note-card': noteCard
   },
   initiate () {
