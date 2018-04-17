@@ -4,6 +4,18 @@
 <!--      <map-card :title=content.title :url=content.url></map-card>-->
       <map-card></map-card>
     </div>
+    <div :class="$style.singleMapInCollection">
+<!--      <map-card :title=content.title :url=content.url></map-card>-->
+      <map-card></map-card>
+    </div>
+    <div :class="$style.singleMapInCollection">
+<!--      <map-card :title=content.title :url=content.url></map-card>-->
+      <map-card></map-card>
+    </div>
+    <div :class="$style.singleMapInCollection">
+<!--      <map-card :title=content.title :url=content.url></map-card>-->
+      <map-card></map-card>
+    </div>
   </div>
 </template>
 
@@ -33,16 +45,18 @@ export default {
 
 <style module>
   .mapCollection{
-    right: 0;
-    top: 0;
     width: 100%;
+    height: 94%;
     background-color: whitesmoke;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     overflow: scroll;
   }
   .singleMapInCollection{
     position: default;
     width: 32%;
+    padding-top: 1%;
+    padding-left: 1%;
   }
 </style>
