@@ -5,9 +5,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
   name: 'app'
 }
+window.bugsnagClient = bugsnag('f5b4e40125cc5b1591125821d850486b')
+// after Vue has been loaded…
+bugsnagClient.use(bugsnag__vue(Vue))
 </script>
 
 <style lang="scss">
