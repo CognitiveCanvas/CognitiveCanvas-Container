@@ -39,8 +39,8 @@ export default {
     }
   },
   mounted() {
-    gapi.signin2.render('google-signin-btn', { // this is the button "id"
-      onsuccess: this.onSignIn // note, no "()" here
+    gapi.signin2.render('google-signin-btn', {
+      onsuccess: this.onSignIn
     })
   }
 }
