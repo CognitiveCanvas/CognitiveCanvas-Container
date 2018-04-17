@@ -16,12 +16,10 @@ import noteCard from './components/noteCard'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import router from './router/index'
-import GSignInButton from 'vue-google-signin-button'
 import VueTabs from 'vue-nav-tabs'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 import 'vuetify/dist/vuetify.min.css'
 
-Vue.use(GSignInButton)
 Vue.use(VueCookie)
 Vue.use(Vuetify)
 Vue.use(Vuex)

@@ -17,6 +17,8 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
     "gsap": "^1.20.4",
+    "bugsnag-js": "^4.3.1",
+    "bugsnag-vue": "^1.0.1",
     "vue": "^2.5.2",
     "vue-awesome": "^2.3.4",
     "vue-cookie": "^1.1.4",

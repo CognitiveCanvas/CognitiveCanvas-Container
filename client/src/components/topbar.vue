@@ -8,11 +8,13 @@
       <input class="form-control mr-sm-2"v-model="query" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="queryContentByLable">Search</button>
     </form>
+    <a href="#" v-on:click="googleSignOut">Sign out</a>
   </nav>
 </template>
 
 <script>
 import contentStore from '../stores/content'
+import router from '../router/index'
 
 export default {
   name: 'topbar',
@@ -29,11 +31,18 @@ export default {
     },
     queryContentByLable: function(e) {
       let label = this.$data.query;
-      if (label && label != "") {
+      if (label && label !== "") {
         contentStore.dispatch("queryContent", {
         label: label
       });
       }
+    },
+    googleSignOut: function() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+        router.push(`login`);
+      });
     }
   }
 }
