@@ -4,18 +4,6 @@
 <!--      <map-card :title=content.title :url=content.url></map-card>-->
       <map-card></map-card>
     </div>
-    <div :class="$style.singleMapInCollection">
-<!--      <map-card :title=content.title :url=content.url></map-card>-->
-      <map-card></map-card>
-    </div>
-    <div :class="$style.singleMapInCollection">
-<!--      <map-card :title=content.title :url=content.url></map-card>-->
-      <map-card></map-card>
-    </div>
-    <div :class="$style.singleMapInCollection">
-<!--      <map-card :title=content.title :url=content.url></map-card>-->
-      <map-card></map-card>
-    </div>
   </div>
 </template>
 
