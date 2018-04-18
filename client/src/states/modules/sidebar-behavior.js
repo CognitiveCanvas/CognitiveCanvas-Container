@@ -1,4 +1,4 @@
-import * as types from '../mutation-types'
+import * as types from '@states/mutation-types'
 
 // initial state
 // shape: [{ id, quantity }]

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import sidebarBehavior from './modules/sidebar-behavior'
+import sidebarBehavior from '@states/modules/sidebar-behavior'
 
 Vue.use(Vuex)
 
