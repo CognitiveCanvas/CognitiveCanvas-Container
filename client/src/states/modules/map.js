@@ -1,9 +1,8 @@
-import Map from "@models/map"
-import API from "@models/constants"
+import Map from './map'
+import constants from '../../models/constants'
 import axios from 'axios'
 
 const state = {
-  localUser: null
 }
 
 const getters = {
@@ -18,9 +17,12 @@ const actions = {
 
 }
 
-export default {
+const map = {
+  namespaced: true,
   state,
   actions,
   getters,
   mutations
 }
+
+export default map

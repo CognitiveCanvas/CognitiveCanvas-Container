@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // Pages
-import Authentication from '../pages/authentication'
-import Container from '../pages/container'
-import Management from '../pages/management'
+import Authentication from '../views/pages/authentication'
+import Container from '../views/pages/container'
+import Management from '../views/pages/management'
 
 Vue.use(VueRouter)
 

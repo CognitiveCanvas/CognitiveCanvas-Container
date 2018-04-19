@@ -13,19 +13,21 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js"
   },
-  "_moduleAliases" : {
-    "@states"       : "src/states",
-    "@components"   : "src/components",
-    "@models"       : "src/models",
-    "@page"         : "src/pages",
-    "@router"       : "src/router"
+  "_moduleAliases": {
+    "@states": "./src/states",
+    "@components": "./src/views/components",
+    "@models": "./src/models",
+    "@pages": "./src/views/pages",
+    "@router": "./src/router"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
     "bugsnag-js": "^4.3.1",
     "bugsnag-vue": "^1.0.1",
+    "googleapis": "^28.1.0",
     "gsap": "^1.20.4",
+    "module": "^1.2.5",
     "module-alias": "^2.0.6",
     "vue": "^2.5.2",
     "vue-awesome": "^2.3.4",

@@ -7,4 +7,4 @@ class Map {
   }
 }
 
-module.exports.Map = Map
+export default Map

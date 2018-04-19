@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import contentStore from '../stores/content'
+import store from '../../states/store'
   export default {
 
     name: 'topbar',
@@ -15,7 +15,7 @@ import contentStore from '../stores/content'
         //source: "http://webstrates.ucsd.edu/master/"
       }
     },
-    contentStore,
+    store,
     methods: {
       eventListener: function() {
         window.addEventListener('message', function(event) { 
@@ -26,7 +26,7 @@ import contentStore from '../stores/content'
 
             // The data sent with postMessage is stored in event.data 
             //console.log(event.data); 
-            contentStore.dispatch("queryContent", {
+            store.content.dispatch("queryContent", {
               elementUrl: event.data.id,
               label: event.data.label
             });

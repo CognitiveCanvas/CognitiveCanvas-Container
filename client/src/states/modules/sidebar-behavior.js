@@ -1,4 +1,4 @@
-import * as types from '@states/mutation-types'
+import * as types from '../mutation-types'
 
 // initial state
 // shape: [{ id, quantity }]
@@ -25,9 +25,11 @@ const mutations = {
   }
 }
 
-export default {
+const sidebarBehavior = {
   state,
   getters,
   actions,
   mutations
 }
+
+export default sidebarBehavior

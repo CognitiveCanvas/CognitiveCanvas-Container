@@ -1,19 +1,24 @@
 class User {
-  constructor (id) {
-    this.id = id
+  constructor (email) {
     this.email = null
-    
+    this.name = null
+  }
+
+  /**
+   * Sync user field from mongodb
+   */
+  sync () {
+
   }
 }
 
 class LocalUser extends User {
-  constructor (id) {
-    super(id)
+  constructor (email) {
+    super(email)
     this.maps = []
+    this.friends = []
   }
 }
 
-module.exports = {
-  User: User,
-  LocalUser: LocalUser
-}
+export default LocalUser
+
