@@ -13,12 +13,10 @@
 </template>
 
 <script>
-import store from '../../states/store'
 import router from '../../router/index'
 
 export default {
   name: 'topbar',
-  store,
   data() {
     return {
       title: "Cognitive Canvas",
@@ -32,7 +30,7 @@ export default {
     queryContentByLable: function(e) {
       let label = this.$data.query;
       if (label && label !== "") {
-        store.content.dispatch("queryContent", {
+        this.$store.content.dispatch("queryContent", {
         label: label
       });
       }

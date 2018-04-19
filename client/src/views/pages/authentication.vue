@@ -5,13 +5,15 @@
 <script>
 import axios from 'axios'
 import router from '../../router/index'
-import store from '../../states/store'
 
 export default {
-  store,
   mounted() {
+    console.log(this.$store);
+    var self = this;
     gapi.signin2.render('google-signin-btn', {
-      onsuccess: store.localUser.login
+      onsuccess: function (googleUser) {
+        self.$store.dispatch('localUser/login', googleUser)
+      }
     })
   }
 }

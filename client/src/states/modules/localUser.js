@@ -33,6 +33,7 @@ const actions = {
 
         if (whitelisted) {
           commit('onLogin', user.email)
+          console.log('local user', this.state.localUser)
         } else {
           var auth2 = gapi.auth2.getAuthInstance()
           auth2.signOut().then(function () {

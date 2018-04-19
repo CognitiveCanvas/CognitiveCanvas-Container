@@ -22,12 +22,10 @@
 </template>
 
 <script>
-import store from '../../states/store'
 import {TweenMax, Power4} from 'gsap'
 
 export default {
   name: 'sideBar',
-  store,
   data() {
     return {
     }
@@ -39,13 +37,13 @@ export default {
   },
   computed: {
     label: function () {
-      return store.content.state.label
+      return this.$store.content.state.label
     },
     contents: function () {
-      return store.content.state.contents
+      return this.$store.content.state.contents
     },
     open () {
-      return store.sidebarBehavior.state.sidebarBehavior.sidebarOpen
+      return this.$store.sidebarBehavior.state.sidebarBehavior.sidebarOpen
     }
   },
   methods: {

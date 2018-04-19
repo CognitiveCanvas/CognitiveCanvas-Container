@@ -8,21 +8,18 @@
 </template>
 
 <script>
-import store from '../../states/store'
-  
 export default {
   name: 'mapCollection',
-  store,
   data() {
     return {
     }
   },
   computed: {
     label: function() {
-      return store.content.state.label
+      return this.$store.content.state.label
     },
     contents: function() {
-      return store.content.state.contents
+      return this.$store.content.state.contents
     }
   },
   methods: {

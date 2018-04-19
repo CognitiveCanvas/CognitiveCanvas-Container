@@ -16,6 +16,7 @@ import noteCard from './views/components/noteCard'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import router from './router/index'
+import store from './states/store'
 import VueTabs from 'vue-nav-tabs'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 import 'vuetify/dist/vuetify.min.css'
@@ -59,6 +60,7 @@ var index = {
     this._main =
       new Vue({
         el: '#app',
+        store: store,
         router,
         render: h => h(app)
       })

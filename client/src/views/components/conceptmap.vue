@@ -4,7 +4,6 @@
 </template>
 
 <script>
-import store from '../../states/store'
   export default {
 
     name: 'topbar',
@@ -15,7 +14,6 @@ import store from '../../states/store'
         //source: "http://webstrates.ucsd.edu/master/"
       }
     },
-    store,
     methods: {
       eventListener: function() {
         window.addEventListener('message', function(event) { 
@@ -26,7 +24,7 @@ import store from '../../states/store'
 
             // The data sent with postMessage is stored in event.data 
             //console.log(event.data); 
-            store.content.dispatch("queryContent", {
+            this.$store.content.dispatch("queryContent", {
               elementUrl: event.data.id,
               label: event.data.label
             });
