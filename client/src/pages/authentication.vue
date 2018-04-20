@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="signin_page">
     <div class="signin_box">
       <div class="logo"><h1>Cognitive Canvas</h1></div>
@@ -16,9 +15,7 @@
       </div>
     </div>
   </div>
-=======
-  <div class="g-signin2" id="google-signin-btn"></div>
->>>>>>> advanced_sidebar
+  <!-- <div class="g-signin2" id="google-signin-btn"></div> -->
 </template>
 
 <script>
@@ -66,7 +63,6 @@ export default {
 </script>
 
 <style>
-<<<<<<< HEAD
   .g-signin-button {
     width: 230px;
     height: 50px;
@@ -122,6 +118,4 @@ export default {
 
     margin: auto;
   }
-=======
->>>>>>> advanced_sidebar
 </style>
