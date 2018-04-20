@@ -20,7 +20,7 @@ const routes = [
     component: Management
   },
   {
-    path: '/Map',
+    path: '/map',
     name: 'Map',
     component: Container
   }
