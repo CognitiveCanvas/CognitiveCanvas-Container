@@ -1,29 +1,27 @@
 <template>
-  <div id="container">
+  <div id="management">
     <topbar></topbar>
-    <div id="map-container">
-      <concept-map />
-      <side-bar />
-      <side-bar-toggle />
+    <div id="maps">
+      <map-collection />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Container'
+  name: 'Management'
 }
 </script>
 
 <style>
-  #container {
+  #management {
     width: 100%;
     height: 100%;
     display: flex;
     flex-flow: column;
     background-color: whitesmoke;
   }
-  #map-container {
+  #maps {
     width: 100%;
     height: 100%;
   }

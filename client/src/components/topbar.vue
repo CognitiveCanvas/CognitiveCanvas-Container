@@ -1,5 +1,5 @@
 <template>
-  <nav class="title navbar navbar-expand-lg navbar-light bg-white">
+  <nav class="topTitle navbar navbar-expand-lg navbar-light bg-white">
     <div class="navbar-brand my-2 mr-md-4" v-on:click="menu">
       <icon name="bars"></icon>
     </div>
@@ -28,7 +28,6 @@ export default {
       console.log("clicked on menu")
     },
     queryContentByLable: function(e) {
-      //console.log(this);
       let label = this.$data.query;
       if (label && label != "") {
         contentStore.dispatch("queryContent", {
@@ -41,7 +40,7 @@ export default {
 </script>
 
 <style>
-  .title {
+  .topTitle {
   background-color: white;
   top: 0;
   margin: 0 auto;
@@ -52,7 +51,7 @@ export default {
   list-style-type: none;
   box-shadow: 0 2px 6px 0 rgba(176,186,197,0.60);
 }
-.title h1{
+.topTitle h1{
   font-size: 28px;
   text-align: left;
   float:left;
