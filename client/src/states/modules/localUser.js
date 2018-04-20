@@ -1,7 +1,6 @@
 import LocalUser from '../../models/user'
 import constants from '../../models/constants'
 import Axios from 'axios'
-import bugsnagClient from 'bugsnag-vue'
 
 const state = {
   localUser: null
@@ -16,8 +15,16 @@ const mutations = {
   }
 }
 
+const getters = {
+  hasLocalUser (state) {
+    return !! state.localUser
+  }
+}
+
 const actions = {
-  login (commit, googleUser) {
+  login (module, googleUser) {
+    console.log(module)
+    console.log("start login")
     let user = {
       firstName: googleUser.getBasicProfile().getGivenName(),
       lastName: googleUser.getBasicProfile().getFamilyName(),
@@ -32,8 +39,8 @@ const actions = {
         let whitelisted = response.data
 
         if (whitelisted) {
-          commit('onLogin', user.email)
-          console.log('local user', this.state.localUser)
+          module.commit('onLogin', user.email)
+          console.log('local user', module.state.localUser)
         } else {
           var auth2 = gapi.auth2.getAuthInstance()
           auth2.signOut().then(function () {
@@ -54,6 +61,7 @@ const actions = {
 
 const localUser = {
   namespaced: true,
+  getters,
   state,
   actions,
   mutations

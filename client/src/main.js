@@ -60,8 +60,8 @@ var index = {
     this._main =
       new Vue({
         el: '#app',
-        store: store,
         router,
+        store,
         render: h => h(app)
       })
   }

@@ -1,6 +1,6 @@
 class User {
   constructor (email) {
-    this.email = null
+    this.email = email
     this.name = null
   }
 

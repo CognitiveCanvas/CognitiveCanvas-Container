@@ -8,7 +8,6 @@ import router from '../../router/index'
 
 export default {
   mounted() {
-    console.log(this.$store);
     var self = this;
     gapi.signin2.render('google-signin-btn', {
       onsuccess: function (googleUser) {
