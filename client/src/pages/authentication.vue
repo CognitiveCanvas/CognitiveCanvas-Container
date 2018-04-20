@@ -62,7 +62,7 @@
 <style>
   .g-signin-button {
     width: 230px;
-    height: 60px;
+    height: 50px;
     padding: 8px 8px;
     font-size: 18px;
     border-radius: 3px;
@@ -74,7 +74,8 @@
     vertical-align: text-top;
   }
   .g-signin-button p{
-    padding-top: 10px;
+    padding-top: 3px;
+    padding-left: 5px;
     float:left;
   }
   .g-signin-button:hover{
@@ -82,6 +83,7 @@
   }
   .g-signin-button svg{
     margin-left: 10px;
+    padding-bottom: 5px;
   }
 
   .login-b{
