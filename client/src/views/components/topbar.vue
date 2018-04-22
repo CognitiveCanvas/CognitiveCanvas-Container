@@ -4,9 +4,9 @@
       <icon name="bars"></icon>
     </div>
     <h1 class="mr-md-4" style="color: #168FC7"> {{ title }} </h1>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2"v-model="query" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="queryContentByLable">Search</button>
+    <form class="form-inline my-2 my-lg-0" v-on:submit.prevent="queryContentByLable">
+      <input class="form-control mr-sm-2" v-model="query" placeholder="Search" aria-label="Search">
+      <button type="button" class="btn btn-outline-success my-2 my-sm-0" v-on:click="queryContentByLable">Search</button>
     </form>
     <a href="#" v-on:click="googleSignOut">Sign out</a>
   </nav>

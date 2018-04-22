@@ -2,7 +2,7 @@ const models = require('@ContainerManager/app/setup');
 
 module.exports = (app) => {
     var UserModel = require('../models/user');
-    app.get('/sync', function(req, res) {
+    app.get('/api/sync', function(req, res) {
         // register new google user
         var user = req.body
         var newUser = new UserModel(user)

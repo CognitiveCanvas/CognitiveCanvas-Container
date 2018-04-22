@@ -34,6 +34,7 @@ const actions = {
         }
       })
       .catch(function (error) {
+        console.log("there is an error")
         console.log(error)
       })
   }

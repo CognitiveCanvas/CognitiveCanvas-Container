@@ -49,9 +49,11 @@ const router = new VueRouter({
   routes
 })
 
+/*
 router.beforeEach((to, from, next) => {
   requireAuth(to, from, next)
 })
+*/
 
 Vue.use(VueRouter)
 
