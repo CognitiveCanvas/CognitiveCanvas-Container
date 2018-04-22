@@ -30,7 +30,7 @@ export default {
     queryContentByLable: function(e) {
       let label = this.$data.query;
       if (label && label !== "") {
-        this.$store.content.dispatch("queryContent", {
+        this.$store.dispatch("content/queryContent", {
         label: label
       });
       }

@@ -9,19 +9,17 @@
 
 <script>
   import {TweenMax, Power4} from 'gsap'
-  import store from '../../states/store'
   
   export default {
     name: 'sidebar-toggle',
-    store,
     computed: {
       open () {
-        return store.sidebarBehavior.state.sidebarBehavior.sidebarOpen
+        return this.$store.state.sidebarBehavior.sidebarOpen
       }
     },
     methods: {
       handleClick () {
-        store.sidebarBehavior.dispatch('toggleSidebar')
+        this.$store.dispatch('sidebarBehavior/toggleSidebar')
       }
     }
   }

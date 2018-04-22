@@ -23,7 +23,6 @@ const getters = {
 
 const actions = {
   login (module, googleUser) {
-    console.log(module)
     console.log("start login")
     let user = {
       firstName: googleUser.getBasicProfile().getGivenName(),

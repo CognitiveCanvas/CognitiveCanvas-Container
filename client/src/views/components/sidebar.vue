@@ -37,13 +37,13 @@ export default {
   },
   computed: {
     label: function () {
-      return this.$store.content.state.label
+      return this.$store.state.content.label
     },
     contents: function () {
-      return this.$store.content.state.contents
+      return this.$store.state.content.contents
     },
     open () {
-      return this.$store.sidebarBehavior.state.sidebarBehavior.sidebarOpen
+      return this.$store.state.sidebarBehavior.sidebarOpen
     }
   },
   methods: {
