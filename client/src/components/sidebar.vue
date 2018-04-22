@@ -8,10 +8,7 @@
       </v-tab>
 
       <v-tab title="Notes">
-<!--
-        <iframe class="note-window" id="note-frame" v-on:load="eventListener" v-bind:src="source">
-        </iframe>
--->
+
       </v-tab>
 
       <v-tab title="Toolbar">
