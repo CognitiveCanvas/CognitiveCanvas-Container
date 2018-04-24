@@ -34,6 +34,8 @@ export default {
         label: label
       });
       }
+      console.log("hit")
+      this.$store.dispatch('sidebarBehavior/toggleSidebar')
     },
     googleSignOut: function() {
       var auth2 = gapi.auth2.getAuthInstance();
