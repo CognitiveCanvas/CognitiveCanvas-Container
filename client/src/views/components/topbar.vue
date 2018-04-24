@@ -8,7 +8,7 @@
       <input class="form-control mr-sm-2" v-model="query" placeholder="Search" aria-label="Search">
       <button type="button" class="btn btn-outline-success my-2 my-sm-0" v-on:click="queryContentByLable">Search</button>
     </form>
-    <a href="#" v-on:click="googleSignOut">Sign out</a>
+    <a href="#" v-on:click="signOut">Sign out</a>
   </nav>
 </template>
 
@@ -29,20 +29,20 @@ export default {
     },
     queryContentByLable: function(e) {
       let label = this.$data.query;
-      if (label && label !== "") {
-        this.$store.dispatch("content/queryContent", {
-        label: label
-      });
+      if ( !!label && label !== "") {
+        if (this.$store.state.content.label !== label) {
+          this.$store.dispatch("content/queryContent", {
+            label: label
+          });
+        }
       }
-      console.log("hit")
-      this.$store.dispatch('sidebarBehavior/toggleSidebar')
+
+      if (!this.$store.getters['sidebarBehavior/sidebarOpen']) {
+        this.$store.dispatch('sidebarBehavior/toggleSidebar')
+      }
     },
-    googleSignOut: function() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-        router.push(`login`);
-      });
+    signOut: function() {
+      this.$store.dispatch('localUser/logout')
     }
   }
 }
