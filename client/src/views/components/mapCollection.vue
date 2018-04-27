@@ -1,11 +1,10 @@
 <template>
   <div :class="$style.mapCollection">
-    <div :class="$style.singleMapInCollection">
-<!--      <map-card :title=content.title :url=content.url></map-card>-->
-      <map-card></map-card>
+    <div v-for="map in maps" :class="$style.singleMapInCollection">
+      <map-card :lastEdit=map.lastEditTime :url=map.url></map-card>
     </div>
     <div :class="$style.singleMapInCollection">
-      <map-card></map-card>
+      <map-card ></map-card>
     </div>
   </div>
 </template>
@@ -18,11 +17,8 @@ export default {
     }
   },
   computed: {
-    label: function() {
-      return this.$store.content.state.label
-    },
-    contents: function() {
-      return this.$store.content.state.contents
+    maps: function() {
+      return this.$store.map.maps
     }
   },
   methods: {

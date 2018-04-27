@@ -8,7 +8,7 @@
       <v-container fill-height fluid>
         <v-layout fill-height>
           <v-flex xs12 align-end flexbox>
-            <span class="headline">{{title}}</span>
+            <span class="headline">{{surname}}</span>
           </v-flex>
         </v-layout>
       </v-container>
@@ -29,7 +29,7 @@
   </v-card>
 </template>
 
-<script>
+<script>  
 export default {
   name: 'mapCard',
   data() {
@@ -39,9 +39,20 @@ export default {
       editedDescription: null
     }
   },
+  computed: {
+    surname: function () {
+      return this.$store.state.localUser.lastName
+    },
+    givenname: function () {
+      return this.$store.state.localUser.firstName
+    }
+  },
   method: {
     editDescription: function(des) {
       this.editedDescription = des;
+    },
+    getId: function() {
+      return givenname + '_' + surname + '_' + this._uid;
     }
   },
   props: ['title','url']

@@ -2,7 +2,7 @@
   <div id="container">
     <topbar></topbar>
     <div id="map-container">
-      <concept-map />
+      <concept-map :source=source></concept-map>
       <side-bar />
       <side-bar-toggle />
     </div>
@@ -11,7 +11,15 @@
 
 <script>
 export default {
-  name: 'Container'
+  name: 'Container',
+  data() {
+    return {
+      source:'http://webstrates.ucsd.edu/master/'
+    }
+  },
+  computed: {
+    
+  }
 }
 </script>
 

@@ -1,18 +1,24 @@
-import Map from './map'
+import Axios from 'axios'
 import constants from '../../models/constants'
-import axios from 'axios'
+import Map from '../../models/map'
 
 const state = {
-  mapIds: [],
-  
+  maps: [],
+  userID: ''
 }
 
 const getters = {
-
+  hasMap (state) {
+    return !! state.maps[0]
+  }
 }
 
 const mutations = {
-
+  updateMaps (state, { params }) {
+    state.maps = params.maps
+    state.userID = params.userID
+    console.log(state.maps)
+  }
 }
 
 const actions = {
@@ -25,17 +31,17 @@ const actions = {
       .then(function (response) {
         if (response.data === 'Not Found') {
           let params = {
-            contents: [],
-            label: response.data }
-          context.commit('updateContents', { params })
+            maps: [],
+            userId: response.data }
+          context.commit('updateMaps', { params })
         } else {
-          let params = { contents: response.data,
-            label: label }
-          context.commit('updateContents', { params })
+          let params = { maps: response.data,
+            userId: label }
+          context.commit('updateMaps', { params })
         }
       })
       .catch(function (error) {
-        console.log("there is an error")
+        console.log("ERROR: ")
         console.log(error)
       })
   }
