@@ -2,9 +2,22 @@
   <div :class="$style.sidebar">
     <vue-tabs>
       <v-tab title="Resources">
-        <div v-for="content in contents">
-          <content-card :title=content.title :url=content.url :type=content.type></content-card>
-        </div>
+
+        <!-- expandable list -->
+        <button v-on:click="expandBlog">
+          <h4>Blog</h4>
+        </button><br></br>
+
+        <ul id="blogContent">
+          <div v-for="content in contents">
+            <li>
+
+              <!-- Used v-if= "blogType" to filter by type, but not working? -->           
+              <content-card :title=content.title :url=content.url :type=content.type></content-card>
+            </li>
+          </div>
+        </ul>
+
       </v-tab>
 
       <v-tab title="Notes">
@@ -47,8 +60,31 @@ export default {
       return sidebarStore.state.sidebarBehavior.sidebarOpen
     }
   },
+  data: function() {
+      return {
+        blogType: false
+      }
+  },
   methods: {
-    
+    expandBlog: function () {
+      
+      console.log("expandBlog working")
+
+      /* To filter cards by type*/
+      if ( this.type === "blog") {
+        blogType = true;
+        console.log("blogType true")
+      } else {
+        console.log("blogType false")
+      }
+
+      if (blogContent.style.display === "block") {
+        blogContent.style.display = "none";
+      } else {
+        blogContent.style.display = "block";
+      }
+
+    }
   },
   watch: {
     open: function (open) {
@@ -60,6 +96,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style module>
@@ -86,4 +123,9 @@ export default {
     height: 100%;
     width: 100%;
   }
+
+.blogContent {
+    display: none;
+    overflow: hidden;
+}
 </style>

@@ -8,7 +8,7 @@ const API = `http://${window.location.hostname}:8081/api`
 
 export default new Vuex.Store ({
   state: {
-    contents: [],
+    contents: [{'title': 'diabetes', 'url': 'https://google.com', 'type' : 'blog'}],
     label: ""
   },
   mutations: {
