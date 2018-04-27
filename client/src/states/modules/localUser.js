@@ -11,9 +11,13 @@ const mutations = {
   onLogin (state, email) {
     state.localUser = new LocalUser(email)
   },
-  onLogout (state, { params }) {
+  onLogout (state) {
     state.localUser = null
-    router.push({ path: 'login' })
+  },
+  sync (state, user) {
+    state.localUser.firstName = user.firstName
+    state.localUser.lastName = user.lastName
+    state.localUser.maps = user.maps
   }
 }
 
@@ -35,14 +39,14 @@ const actions = {
 
     Axios
       .post(`${constants.api}/login`, user)
-      .then(function (response) {
+      .then(function (res) {
         // check if the user is in the whitelist
-        let whitelisted = response.data
+        let whitelisted = res.data
 
         if (whitelisted) {
           context.commit('onLogin', user.email)
           console.log('local user', context.state.localUser)
-          router.push({ path: 'map' })
+          router.push('map')
         } else {
           var auth2 = gapi.auth2.getAuthInstance()
           auth2.signOut().then(function () {
@@ -57,7 +61,23 @@ const actions = {
       })
   },
   logout (context) {
-    
+    let auth2 = gapi.auth2.getAuthInstance()
+    auth2
+      .signOut()
+      .then(function () {
+        console.log('User signed out.')
+        context.commit('onLogout')
+        router.push('login')
+      })
+  },
+  sync (context, email) {
+    Axios
+      .get(`${constants.api}/syncUser`, email)
+      .then(function (res) {
+        if (res.data.authorized) {
+          context.commit('sync', res.data.user)
+        }
+      })
   }
 }
 
