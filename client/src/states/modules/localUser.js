@@ -28,7 +28,7 @@ const getters = {
 }
 
 const actions = {
-  login (context, googleUser) {
+  async login (context, googleUser) {
     console.log("start login")
     let user = {
       firstName: googleUser.getBasicProfile().getGivenName(),
@@ -37,31 +37,42 @@ const actions = {
       token: googleUser.getAuthResponse().id_token
     }
 
-    Axios
-      .post(`${constants.api}/login`, user)
-      .then(function (res) {
-        // check if the user is in the whitelist
-        let whitelisted = res.data
+    if (!context.state.localUser) {
+      await Axios
+        .post(`${constants.api}/syncUser`, {'email': user.email})
+        .then(function (res) {
+          if (res.data.authorized) {
+            context.commit('onLogin', res.data.user)
+          } else {
+            var auth2 = gapi.auth2.getAuthInstance()
+            auth2.signOut().then(function () {
+              console.log(whitelisted)
+              console.log('User not part of whitelist, signed out.')
+            })
+          }
+        })
+        .catch(function (error) {
+          bugsnagClient.notify(error)
+          console.log(error)
+        })
+    }
 
-        if (whitelisted) {
-          context.commit('onLogin', user.email)
-          console.log('local user', context.state.localUser)
+    if (context.state.localUser) {
+      await Axios
+        .post(`${constants.api}/login`, user.email)
+        .then(function (res) {
           router.push('map')
-        } else {
-          var auth2 = gapi.auth2.getAuthInstance()
-          auth2.signOut().then(function () {
-            console.log(whitelisted)
-            console.log('User not part of whitelist, signed out.')
-          })
-        }
-      })
-      .catch(function (error) {
-        bugsnagClient.notify(error)
-        console.log(error)
-      })
+        })
+        .catch(function (error) {
+          bugsnagClient.notify(error)
+          console.log(error)
+        })
+    }
   },
   logout (context) {
-    let auth2 = gapi.auth2.getAuthInstance()
+    console.log("gapi", !!gapi)
+    console.log("auth2", !!gapi.auth2)
+    var auth2 = gapi.auth2.getAuthInstance()
     auth2
       .signOut()
       .then(function () {
