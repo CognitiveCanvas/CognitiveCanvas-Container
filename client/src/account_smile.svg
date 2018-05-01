@@ -1,0 +1,16 @@
+
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Hi-Fi-Prototypes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Map-Management" transform="translate(-1280.000000, -30.000000)">
+            <circle id="Oval-3" fill="#FDE72A" cx="1302" cy="52" r="22"></circle>
+            <g id="Page-1" transform="translate(1287.000000, 43.000000)" fill="#4D5160">
+                <path d="M4,17.0749596 L5.91255382,15.0020204 C10.9232368,20.4276159 19.0749021,20.425549 24.0855851,15 L26,17.0729392 C22.9671052,20.3569747 18.9817034,22 14.9979719,22 C11.0146221,21.9999535 7.03313341,20.3589434 4,17.0749596 Z" id="Fill-1"></path>
+                <path d="M9.16527957,4 C7.14320931,2.03086035 3.85482436,2.03086035 1.83270838,4 L0,2.21526541 C3.03308252,-0.738421803 7.96682602,-0.738421803 11,2.21526541 L9.16527957,4 Z" id="Fill-2"></path>
+                <path d="M27.1652796,4 C25.1432093,2.03053971 21.8548244,2.03053971 19.8327084,4 L18,2.21497479 C21.0312991,-0.739193374 25.966826,-0.737456361 29,2.21497479 L27.1652796,4 Z" id="Fill-3"></path>
+            </g>
+        </g>
+    </g>
+</svg>
