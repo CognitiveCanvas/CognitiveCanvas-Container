@@ -1,8 +1,8 @@
 <template>
   <div class="signin_page">
     <div class="signin_box">
-      <img src="../asset/CC Logo1.png">
-      <div class="logo"></div>
+      <img src="../asset/logo.png">
+      <p>Use your @ucsd.edu</p>
       <div class ="login-b">
         <div class="g-signin2" id="google-signin-btn"></div>
         <p></p>
@@ -58,9 +58,8 @@ export default {
 
 <style>
   .g-signin2{
-    margin-top: 60px;
-    margin-left: 40px;
-    
+    margin-top: 40px;
+    margin-left: 40px; 
   }
   .login-b{
     
@@ -87,7 +86,7 @@ export default {
     box-shadow: 0 13px 4px 0 rgba(0,0,0,0.50);
     border-radius: 8px;
     width: 410px;
-    height: 610px;
+    height: 625px;
     position: absolute;
     padding-bottom: 200px;
     top:0;
@@ -97,9 +96,17 @@ export default {
 
     margin: auto;
   }
+  .signin_box p{
+    font-size: 24px;
+    padding:0;
+    margin: 0;
+    text-align: center;
+  }
   .signin_box img{
-
-    padding: 70px;
+    height: 450px;
+    width: 380px;
+    padding: 10%;
+    padding-bottom: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;

@@ -1,4 +1,6 @@
+<link rel="stylesheet" href="../client/font/miso_regular_macroman/stylesheet.css" type="text/css" charset="utf-8" /> 
 <template>
+  
   <nav class="topTitle navbar navbar-expand-lg navbar-light">
     <div class="navbar-brand my-2 mr-md-4" v-on:click="menu">
       <img src="../asset/CC Icon.png">
@@ -8,7 +10,9 @@
       <div class="account">
         <a href="#"  v-on:click="/*Help button*/"><img id="help" src="../asset/help_icon.png"></a>
 		<div class="dropdown">
-		  <button class="dropbtn"><img id="acc" src="../asset/account_smile.svg"></button>
+		  <button class="dropbtn">
+        <img id="acc" src="../asset/account_smile.svg">
+      </button>
 		  <div class="dropdown-content">
 		    <a href="#">My Account</a>
 		    <a href="#" v-on:click="googleSignOut">Sign Out</a>
@@ -58,8 +62,10 @@ export default {
 </script>
 
 <style>
+  body{
+    font-family: "miso"
+  }
   .topTitle {
-
   background-color: #4D5160;
   top: 0;
   margin: 0 auto;
@@ -71,18 +77,18 @@ export default {
   box-shadow: 0 2px 6px 0 rgba(176,186,197,0.60);
 }
 .topTitle h1{
+  font-family: "miso-bold";
   color: #CDD0C5;
-  font-size: 20px;
+  font-size: 41px;
   text-align: left;
   float:left;
   height: 45px;
-  padding: 10px 0%;
   margin: 0;
 }
 .navbar-brand  img{
   margin-left: 10px;
-  height: 42px;
-  width: 42px;
+  height: 57px;
+  width: 57px;
 }
 .account img#acc{
   height: 40px;
@@ -119,6 +125,7 @@ export default {
 }
 
 .dropdown-content {
+    font-size: 20px;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
