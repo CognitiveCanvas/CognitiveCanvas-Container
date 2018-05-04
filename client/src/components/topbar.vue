@@ -1,15 +1,36 @@
 <template>
-  <nav class="topTitle navbar navbar-expand-lg navbar-light bg-white">
+  <nav class="topTitle navbar navbar-expand-lg navbar-light" style="background-color: #D2D2CF">
     <div class="navbar-brand my-2 mr-md-4" v-on:click="menu">
       <icon name="bars"></icon>
     </div>
-    <h1 class="mr-md-4" style="color: #168FC7"> {{ title }} </h1>
+    <img src="/static/images/CClogo.png" width="3%">
+    <h1 class="mr-md-4" style="color: black"> {{ title }} </h1>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2"v-model="query" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="queryContentByLable">Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="queryContentByLable">
+        <img src="/static/images/search-icon.png" width="5%">
+      </button>
     </form>
     <a href="#" v-on:click="googleSignOut">Sign out</a>
-    <img src="/static/images/helpButton.png" width="2%" v-on:click="showHelp">
+
+    <!-- Blank image because I don't know how to fix flexbox from freaking out with pictures. -->
+    <div>
+      <img src="/static/images/blank.png" width="700px">
+    </div>
+    <img src="/static/images/helpButton.png" width="1%" v-on:click="showHelp">
+
+    <!-- Toolbar Tabs  -->
+    <vue-tabs>
+      <v-tab title="Resources" on:click="showResources">
+
+      </v-tab>
+
+      <v-tab title="Notes" on:click="showNotes">
+      </v-tab>
+
+      <v-tab title="Toolbar" on:click="showToolbar">
+      </v-tab>
+    </vue-tabs>
 
     <!-- Help Modal -->
     <div id="helpModal" class="modal">
@@ -20,6 +41,25 @@
         </div>
         <div class="modal-body">
           <p>To create a node, double click on the canvas and type a label.</p>
+          <img src="/static/images/double-click.png" width="20%"><br><br>
+          <p>Click and drag nodes to move them around.</p>
+          <img src="/static/images/click-and-drag.jpg" width="20%"><br><br>
+          <p>To remove nodes, use your local undo shortcut.</p>
+          <ul>
+            <li>Ctrl + Z for Windows</li>
+            <li>Cmd + Z for Mac</li>
+            <li>Undo/Redo for iPad</li>
+            <li>Currently no undo or delete feature for other tablets.</li>
+          </ul>
+          <p>Right click anywhere to access the context menu.</p>
+          <img src="/static/images/right-click.png" width="15%"><br><br>
+          <img src="/static/images/context-menu.png"><br></br>
+          <p>Click to start drawing. A toolbar will appear in the top left.</p>
+          <img src="/static/images/draw.png"><br></br>
+          <p>Delete specific drawings.</p>
+          <img src="/static/images/delete-specific-drawing.png"><br><br>
+          <p>Clear map of all drawings.</p>
+          <img src="/static/images/clear-drawings.png"><br><br>
           <p>Increase/decrease text size.</p>
           <img src="/static/images/textSize.png"><br><br>
           <p>Bold or italicize your text.</p>
@@ -28,8 +68,6 @@
           <img src="/static/images/textColor.png"><br><br>
           <p>Pick a node color.</p>
           <img src="/static/images/nodeColor.png"><br><br>
-          <p>Click to start drawing.</p>
-          <img src="/static/images/draw.png">
         </div>
         <div class="modal-footer">
           <span class="close" v-on:click="closeModal">
@@ -81,13 +119,54 @@ export default {
     closeModal: function() {
       var modal = document.getElementById("helpModal");
       modal.style.display = "none";
+    },
+    showResources: function() {
+      var resources = document.getElementById("resourcesTab");
+      var notes = document.getElementById("notesTab");
+      var toolbar = document.getElementById("toolbarTab");
+      resources.style.display = "block";
+      notes.style.display = "none";
+      toolbar.style.display = "none";
+    },
+    showNotes: function() {
+      var notes = document.getElementById("notesTab");
+      var resources = document.getElementById("resourcesTab");
+      var toolbar = document.getElementById("toolbarTab");
+      notes.style.display = "block";
+      resources.style.display = "none";
+      toolbar.style.display = "none";
+    },
+    showResources: function() {
+        var toolbar = document.getElementById("toolbarTab");
+        var notes = document.getElementById("notesTab");
+        var resources = document.getElementById("resourcesTab");
+        toolbar.style.display = "block";
+        notes.style.display = "none";
+        resources.style.display = "none";
     }
   }
 }
 </script>
 
 <style>
-  .topTitle {
+
+@font-face {
+  font-family: "Miso Bold";
+  src: url("/static/miso-bold-webfont.woff");
+}
+
+@font-face {
+  font-family: "Miso Light";
+  src: url("/static/miso-light-webfont.woff");
+}
+
+@font-face {
+  font-family: "Miso Regular";
+  src: url("/static/miso-regular-webfont.woff");
+}
+
+
+.topTitle {
   background-color: white;
   top: 0;
   margin: 0 auto;
@@ -98,6 +177,7 @@ export default {
   list-style-type: none;
   box-shadow: 0 2px 6px 0 rgba(176,186,197,0.60);
 }
+
 .topTitle h1{
   font-size: 28px;
   text-align: left;
@@ -116,7 +196,7 @@ export default {
     z-index: 1; /* Sit on top */
     left: 0;
     top: 75px;
-    width: 550px;
+    width: 600px;
     height: 100%;
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
@@ -158,5 +238,24 @@ export default {
 @keyframes animatetop {
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
+}
+
+h1, h2, {
+  font-family: 'Miso Bold';
+}
+
+p, div, ul {
+  font-family: 'Miso Regular';
+  font-size: 18px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

@@ -3,20 +3,28 @@
     <vue-tabs>
       <v-tab title="Resources">
 
-        <!-- expandable list -->
-        <button v-on:click="expandBlog">
+        <!-- expandable list, not sure why it won't show as button but is functional -->
+        <button id="resourcesTab" class="expandResource" v-on:click="expandBlog">
           <h4>Blog</h4>
-        </button><br></br>
+        </button>
 
         <ul id="blogContent">
           <div v-for="content in contents">
-            <li>
-
-              <!-- Used v-if= "blogType" to filter by type, but not working? -->           
-              <content-card :title=content.title :url=content.url :type=content.type></content-card>
+            <li>     
+              <content-card v-if="content.type == 'blog'" :title=content.title :url=content.url :type=content.type></content-card>
             </li>
           </div>
         </ul>
+
+        <!-- Originally meant to show the Notes and Toolbar when clicking on tabs on navbar, but never got it linked/working
+        
+        <button id="notesTab">
+          <h4>Notes</h4>
+        </button>
+
+        <button id="toolbarTab">
+          <h4>Toolbar</h4>
+        </button> -->
 
       </v-tab>
 
@@ -25,9 +33,9 @@
       </v-tab>
 
       <v-tab title="Toolbar">
-        Third tab content
       </v-tab>
     </vue-tabs>
+
   </div>
 </template>
 
@@ -127,5 +135,9 @@ export default {
 .blogContent {
     display: none;
     overflow: hidden;
+}
+
+.expandResource {
+  margin-top: 20px;
 }
 </style>
