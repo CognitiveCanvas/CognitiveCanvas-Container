@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 // Pages
 import Authentication from '../pages/authentication'
 import Container from '../pages/container'
+import Management from '../pages/management'
 
 Vue.use(VueRouter)
 
@@ -14,7 +15,12 @@ const routes = [
     component: Authentication
   },
   {
-    path: '/Map',
+    path: '/management',
+    name: 'Management',
+    component: Management
+  },
+  {
+    path: '/map',
     name: 'Map',
     component: Container
   }

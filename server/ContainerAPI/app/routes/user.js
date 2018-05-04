@@ -1,24 +1,22 @@
 const models = require('@ContainerManager/app/setup');
 
 module.exports = (app) => {
-  var UserModel = require('../models/user');
-  app.post('/register', function(req, res) {
+    var UserModel = require('../models/user');
+    app.post('/register', function(req, res) {
         // register new google user
         var user = req.body;
-        var newUser = new UserModel({
-            firstName: user.firstName,
-            lastName: user.lastName,
-            token: user.token,
-            email: user.email
-        });
+        var newUser = new UserModel(user);
         UserModel.findOne({'email' : newUser.email}, function(err, foundUser) {
             if (err) return handleError(err);
-            // Save user if not found
-            if (foundUser === null) {
+            // Update user if found
+            if (foundUser) {
                 newUser.save(function (err) {
                     if (err) return handleError(err);
-                    // saved!
-                });
+                    // saved
+                })
+                res.send(true); // user found and update
+            } else {
+                res.send(false); // user not found
             }
         });
     })

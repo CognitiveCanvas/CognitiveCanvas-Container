@@ -4,6 +4,7 @@
     <div id="map-container">
       <concept-map />
       <side-bar />
+      <side-bar-toggle />
     </div>
   </div>
 </template>
@@ -20,7 +21,6 @@ export default {
     height: 100%;
     display: flex;
     flex-flow: column;
-/*    background-color: #008F95;*/
     background-color: whitesmoke;
   }
   #map-container {
