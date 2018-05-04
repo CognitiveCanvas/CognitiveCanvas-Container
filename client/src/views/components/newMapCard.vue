@@ -79,18 +79,15 @@ export default {
       }); 
     },
     createNewMap: function() {
-      console.log(this.getId());
-//      let toFrame = document.createElement("iframe");
-//      
-//      toFrame.setAttribute('id', 'concept-map');
-//      toFrame.setAttribute('class', 'concept-map');
-//      toFrame.setAttribute('v-on:load', 'eventListener');
-//      toFrame.setAttribute('v-bind:src', 'http://webstrates.ucsd.edu/rikudougorin-kurikaratenshou/?copy=' + this.getId());
-//      
-//      document.getElementById('maps').appendChild(toFrame);
-//      
-//      console.log(toFrame.contentWindow);
-//      
+      let self = this;
+      let mapId = self.getId();
+      console.log(self.getId())
+      
+      self.$store.dispatch("map/createNewMap", {
+        newID: mapId
+      });
+      
+//      createNewMap (context, {newID}) 
     }
   }
 }

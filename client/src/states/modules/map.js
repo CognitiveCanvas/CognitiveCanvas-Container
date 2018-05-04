@@ -22,7 +22,7 @@ const mutations = {
 }
 
 const actions = {
-  queryMap (context, { userId }) {
+  queryMaps (context, { userId }) {
     Axios.get(`${constants.api}/queryMap`, {
       params: {
         userID: userId
@@ -43,6 +43,35 @@ const actions = {
       .catch(function (error) {
         console.log("ERROR: ")
         console.log(error)
+      })
+  },
+  createNewMap (context, {newID}) {
+//    Axios.get(`${constants.template}/?copy=`, {
+//      params:{
+//        id: newID
+//      }
+//    })
+    Axios({
+      method: 'GET',
+      url:`${constants.template}/?copy=`,
+      params:{
+        id: newID
+      },
+      auth: {
+        username: 'web',
+        password: 'strate',
+      },
+//      headers: {
+//        'Access-Control-Allow-Origin': '*',
+//        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+//        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+//        'Content-Type': 'application/json',
+//        Pragma: 'no-cache',
+//        'Access-Control-Expose-Headers': 'Access-Token, Uid'
+//      }
+    })
+      .then(function (response) {
+        console.log(response)
       })
   }
 }
