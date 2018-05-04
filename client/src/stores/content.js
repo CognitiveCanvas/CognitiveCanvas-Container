@@ -1,10 +1,10 @@
- import Axios from 'axios'
+import Axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const API = `http://${window.location.hostname}:8081`
+const API = `http://${window.location.hostname}:8081/api`
 
 export default new Vuex.Store ({
   state: {
