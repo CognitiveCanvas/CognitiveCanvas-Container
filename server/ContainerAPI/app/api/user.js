@@ -4,7 +4,8 @@ const models = require('@ContainerManager/app/setup');
 const api = {}
 
 api.syncUser = (req, res) => {
-    let email = req.body;
+    console.log("email", req.body.email)
+    let email = req.body.email;
 
     models.User.findOne({'email' : email}, 'firstName, lastName, maps', function(err, user) {
         if (err) return handleError(err);
