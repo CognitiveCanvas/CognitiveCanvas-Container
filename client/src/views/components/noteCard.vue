@@ -23,7 +23,7 @@
             return {
             }
         },
-        method: {
+        methods: {
           appendNote: function(){
             let appendElement = '<div class="note" contenteditable="true" style="left: 8px;top: 8px;width: 235px;min-height: 100px;padding: 16px;box-shadow: 5px 5px 10px gray;background-color: rgb(255, 255, 150);font-size: 12pt;word-wrap: break-word;"></div><br>';  
             let addWindow = document.getElementById("add-Window");

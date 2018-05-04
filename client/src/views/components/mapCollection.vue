@@ -1,10 +1,15 @@
 <template>
   <div :class="$style.mapCollection">
+<!--
     <div v-for="map in maps" :class="$style.singleMapInCollection">
       <map-card :lastEdit=map.lastEditTime :url=map.url></map-card>
     </div>
+-->
     <div :class="$style.singleMapInCollection">
-      <map-card ></map-card>
+      <map-card></map-card>
+    </div>
+    <div :class="$style.singleMapInCollection">
+      <new-map-card></new-map-card>
     </div>
   </div>
 </template>

@@ -8,18 +8,15 @@
       <v-container fill-height fluid>
         <v-layout fill-height>
           <v-flex xs12 align-end flexbox>
-            <span class="headline">{{surname}}</span>
+            <span class="headline">{{title}}</span>
           </v-flex>
         </v-layout>
       </v-container>
     </v-card-media>
     <v-card-title>
-      <div v-show = "description.edit == false">
-        <label @dblclick = "description.edit = true"> {{description.title}} </label>
+      <div> 
+        <label class="grey--text">Number 10</label><br>
       </div>
-      <input v-show = "description.edit == true" v-model = "description.title"
-      v-on:blur= "description.edit=false; $emit('update')"
-      @keyup.enter = "description.edit=false; $emit('update')">
     </v-card-title>
     <v-card-actions>
       <v-btn flat color="orange">Share</v-btn>
@@ -34,9 +31,6 @@ export default {
   name: 'mapCard',
   data() {
     return {
-      description: {'title':'Double click to add description of concept map',
-                    'edit' : false},
-      editedDescription: null
     }
   },
   computed: {
@@ -47,13 +41,7 @@ export default {
       return this.$store.state.localUser.firstName
     }
   },
-  method: {
-    editDescription: function(des) {
-      this.editedDescription = des;
-    },
-    getId: function() {
-      return givenname + '_' + surname + '_' + this._uid;
-    }
+  methods: {
   },
   props: ['title','url']
 }

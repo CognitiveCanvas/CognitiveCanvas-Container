@@ -11,6 +11,7 @@ import sidebar from './views/components/sidebar'
 import sidebarToggle from './views/components/sidebarToggle'
 import contentCard from './views/components/contentCard'
 import mapCard from './views/components/mapCard'
+import newMapCard from './views/components/newMapCard'
 import mapCollection from './views/components/mapCollection'
 import noteCard from './views/components/noteCard'
 import 'vue-awesome/icons'
@@ -44,6 +45,7 @@ var index = {
     'side-bar-toggle': sidebarToggle,
     'content-card': contentCard,
     'map-card': mapCard,
+    'new-map-card': newMapCard,
     'map-collection': mapCollection,
     'note-card': noteCard
   },
