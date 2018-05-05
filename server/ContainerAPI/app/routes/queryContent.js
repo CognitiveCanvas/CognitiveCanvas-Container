@@ -6,9 +6,4 @@ module.exports = (app) => {
        console.log(req.query)
       api.queryContentsByLabel(req, res);
     });
-
-  app.route('/api/test')
-     .get((req, res) => {
-      res.send("sadfasdfadf");
-  });
 }

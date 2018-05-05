@@ -8,9 +8,8 @@ const state = {
 }
 
 const mutations = {
-  onLogin (state, user) {
-    state.localUser = new LocalUser(user.email)
-    this.sync(state, user)
+  onLogin (state, email) {
+    state.localUser = new LocalUser(email)
   },
   onLogout (state) {
     state.localUser = null
@@ -30,7 +29,7 @@ const getters = {
 
 const actions = {
   async login (context, googleUser) {
-    let user = {
+    let guser = {
       firstName: googleUser.getBasicProfile().getGivenName(),
       lastName: googleUser.getBasicProfile().getFamilyName(),
       email: googleUser.getBasicProfile().getEmail(),
@@ -38,10 +37,17 @@ const actions = {
     }
 
     // get user information from the database
+    let userRes = null
+
     await Axios
-      .get(`${constants.api}/syncUser`, {'email': user.email})
+      .get(`${constants.api}/syncUser`, {
+        params: {
+          email: guser.email
+        }
+      })
       .then((res) => {
-        var userRes = res.data
+        userRes = res.data
+        console.log('user res', res.data)
       })
       .catch(function (error) {
         bugsnagClient.notify(error)
@@ -53,7 +59,7 @@ const actions = {
         .getAuthInstance()
         .signOut()
         .then(() => {
-          console.log('unauthorized user ' + user.email + ' attemps to login')
+          console.log('unauthorized user ' + guser.email + ' attemps to login')
           // TODO: log unauthorized attempt login in database
         })
       return
@@ -61,14 +67,8 @@ const actions = {
 
     // initialize user if not exist otherwise re-sync data
     // FIXME: is it even possible to have case that user oject exists before login?
-    context.state.localUser ?
-      context.commit('sync', userRes.user) :
-      context.commit('onLogin', userRes.user)
-
-    if (!context.state.localUser) {
-      context.commit('onLog')
-    }
-
+    if (!!context.state.localUser) context.commit('onLogin', userRes.user)
+    context.commit('sync', userRes.user)
     router.push('management')
   },
   logout (context) {
