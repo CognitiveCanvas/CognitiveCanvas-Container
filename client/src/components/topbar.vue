@@ -8,18 +8,17 @@
     <h1 class="mr-md-4"> {{ title }} </h1>
     <div class="right">
       <div class="account">
-        <a href="#"  v-on:click="/*Help button*/"><img id="help" src="../asset/help_icon.png"></a>
-		<div class="dropdown">
-		  <button class="dropbtn">
-        <img id="acc" src="../asset/account_smile.svg">
-      </button>
-		  <div class="dropdown-content">
-		    <a href="#">My Account</a>
-		    <a href="#" v-on:click="googleSignOut">Sign Out</a>
-		  </div>
-		</div>
-
-        
+        <a href="#"  v-on:click="/*Help button*/">
+          <img id="help" src="../asset/help_icon.png">
+        </a>
+    		<div class="dropdown">
+    		  <button class="dropbtn">
+            <img id="acc" src="../asset/account_smile.svg">
+          </button>
+    		  <div class="dropdown-content">
+    		    <a href="#" v-on:click="googleSignOut">Sign Out</a>
+    		  </div>
+    		</div>
       </div>
     </div>
   </nav>
@@ -96,21 +95,18 @@ export default {
   float: right;
 }
 .account img#help{
-  margin-top: 15px;
-  margin-left: 5px;
-  height: 30px;
-  width: 30px;
+  margin-top: 10px;
+  height: 40px;
+  width: 40px;
   float: right;
+}
+.account img#help:hover{
+  opacity: 0.7;
 }
 .right{
   margin-left: auto;
   padding-right: 2px;
   margin-right: 20px;
-  float: right;
-}
-.help img{
-  height: 20px;
-  width: 20px;
   float: right;
 }
 .dropbtn {
@@ -148,6 +144,6 @@ export default {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
+    opacity: 0.7;
+  }
 </style>
