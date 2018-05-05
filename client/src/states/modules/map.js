@@ -3,6 +3,7 @@ import constants from '../../models/constants'
 import axios from 'axios'
 
 const state = {
+  currentMap: null
 }
 
 const getters = {
