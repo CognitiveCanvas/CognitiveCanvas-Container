@@ -1,54 +1,92 @@
 <template>
-  <div class="sideBar" ref="sideBar">
-    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-    <div v-for="content in contents">
-      <content-card :title=content.title :url=content.url :type=content.type></content-card>
-    </div>
+  <div :class="$style.sidebar">
+    <vue-tabs>
+      <v-tab title="Resources">
+        <div v-for="content in contents">
+          <content-card :title=content.title :url=content.url :type=content.type></content-card>
+        </div>
+      </v-tab>
+
+      <v-tab title="Notes">
 <!--
-    <div v-for="note in notes">
-      
-    </div>
+        <iframe class="note-window" id="note-frame" v-on:load="eventListener" v-bind:src="source">
+        </iframe>
 -->
+      </v-tab>
+
+      <v-tab title="Toolbar">
+        Third tab content
+      </v-tab>
+    </vue-tabs>
   </div>
 </template>
 
 <script>
 import contentStore from '../stores/content'
+import sidebarStore from '../stores/sidebar-store'
+import {TweenMax, Power4} from 'gsap'
 
 export default {
   name: 'sideBar',
   contentStore,
+  sidebarStore,
   data() {
     return {
     }
   },
+  mounted () {
+    TweenMax.set(this.$el, {
+      x: this.$el.offsetWidth
+    })
+  },
   computed: {
     label: function() {
-      return contentStore.state.label;
+      return contentStore.state.label
     },
     contents: function() {
-      return contentStore.state.contents;
+      return contentStore.state.contents
+    },
+    open () {
+      return sidebarStore.state.sidebarBehavior.sidebarOpen
     }
   },
   methods: {
+    
+  },
+  watch: {
+    open: function (open) {
+      const dX = open ? 0 : this.$el.offsetWidth
+      TweenMax.to(this.$el, 0.6, {
+        x: dX,
+        ease: Power4.easeOut
+      })
+    }
   }
 }
 </script>
 
-<style>
-  .sideBar {
-    position: absolute;
-    height: 100%;
-    width: 25%;
-    background-color: white;
-    overflow: scroll;
+<style module>
+  .sidebar{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    max-width: 90vw;
+    background-color: var(--accent-color);
     display: flex;
     flex-direction: column;
-    z-index: 10;
-    right: 0px;
+    overflow: scroll;
   }
-  .topright {
-    cursor: pointer;
-    font-size: 28px;
+  .title {
+    top: 0;
+    margin: 0 auto;
+    padding: 0 auto;
+    width: 100%;
+    border-radius: 0px;
+  }
+  .note-window {
+    height: 100%;
+    width: 100%;
   }
 </style>

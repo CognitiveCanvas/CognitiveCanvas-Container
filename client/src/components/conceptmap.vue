@@ -11,7 +11,8 @@ import contentStore from '../stores/content'
     data() {
       return {
         //source: "http://localhost:7007/ConceptMapping/" //Local Mapping
-        source: "http://webstrates.ucsd.edu/master/"
+        source: "http://webstrates.ucsd.edu/moriarty/" //Xavier Mapping
+        //source: "http://webstrates.ucsd.edu/master/"
       }
     },
     contentStore,
@@ -24,8 +25,9 @@ import contentStore from '../stores/content'
             // The data has been sent from your site 
 
             // The data sent with postMessage is stored in event.data 
-            console.log(event.data.label); 
+            //console.log(event.data); 
             contentStore.dispatch("queryContent", {
+              elementUrl: event.data.id,
               label: event.data.label
             });
             
