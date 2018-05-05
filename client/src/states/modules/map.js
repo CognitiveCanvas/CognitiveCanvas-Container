@@ -14,7 +14,9 @@ const mutations = {
 }
 
 const actions = {
-
+  async createNewMap(newMapID) {
+    
+  }
 }
 
 const map = {
