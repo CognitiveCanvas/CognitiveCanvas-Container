@@ -3,7 +3,6 @@ module.exports = (app) => {
 
     app.route('/api/syncUser')
        .get((req, res) => {
-        console.log("route email", req.query)
            api.syncUser(req, res);
        });
 }
