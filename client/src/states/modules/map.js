@@ -16,11 +16,12 @@ const mutations = {
 }
 
 const actions = {
-  async createNewMap (context) {
+  async createNewMap (context, userId) {
     Axios
       .post(`${constants.api}/createMap`, {
         'name': 'Untitle Map',
-        'url': 'localhost:8080/newMap'
+        'url': 'localhost:8080/newMap',
+        'userId': userId
       })
       .catch(function (error) {
         bugsnagClient.notify(error)
