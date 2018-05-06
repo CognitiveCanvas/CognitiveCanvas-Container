@@ -17,8 +17,7 @@ const mutations = {
 }
 
 const actions = {
-  createNewMap (context) {
-    console.log("create map")
+  async createNewMap (context) {
     Axios
       .post(`${constants.api}/createMap`, {
         'name': 'Untitle Map',
