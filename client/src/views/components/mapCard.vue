@@ -3,7 +3,7 @@
     <div class="map_card">
       <h1>Title</h1>
       <div class="map_pic">
-        <img src="../asset/screen1.png">
+        <img src="../../asset/screen1.png">
       </div>
     </div>
   </div>

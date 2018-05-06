@@ -4,18 +4,16 @@
 </template>
 
 <script>
-import contentStore from '../stores/content'
   export default {
 
     name: 'topbar',
     data() {
       return {
         //source: "http://localhost:7007/ConceptMapping/" //Local Mapping
-        source: "http://webstrates.ucsd.edu/moriarty/" //Xavier Mapping
-        //source: "http://webstrates.ucsd.edu/master/"
+        //source: "http://webstrates.ucsd.edu/moriarty/" //Xavier Mapping
+        source: "http://webstrates.ucsd.edu/master/"
       }
     },
-    contentStore,
     methods: {
       eventListener: function() {
         window.addEventListener('message', function(event) { 
@@ -26,7 +24,7 @@ import contentStore from '../stores/content'
 
             // The data sent with postMessage is stored in event.data 
             //console.log(event.data); 
-            contentStore.dispatch("queryContent", {
+            this.$store.content.dispatch("queryContent", {
               elementUrl: event.data.id,
               label: event.data.label
             });

@@ -1,22 +1,21 @@
-<link rel="stylesheet" href="../client/font/miso_regular_macroman/stylesheet.css" type="text/css" charset="utf-8" /> 
-<template>
+ <template>
   
   <nav class="topTitle navbar navbar-expand-lg navbar-light">
     <div class="navbar-brand my-2 mr-md-4" v-on:click="menu">
-      <img src="../asset/CC Icon.png">
+      <img src="../../asset/CC Icon.png">
     </div>
     <h1 class="mr-md-4"> {{ title }} </h1>
     <div class="right">
       <div class="account">
         <a href="#"  v-on:click="/*Help button*/">
-          <img id="help" src="../asset/help_icon.png">
+          <img id="help" src="../../asset/help_icon.png">
         </a>
     		<div class="dropdown">
     		  <button class="dropbtn">
-            <img id="acc" src="../asset/account_smile.svg">
+            <img id="acc" src="../../asset/account_smile.svg">
           </button>
     		  <div class="dropdown-content">
-    		    <a href="#" v-on:click="googleSignOut">Sign Out</a>
+    		    <a href="#" v-on:click="signOut">Sign Out</a>
     		  </div>
     		</div>
       </div>
@@ -25,12 +24,10 @@
 </template>
 
 <script>
-import contentStore from '../stores/content'
-import router from '../router/index'
+import router from '../../router/index'
 
 export default {
   name: 'topbar',
-  contentStore,
   data() {
     return {
       title: "Cognitive Canvas",
@@ -43,27 +40,28 @@ export default {
     },
     queryContentByLable: function(e) {
       let label = this.$data.query;
-      if (label && label !== "") {
-        contentStore.dispatch("queryContent", {
-        label: label
-      });
+      if ( !!label && label !== "") {
+        if (this.$store.state.content.label !== label) {
+          this.$store.dispatch("content/queryContent", {
+            label: label
+          });
+        }
+      }
+
+      if (!this.$store.getters['sidebarBehavior/sidebarOpen']) {
+        this.$store.dispatch('sidebarBehavior/toggleSidebar')
       }
     },
-    googleSignOut: function() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-        router.push(`login`);
-      });
+    signOut: function() {
+      this.$store.dispatch('localUser/logout')
     }
   }
 }
 </script>
 
 <style>
-  body{
-    font-family: "miso"
-  }
+  @import '../../../font/miso_regular_macroman/stylesheet.css';
+
   .topTitle {
   background-color: #4D5160;
   top: 0;
