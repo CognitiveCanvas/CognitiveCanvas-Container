@@ -1,6 +1,5 @@
 import Map from './map'
 import constants from '../../models/constants'
-import axios from 'axios'
 import Axios from 'axios';
 
 const state = {
