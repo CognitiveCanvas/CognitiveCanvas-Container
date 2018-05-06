@@ -1,0 +1,346 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"marg",
+				"margin-right"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"overflow-",
+				"overflow-wrap"
+			],
+			[
+				"back",
+				"background-image"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"e",
+				"emmorey"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"Ar",
+				"Arbib"
+			],
+			[
+				"ma",
+				"margin-left"
+			],
+			[
+				"BACK",
+				"background-color"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"i",
+				"inline-block"
+			],
+			[
+				"co",
+				"cover"
+			],
+			[
+				"padding",
+				"padding"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"top",
+				"padding-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"Ti",
+				"TITLE\tTag"
+			],
+			[
+				"ten",
+				"text-align"
+			],
+			[
+				"bord",
+				"border-top"
+			],
+			[
+				"Tex",
+				"text-decoration"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/joshuac/Desktop/CognitiveCanvas-Container/client/src/pages/authentication.vue",
+		"/Users/joshuac/Downloads/DSE230.CoursePlan.md",
+		"/Users/joshuac/Desktop/ucsdcssa/css/stylesheet.css",
+		"/Users/joshuac/Desktop/ucsdcssa/conference.html",
+		"/Users/joshuac/Desktop/ucsdcssa/index.html",
+		"/Users/joshuac/Desktop/Portfolio/index.html",
+		"/Users/joshuac/Desktop/ucsdcssa/css/conf.css",
+		"/Users/joshuac/Desktop/ucsdcssa/about.html",
+		"/Users/joshuac/Desktop/untitled folder/tool.html",
+		"/Users/joshuac/Desktop/untitled folder/tool.css",
+		"/Users/joshuac/Desktop/TOOL/index.js",
+		"/Users/joshuac/Desktop/CognitiveCanvas-Container/client/views/index.html",
+		"/Users/joshuac/Desktop/tool.html",
+		"/Users/joshuac/Downloads/CoursePlan.md",
+		"/Users/joshuac/Desktop/ucsdcssa/events.html",
+		"/Users/joshuac/Desktop/MainMap.html",
+		"/Users/joshuac/Desktop/file-system/documents/joshD3.html",
+		"/Users/joshuac/Desktop/file-system/index.js",
+		"/Users/joshuac/Desktop/Portfolio/project1.html",
+		"/Users/joshuac/Desktop/ucsdcssa/css/conference.css",
+		"/Users/joshuac/Desktop/ucsdcssa/header.html",
+		"/Users/joshuac/Desktop/ucsdcssa/2017_conf.html",
+		"/Users/joshuac/Desktop/ucsdcssa/conf.html",
+		"/Users/joshuac/Desktop/ucsdcssa/2016_conf.html",
+		"/Users/joshuac/Desktop/ucsdcssa/mentor.html",
+		"/Users/joshuac/Desktop/ucsdcssa/GBM2_slides.html",
+		"/Users/joshuac/Desktop/ucsdcssa/T-shirt.html",
+		"/Users/joshuac/Desktop/ucsdcssa/css/about.css",
+		"/Users/joshuac/Desktop/ucsdcssa/GBM1_slides.html",
+		"/Users/joshuac/Desktop/ucsdcssa/sponsors.html",
+		"/Users/joshuac/Desktop/ucsdcssa/conf copy.html",
+		"/Users/joshuac/Desktop/CommunityCrit/public/js/app.js",
+		"/Users/joshuac/Desktop/CommunityCrit/public/css/app.css",
+		"/Users/joshuac/Desktop/CommunityCrit/artisan",
+		"/Users/joshuac/Desktop/CommunityCrit/bootstrap/autoload.php",
+		"/Users/joshuac/Desktop/CommunityCrit/bootstrap/app.php",
+		"/Users/joshuac/Desktop/CommunityCrit/public/index.php",
+		"/Users/joshuac/Desktop/CommunityCrit/app/Feedback.php",
+		"/Users/joshuac/Desktop/CommunityCrit/app/Comment.php",
+		"/Users/joshuac/Desktop/CommunityCrit/server.php",
+		"/Users/joshuac/Desktop/CommunityCrit/README.md",
+		"/Users/joshuac/Desktop/ucsdcssa/css/header.css",
+		"/Users/joshuac/Desktop/ucsdcssa/css/mentor.css",
+		"/Users/joshuac/Desktop/ucsdcssa/careerfair.html",
+		"/Users/joshuac/Desktop/ucsdcssa/css/events.css",
+		"/Users/joshuac/Desktop/ucsdcssa/about2.html",
+		"/Users/joshuac/Downloads/2.2-Venn-Diagrams.tex",
+		"/Users/joshuac/Desktop/ucsdcssa/css/about2.css",
+		"/Users/joshuac/Desktop/code for DSE 210x",
+		"/Users/joshuac/Desktop/Portfolio/project.css",
+		"/Users/joshuac/Desktop/Portfolio/header.css",
+		"/Users/joshuac/Desktop/ucsdcssa/css/sponsors.css",
+		"/Users/joshuac/Desktop/index.html",
+		"/Users/joshuac/Desktop/CommunityCrit/resources/views/welcome.blade.php",
+		"/Users/joshuac/Desktop/ucsdcssa/events2.html",
+		"/Users/joshuac/Desktop/ucsdcssa/css/slides.css",
+		"/Users/joshuac/Desktop/ucsdcssa/footer.html",
+		"/Users/joshuac/Desktop/ucsdcssa/css/footer.css",
+		"/Users/joshuac/Desktop/ucsdcssa/mentor_sign.html",
+		"/Users/joshuac/Desktop/ucsdcssa/mentee_sign.html",
+		"/Users/joshuac/Desktop/ucsdcssa/feedback.html",
+		"/Users/joshuac/Desktop/ucsdcssa/wiki.html",
+		"/Users/joshuac/Desktop/ucsdcssa/css/sign.css",
+		"/Users/joshuac/Desktop/wiki.css",
+		"/Users/joshuac/Desktop/ucsdcssa/mentor_sign copy.html",
+		"/Users/joshuac/Desktop/ucsdcssa/css/wiki.css"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "topbar.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Desktop/untitled folder/tool.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
