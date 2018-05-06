@@ -1,5 +1,4 @@
- <template>
-  
+<template>  
   <nav class="topTitle navbar navbar-expand-lg navbar-light">
     <div class="navbar-brand my-2 mr-md-4" v-on:click="menu">
       <img src="../../asset/CC Icon.png">
@@ -60,9 +59,23 @@ export default {
 </script>
 
 <style>
-  @import '../../../font/miso_regular_macroman/stylesheet.css';
-
-  .topTitle {
+  @font-face {
+    font-family: 'miso-regular';
+    src: url('../miso_regular_macroman/miso-regular-webfont.woff2') format('woff2'),
+         url('../miso_regular_macroman/miso-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'miso-bold';
+    src: url('../miso_bold_macroman/miso-bold-webfont.woff2') format('woff2'),
+         url('../miso_bold_macroman/miso-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  *{
+    font-family: "miso-regular"
+  }
   background-color: #4D5160;
   top: 0;
   margin: 0 auto;
@@ -79,13 +92,13 @@ export default {
   font-size: 41px;
   text-align: left;
   float:left;
-  height: 45px;
+  height: 50px;
   margin: 0;
 }
 .navbar-brand  img{
   margin-left: 10px;
-  height: 57px;
-  width: 57px;
+  height: 55px;
+  width: 55px;
 }
 .account img#acc{
   height: 40px;
