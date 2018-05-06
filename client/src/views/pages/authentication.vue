@@ -1,7 +1,7 @@
 <template>
   <div class="signin_page">
     <div class="signin_box">
-      <img src="../asset/logo.png">
+      <img src="../../asset/logo.png">
       <p>Use your @ucsd.edu</p>
       <div class ="login-b">
         <div class="g-signin2" id="google-signin-btn"></div>
@@ -14,43 +14,23 @@
 
 <script>
 import axios from 'axios'
-import router from '../router/index'
-const API = `http://${window.location.hostname}:8081`
+import router from '../../router/index'
+
 export default {
-  methods: {
-    onSignIn: function(googleUser) {
-      var user = {
-        firstName: googleUser.getBasicProfile().getGivenName(),
-        lastName: googleUser.getBasicProfile().getFamilyName(),
-        email: googleUser.getBasicProfile().getEmail(),
-        token: googleUser.getAuthResponse().id_token
-      }
-      console.log("User signed in", user.email);
-      // send user to backend
-      axios.post(`${API}/register`, user)
-        .then(function (response) {
-          console.log(response);
-          // check if the user is in the whitelist
-          var whitelisted = response.data;
-          if (whitelisted) {
-            router.push(`map`); // may be a temporary fix
-          } else {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-              console.log(whitelisted);
-              console.log('User not part of whitelist, signed out.');
-            });
-          }
-        })
-        .catch(function (error) {
-          bugsnagClient.notify(error);
-          console.log(error);
-        })
-    }
-  },
   mounted() {
+
+    //check if google is logged in but localUser does not initialize
+    if (gapi.auth2 && gapi.auth2.getAuthInstance().currentUser.isSignedIn
+        && ! this.$store.getters['localUser/hasLocalUser']) {
+      gapi.auth2.getAuthInstance().signOut()
+    }
+
+    var self = this;
     gapi.signin2.render('google-signin-btn', {
-      onsuccess: this.onSignIn
+      onsuccess: function (googleUser) {
+        console.log("login on success")
+        self.$store.dispatch('localUser/login', googleUser)
+      }
     })
   }
 }
@@ -91,7 +71,7 @@ export default {
     margin: 0 auto;
   }
   .signin_page{
-    background-image: url("../asset/Background.png");
+    background-image: url("../../asset/Background.png");
     width:100%;
     height:100%;
     top:0px;

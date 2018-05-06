@@ -4,7 +4,7 @@ const models = require('@ContainerManager/app/setup');
 const api = {}
 
 // FIXIT: Polish the API
-api.queryContentsByLabel = (Keyword, Content, req, res) => {
+api.queryContentsByLabel = (req, res) => {
 
   let keyword = req.query.label;
   // TODO: add error in response

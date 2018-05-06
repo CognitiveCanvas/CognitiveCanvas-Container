@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
+	_id: String,
+	email: String,
 	firstName: String,
 	lastName: String,
-	id: String,
-	token: String,
-	email: String,
+	isLoggedIn: Boolean,
+	webstrateClientId: String,
 	maps: [String]
 });
 

@@ -4,9 +4,9 @@
     <topbar></topbar>
     <div class="contain_main">
       <div class="maps">
-        <div class="new_map">
+        <div class="new_map" v-on:click="createNewMap">
           <h1>Start New Map</h1>
-          <img src="../asset/add.png">
+          <img src="../../asset/add.png">
         </div>
         <div><map-collection /></div>
         <div><map-collection /></div>
@@ -18,7 +18,12 @@
 
 <script>
 export default {
-  name: 'Management'
+  name: 'Management',
+  methods: {
+    createNewMap: function(e) {
+      this.$store.dispatch('map/createNewMap');
+    }
+  }
 }
 </script>
 

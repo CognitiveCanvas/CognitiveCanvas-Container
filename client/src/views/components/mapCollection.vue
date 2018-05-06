@@ -8,21 +8,18 @@
 </template>
 
 <script>
-import contentStore from '../stores/content'
-  
 export default {
   name: 'mapCollection',
-  contentStore,
   data() {
     return {
     }
   },
   computed: {
     label: function() {
-      return contentStore.state.label
+      return this.$store.content.state.label
     },
     contents: function() {
-      return contentStore.state.contents
+      return this.$store.content.state.contents
     }
   },
   methods: {
