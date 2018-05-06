@@ -3,9 +3,9 @@
   <div id="management">
     <topbar></topbar>
       <div id="maps">
-        <div class="new_map">
+        <div class="new_map" v-on:click="createNewMap">
           <h1>Start New Map</h1>
-          <img src="../asset/add.png">
+          <img src="../../asset/add.png">
         </div>
         <map-collection />
         <map-collection />
@@ -15,11 +15,20 @@
 
 <script>
 export default {
-  name: 'Management'
+  name: 'Management',
+  methods: {
+    createNewMap: function(e) {
+      this.$store.dispatch('map/createNewMap')
+    }
+  }
 }
 </script>
 
 <style>
+  @import '../../../font/miso_regular_macroman/stylesheet.css';
+  body{
+    font-family: "miso"
+  }
   #management {
     width: 100%;
     height: 100%;

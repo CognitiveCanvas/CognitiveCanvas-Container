@@ -6,11 +6,11 @@ const api = {}
 api.syncUser = (req, res) => {
     let email = req.query.email;
 
-    models.User.findOne({'email' : email}, 'firstName, lastName, maps', function(err, user) {
+    models.User.findOne({'email' : email}, 'firstName lastName maps', function(err, user) {
         if (err) return handleError(err);
         
         let response;
-
+        
         if (user) {
             response = {
                 authorized: true,

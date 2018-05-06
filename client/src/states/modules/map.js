@@ -1,9 +1,11 @@
 import Map from './map'
 import constants from '../../models/constants'
 import axios from 'axios'
+import Axios from 'axios';
 
 const state = {
-  currentMap: null
+  currentMap: null,
+  maps: []
 }
 
 const getters = {
@@ -15,8 +17,16 @@ const mutations = {
 }
 
 const actions = {
-  async createNewMap(newMapID) {
-    
+  createNewMap (context) {
+    console.log("create map")
+    Axios
+      .post(`${constants.api}/createMap`, {
+        'name': 'Untitle Map',
+        'url': 'localhost:8080/newMap'
+      })
+      .catch(function (error) {
+        bugsnagClient.notify(error)
+      })
   }
 }
 

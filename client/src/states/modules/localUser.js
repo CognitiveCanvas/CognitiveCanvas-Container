@@ -47,7 +47,7 @@ const actions = {
       })
       .then((res) => {
         userRes = res.data
-        console.log('user res', res.data)
+        console.log('user res', userRes)
       })
       .catch(function (error) {
         bugsnagClient.notify(error)
@@ -67,7 +67,9 @@ const actions = {
 
     // initialize user if not exist otherwise re-sync data
     // FIXME: is it even possible to have case that user oject exists before login?
-    if (!!context.state.localUser) context.commit('onLogin', userRes.user)
+    if (!!!context.state.localUser) {
+      await context.commit('onLogin', userRes.user)
+    }
     context.commit('sync', userRes.user)
     router.push('management')
   },

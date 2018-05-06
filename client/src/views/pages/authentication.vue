@@ -1,7 +1,7 @@
 <template>
   <div class="signin_page">
     <div class="signin_box">
-      <img src="../asset/logo.svg">
+      <img src="../../asset/logo.svg">
       <p>Use your @ucsd.edu</p>
       <div class ="login-b">
         <div class="g-signin2" id="google-signin-btn"></div>
@@ -37,6 +37,7 @@ export default {
 </script>
 
 <style>
+  @import '../../../font/miso_regular_macroman/stylesheet.css';
   .g-signin2{
     margin-top: 40px;
     margin-left: 40px; 
