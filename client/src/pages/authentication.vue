@@ -1,7 +1,7 @@
 <template>
   <div class="signin_page">
     <div class="signin_box">
-      <img src="../asset/logo.png">
+      <img src="../asset/logo.svg">
       <p>Use your @ucsd.edu</p>
       <div class ="login-b">
         <div class="g-signin2" id="google-signin-btn"></div>
@@ -57,6 +57,23 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'miso-regular';
+    src: url('../miso_regular_macroman/miso-regular-webfont.woff2') format('woff2'),
+         url('../miso_regular_macroman/miso-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'miso-bold';
+    src: url('../miso_bold_macroman/miso-bold-webfont.woff2') format('woff2'),
+         url('../miso_bold_macroman/miso-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  *{
+    font-family: "miso-regular"
+  }
   .g-signin2{
     margin-top: 40px;
     margin-left: 40px; 
