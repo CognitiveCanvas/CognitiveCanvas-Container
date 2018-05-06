@@ -1,31 +1,12 @@
 <template>
-  <v-card>
-    <v-card-media
-      class="white--text"
-      height="200px"
-      src="https://vuetifyjs.com/static/doc-images/cards/docks.jpg"
-    >
-      <v-container fill-height fluid>
-        <v-layout fill-height>
-          <v-flex xs12 align-end flexbox>
-            <span class="headline">title</span>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-card-media>
-    <v-card-title>
-      <div>
-        <span class="grey--text">Number 10</span><br>
-        <span>Whitehaven Beach</span><br>
-        <span>Whitsunday Island, Whitsunday Islands</span>
+  <div class="cards">
+    <div class="map_card">
+      <h1>Title</h1>
+      <div class="map_pic">
+        <img src="../asset/screen1.png">
       </div>
-    </v-card-title>
-    <v-card-actions>
-      <v-btn flat color="orange">Share</v-btn>
-      <v-btn flat color="orange">Explore</v-btn>
-      <v-btn flat color="orange">Delete</v-btn>
-    </v-card-actions>
-  </v-card>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -38,3 +19,28 @@ data() {
 props: ['title','url']
 }
 </script>
+
+<style>
+  .map_card{
+    min-height: 320px;
+    min-width: 350px;
+    max-height: 500px;
+    height: 42vh;
+    width: 100%;
+    background-color: #D8D8D8;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
+  .map_card:hover{
+    opacity: 0.7;
+  }
+  .map_pic img{
+    min-width: 420px;
+    width: 100%;
+    height: 100%;
+    padding-left: 15%;
+    overflow: hidden;
+  }
+
+</style>

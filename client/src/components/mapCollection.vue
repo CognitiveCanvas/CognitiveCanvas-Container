@@ -33,19 +33,11 @@ export default {
 
 <style module>
   .mapCollection{
-    min-width: 600px;
     width: 100%;
-    background-color: whitesmoke;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow: scroll;
   }
   .singleMapInCollection{
     position: default;
-    width: 32%;
-    min-width: 300px;
-    padding-top: 1%;
-    padding-left: 1%;
+    width: 100%;
+    height: 100%;
   }
 </style>
