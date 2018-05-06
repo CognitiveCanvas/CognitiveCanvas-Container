@@ -1,7 +1,7 @@
 <template>
   <div class="signin_page">
     <div class="signin_box">
-      <img src="../../asset/logo.svg">
+      <img src="../../asset/logo.png">
       <p>Use your @ucsd.edu</p>
       <div class ="login-b">
         <div class="g-signin2" id="google-signin-btn"></div>
