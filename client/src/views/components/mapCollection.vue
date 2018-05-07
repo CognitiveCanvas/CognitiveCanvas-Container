@@ -31,15 +31,15 @@ export default {
 <style module>
 @font-face {
     font-family: 'miso-regular';
-    src: url('../miso_regular_macroman/miso-regular-webfont.woff2') format('woff2'),
-         url('../miso_regular_macroman/miso-regular-webfont.woff') format('woff');
+    src: url('../../asset/font/miso_regular_macroman/miso-regular-webfont.woff2') format('woff2'),
+         url('../../asset/font/miso_regular_macroman/miso-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'miso-bold';
-    src: url('../miso_bold_macroman/miso-bold-webfont.woff2') format('woff2'),
-         url('../miso_bold_macroman/miso-bold-webfont.woff') format('woff');
+    src: url('../../asset/font/miso_bold_macroman/miso-bold-webfont.woff2') format('woff2'),
+         url('../../asset/font/miso_bold_macroman/miso-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }
