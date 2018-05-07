@@ -37,7 +37,23 @@ export default {
 </script>
 
 <style>
-  @import '../../../font/miso_regular_macroman/stylesheet.css';
+@font-face {
+    font-family: 'miso-regular';
+    src: url('../../asset/font/miso_regular_macroman/miso-regular-webfont.woff2') format('woff2'),
+         url('../../asset/font/miso_regular_macroman/miso-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'miso-bold';
+    src: url('../../asset/font/miso_bold_macroman/miso-bold-webfont.woff2') format('woff2'),
+         url('../../asset/font/miso_bold_macroman/miso-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  *{
+    font-family: "miso-regular"
+  }
   .g-signin2{
     margin-top: 40px;
     margin-left: 40px; 
