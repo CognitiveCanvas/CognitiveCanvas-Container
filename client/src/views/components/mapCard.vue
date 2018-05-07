@@ -1,7 +1,7 @@
 <template>
   <div class="cards">
-    <div class="map_card">
-      <h1>Title</h1>
+    <div class="map_card" v-on:click="navigaToMap">
+      <h1>Title: {{title}}</h1>
       <div class="map_pic">
         <img src="../../asset/screen1.png">
   <!--<v-card>
@@ -34,14 +34,14 @@ export default {
     }
   },
   computed: {
-    surname: function () {
-      return this.$store.state.localUser.lastName
-    },
-    givenname: function () {
-      return this.$store.state.localUser.firstName
-    }
   },
   methods: {
+    navigaToMap: function() {
+      let self = this;
+      this.$store.dispatch("map/navigateToMap", {
+        addr: self.url
+      });
+    }
   },
   props: ['title','url']
 }

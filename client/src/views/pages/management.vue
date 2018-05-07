@@ -4,12 +4,6 @@
     <topbar></topbar>
     <div class="contain_main">
       <div class="maps">
-        <div class="new_map" v-on:click="createNewMap">
-          <h1>Start New Map</h1>
-          <img src="../../asset/add.png">
-        </div>
-        <div><map-collection /></div>
-        <div><map-collection /></div>
         <div><map-collection /></div>
       </div>
     </div>
@@ -50,27 +44,5 @@ export default {
     max-height: 500px;
     height: 42vh;
   }
-  .new_map{
-    top: 100px;
-    background-color: #5EB6DD;
-    height: 100%;
-    width: 320px;
-  }
-  .new_map h1{
-    padding-top: 60px;
-    font-size: 34px;
-    text-align: center;
-  }
-  .new_map img{
-    margin-top: 40px;
-    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 60px;
-    width: 60px;
-  }
-  .new_map:hover {
-    opacity: 0.7;
-  }
+  
 </style>

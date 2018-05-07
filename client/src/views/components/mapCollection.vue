@@ -1,16 +1,13 @@
 <template>
   <div :class="$style.mapCollection">
-<!--
-    <div v-for="map in maps" :class="$style.singleMapInCollection">
-      <map-card :lastEdit=map.lastEditTime :url=map.url></map-card>
-    </div>
--->
-    <div :class="$style.singleMapInCollection">
-      <map-card></map-card>
-    </div>
+    
     <div :class="$style.singleMapInCollection">
       <new-map-card></new-map-card>
     </div>
+    <div v-for="map in maps" :class="$style.singleMapInCollection">
+      <map-card v-bind:title=map.title v-bind:url=map.url></map-card>
+    </div>
+    
   </div>
 </template>
 
@@ -23,7 +20,7 @@ export default {
   },
   computed: {
     maps: function() {
-      return this.$store.map.maps
+      return this.$store.state.map.maps
     }
   },
   methods: {

@@ -12,13 +12,10 @@
 <script>
 export default {
   name: 'Container',
-  data() {
-    return {
-      source:'http://webstrates.ucsd.edu/master/'
-    }
-  },
   computed: {
-    
+    source: function () {
+      return this.$store.state.map.currentMap.url
+    }
   }
 }
 </script>
