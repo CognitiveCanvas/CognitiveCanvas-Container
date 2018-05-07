@@ -21,7 +21,7 @@ export default {
   name: 'Management',
   methods: {
     createNewMap: function(e) {
-      let userId = this.$store.state.localUser.localUser.email.id;
+      let userId = this.$store.state.localUser.localUser.email._id;
       this.$store.dispatch('map/createNewMap', userId);
     }
   }
