@@ -4,14 +4,13 @@ const models = require('@ContainerManager/app/setup');
 const api = {}
 
 api.syncUser = (req, res) => {
-    console.log("email", req.body.email)
-    let email = req.body.email;
+    let email = req.query.email;
 
-    models.User.findOne({'email' : email}, 'firstName, lastName, maps', function(err, user) {
+    models.User.findOne({'email' : email}, 'firstName lastName maps', function(err, user) {
         if (err) return handleError(err);
         
         let response;
-
+        
         if (user) {
             response = {
                 authorized: true,

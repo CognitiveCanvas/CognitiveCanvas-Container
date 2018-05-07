@@ -1,10 +1,10 @@
-import Axios from 'axios'
 import constants from '../../models/constants'
-import Map from '../../models/map'
+import Axios from 'axios'
+import requestPromise from 'request-promise'
 
 const state = {
-  maps: [],
-  userID: ''
+  currentMap: null,
+  maps: []
 }
 
 const getters = {
@@ -22,6 +22,43 @@ const mutations = {
 }
 
 const actions = {
+  async createNewMap (context) {
+    let token = btoa('web:strate')
+
+    let requestURL = 'http://webstrates.ucsd.edu/master?copy=steveisawesome'
+    let headers = new Headers()
+
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization', 'Basic ' + token)
+
+    let init = {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: headers,
+      credentials: 'include', 
+      withCredentials: true
+    }
+
+    let createMapReq = new Request(requestURL, init)
+
+    fetch(createMapReq)
+      .then((response) => {
+        console.log("success call", response)
+      })
+      .catch((err) => {
+        console.log("error", e)
+      })
+
+
+    Axios
+      .post(`${constants.api}/createMap`, {
+        'name': 'Untitle Map',
+        'url': 'localhost:8080/newMap'
+      })
+      .catch(function (error) {
+        bugsnagClient.notify(error)
+      })
+  },
   queryMaps (context, { userId }) {
     Axios.get(`${constants.api}/queryMap`, {
       params: {
@@ -45,7 +82,7 @@ const actions = {
         console.log(error)
       })
   },
-  createNewMap (context, {newID}) {
+  oldcreateNewMap (context, {newID}) {
 //    Axios.get(`${constants.template}/?copy=`, {
 //      params:{
 //        id: newID

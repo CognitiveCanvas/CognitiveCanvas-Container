@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 
 var mapSchema = new mongoose.Schema({
 	name: String,
-	created_at: Date,
-	last_edited: Date,
-	permissions: [String],
+	url: String,
+	versions: [String],
+	createAt: Date,
+	lastEditAt: Date,
 	visibility: Number
 });
 

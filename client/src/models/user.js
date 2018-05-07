@@ -16,7 +16,6 @@ class LocalUser extends User {
   constructor (email) {
     super(email)
     this.maps = []
-    this.friends = []
   }
 }
 

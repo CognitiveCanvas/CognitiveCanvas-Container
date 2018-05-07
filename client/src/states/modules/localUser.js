@@ -29,65 +29,58 @@ const getters = {
 
 const actions = {
   async login (context, googleUser) {
-    console.log("start login")
-    let user = {
+    let guser = {
       firstName: googleUser.getBasicProfile().getGivenName(),
       lastName: googleUser.getBasicProfile().getFamilyName(),
       email: googleUser.getBasicProfile().getEmail(),
       token: googleUser.getAuthResponse().id_token
     }
 
-    if (!context.state.localUser) {
-      await Axios
-        .post(`${constants.api}/syncUser`, {'email': user.email})
-        .then(function (res) {
-          if (res.data.authorized) {
-            context.commit('onLogin', res.data.user)
-          } else {
-            var auth2 = gapi.auth2.getAuthInstance()
-            auth2.signOut().then(function () {
-              console.log(whitelisted)
-              console.log('User not part of whitelist, signed out.')
-            })
-          }
+    // get user information from the database
+    let userRes = null
+
+    await Axios
+      .get(`${constants.api}/syncUser`, {
+        params: {
+          email: guser.email
+        }
+      })
+      .then((res) => {
+        userRes = res.data
+        console.log('user res', userRes)
+      })
+      .catch(function (error) {
+        bugsnagClient.notify(error)
+      })
+
+    // check whitelist status
+    if (!userRes.authorized) {
+      gapi.auth2
+        .getAuthInstance()
+        .signOut()
+        .then(() => {
+          console.log('unauthorized user ' + guser.email + ' attemps to login')
+          // TODO: log unauthorized attempt login in database
         })
-        .catch(function (error) {
-          bugsnagClient.notify(error)
-          console.log(error)
-        })
+      return
     }
 
-    if (context.state.localUser) {
-      await Axios
-        .post(`${constants.api}/login`, user.email)
-        .then(function (res) {
-          router.push('map')
-        })
-        .catch(function (error) {
-          bugsnagClient.notify(error)
-          console.log(error)
-        })
+    // initialize user if not exist otherwise re-sync data
+    // FIXME: is it even possible to have case that user oject exists before login?
+    if (!!!context.state.localUser) {
+      await context.commit('onLogin', userRes.user)
     }
+    context.commit('sync', userRes.user)
+    router.push('management')
   },
   logout (context) {
-    console.log("gapi", !!gapi)
-    console.log("auth2", !!gapi.auth2)
-    var auth2 = gapi.auth2.getAuthInstance()
-    auth2
+    gapi.auth2
+      .getAuthInstance()
       .signOut()
       .then(function () {
         console.log('User signed out.')
         context.commit('onLogout')
         router.push('login')
-      })
-  },
-  sync (context, email) {
-    Axios
-      .get(`${constants.api}/syncUser`, email)
-      .then(function (res) {
-        if (res.data.authorized) {
-          context.commit('sync', res.data.user)
-        }
       })
   }
 }
