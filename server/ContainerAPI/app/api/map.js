@@ -25,12 +25,13 @@ api.createMap = (req, res) => {
       res.status(501).send(err);
     }
     // Find and update user maps
-    models.User.findOne({_id: userId}, function (err, user) {
-      if (err || !user) {
+    models.User.findById(userId, function (err, user) {
+      if (err || user == null) {
         console.log(err);
-        return handleError(err);
         res.status(501).send(err);
+        return;
       }
+      console.log(user);
       user.maps.push(newMap._id);
       // Update user in database
       user.save(function (err, updatedUser) {
@@ -39,7 +40,6 @@ api.createMap = (req, res) => {
           return handleError(err);
           res.status(501).send(err);
         }
-        console.log(updatedUser);
         res.status(201).send();
       });
     });
