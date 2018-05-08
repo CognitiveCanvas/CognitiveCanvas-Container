@@ -1,6 +1,7 @@
 import LocalUser from '../../models/user'
 import constants from '../../models/constants'
 import router from '../../router/index'
+import Map from '../../models/map'
 import Axios from 'axios'
 
 const state = {
@@ -17,7 +18,6 @@ const mutations = {
   sync (state, user) {
     state.localUser.firstName = user.firstName
     state.localUser.lastName = user.lastName
-    state.localUser.maps = user.maps
   }
 }
 
@@ -53,6 +53,8 @@ const actions = {
         bugsnagClient.notify(error)
       })
 
+      console.log('sync user')
+
     // check whitelist status
     if (!userRes.authorized) {
       gapi.auth2
@@ -71,6 +73,8 @@ const actions = {
       await context.commit('onLogin', userRes.user)
     }
     context.commit('sync', userRes.user)
+    context.dispatch('map/syncMaps', userRes.maps, {root: true})
+    console.log("push management")
     router.push('management')
   },
   logout (context) {
