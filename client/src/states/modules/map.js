@@ -28,7 +28,7 @@ const mutations = {
 }
 
 const actions = {
-  async createNewMap (context, {newID}) {
+  async createNewMap (context, {userID, newID}) {
     let token = btoa('web:strate')
 
     let requestURL = `${constants.template}/?copy=` + newID
@@ -61,7 +61,8 @@ const actions = {
     Axios
       .post(`${constants.api}/createMap`, {
         'name': "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes(),
-        'url': `${constants.host}` + newID
+        'url': `${constants.host}` + newID,
+        'userID': userID
       })
       .catch(function (error) {
         bugsnagClient.notify(error)

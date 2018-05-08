@@ -18,7 +18,9 @@ export default {
       let self = this;
       let mapId = self.getId();
       console.log(mapId);
+      let userId = this.$store.state.localUser.localUser.email._id;
       self.$store.dispatch("map/createNewMap", {
+        userID: userId,
         newID: mapId
       });
     }

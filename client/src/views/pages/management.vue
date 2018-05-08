@@ -13,11 +13,6 @@
 <script>
 export default {
   name: 'Management',
-  methods: {
-    createNewMap: function(e) {
-      this.$store.dispatch('map/createNewMap');
-    }
-  }
 }
 </script>
 
