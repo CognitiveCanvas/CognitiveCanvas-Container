@@ -17,6 +17,48 @@ import axios from 'axios'
 import router from '../../router/index'
 
 export default {
+  methods: {
+    onSignIn(googleUser) {
+      console.log("login on success")
+      this.$store.dispatch('localUser/login', googleUser)
+    },
+    onSignInFailure() {
+      console.log("sign in failure")
+    }
+  },
+  beforeCreate() {
+    let initiateSignIn = () => {
+      let self = this
+      // This is a work around about the issue of sign in only work upon refresh
+      gapi.load('auth2', function() {
+        let auth2 = gapi.auth2.init()
+      // Listen for sign-in state changes.
+      auth2.isSignedIn.listen(signInChanged.bind(self))
+
+      // Listen for changes to current user.
+      //auth2.currentUser.listen(userChanged.bind(self))
+
+      // Sign in the user if they are currently signed in.
+      if (auth2.isSignedIn.get() == true) {
+        auth2.signIn()
+      }
+    })
+  }
+
+    let signInChanged = (val) => {
+      console.log("in", this)
+      console.log('Signin state changed to ', val)
+      if (val) this.$store.dispatch('localUser/login', gapi.auth2.getAuthInstance().currentUser.get())
+    }
+
+    /*
+    let userChanged = (user) => {
+      console.log('user', user)
+    }
+    */
+
+    initiateSignIn()
+  },
   mounted() {
 
     //check if google is logged in but localUser does not initialize
@@ -25,14 +67,9 @@ export default {
       gapi.auth2.getAuthInstance().signOut()
     }
 
-    var self = this;
-    gapi.signin2.render('google-signin-btn', {
-      onsuccess: function (googleUser) {
-        console.log("login on success")
-        self.$store.dispatch('localUser/login', googleUser)
-      }
-    })
-  }
+    console.log("mounted")
+    gapi.signin2.render('google-signin-btn')
+  } 
 }
 </script>
 

@@ -53,6 +53,8 @@ const actions = {
         bugsnagClient.notify(error)
       })
 
+      console.log('sync user')
+
     // check whitelist status
     if (!userRes.authorized) {
       gapi.auth2
@@ -71,6 +73,7 @@ const actions = {
       await context.commit('onLogin', userRes.user)
     }
     context.commit('sync', userRes.user)
+    console.log("push management")
     router.push('management')
   },
   logout (context) {
