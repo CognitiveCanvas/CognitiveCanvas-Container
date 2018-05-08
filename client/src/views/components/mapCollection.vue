@@ -1,13 +1,11 @@
 <template>
   <div :class="$style.mapCollection">
-    
-    <div :class="$style.singleMapInCollection">
+    <div :class="$style.newMapInCollection">
       <new-map-card></new-map-card>
     </div>
-    <div v-for="(map, index) in maps" :class="$style.singleMapInCollection">
+    <div v-for="(map, index) in maps" :class="$style.existingMapInCollection">
       <map-card v-bind:title=map.title v-bind:url=map.url v-bind:index=index></map-card>
     </div>
-    
   </div>
 </template>
 
@@ -49,10 +47,49 @@ export default {
   }
   .mapCollection{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin:1%;
   }
-  .singleMapInCollection{
+  .newMapInCollection{
     position: default;
-    width: 100%;
+    width: 32%;
+    height: 100%;
+    padding: 1%;
+  }
+  .existingMapInCollection{
+    position: default;
+    padding: 1%;
+    width: 32%;
     height: 100%;
   }
+  @media only screen and (max-width: 850px) {
+    .newMapInCollection{
+      position: default;
+      width: 49vw;
+      height: 38vh;
+      padding: 1%;
+    }
+    .existingMapInCollection{
+      position: default;
+      padding: 1%;
+      width: 49vw;
+      height: 38vh;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .newMapInCollection{
+      position: default;
+      width: 98vw;
+      height: 38vh;
+      padding: 1%;
+    }
+    .existingMapInCollection{
+      position: default;
+      width: 98vw;
+      height: 38vh;
+      padding: 1%;
+    }
+  }
+  
 </style>
