@@ -18,7 +18,9 @@ export default {
       let self = this;
       let mapId = self.getId();
       console.log(mapId);
+      let userId = this.$store.state.localUser.localUser.email._id;
       self.$store.dispatch("map/createNewMap", {
+        userID: userId,
         newID: mapId
       });
     }
@@ -30,8 +32,9 @@ export default {
   .new_map{
     top: 100px;
     background-color: #5EB6DD;
-    height: 100%;
-    width: 320px;
+    max-height: 350px;
+    height:42vh;
+    width: 100%;
   }
   .new_map h1{
     padding-top: 60px;

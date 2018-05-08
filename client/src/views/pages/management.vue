@@ -3,9 +3,9 @@
   <div id="management">
     <topbar></topbar>
     <div class="contain_main">
-      <div class="maps">
-        <div><map-collection /></div>
-      </div>
+     <!--<div class="maps">-->
+        <map-collection />
+      <!--</div>-->
     </div>
   </div>
 </template>
@@ -13,11 +13,6 @@
 <script>
 export default {
   name: 'Management',
-  methods: {
-    createNewMap: function(e) {
-      this.$store.dispatch('map/createNewMap');
-    }
-  }
 }
 </script>
 
