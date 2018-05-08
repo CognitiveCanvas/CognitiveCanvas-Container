@@ -4,8 +4,8 @@
     <div :class="$style.singleMapInCollection">
       <new-map-card></new-map-card>
     </div>
-    <div v-for="map in maps" :class="$style.singleMapInCollection">
-      <map-card v-bind:title=map.title v-bind:url=map.url></map-card>
+    <div v-for="(map, index) in maps" :class="$style.singleMapInCollection">
+      <map-card v-bind:title=map.title v-bind:url=map.url v-bind:index=index></map-card>
     </div>
     
   </div>

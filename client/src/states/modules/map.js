@@ -10,17 +10,10 @@ const state = {
 }
 
 const getters = {
-  hasMap (state) {
-    return !! state.maps[0]
-  }
 }
 
 const mutations = {
-  updateMaps (state, { params }) {
-    state.maps = params.maps
-//    console.log(state.maps)
-  }, 
-  updateCurrentMap (state, newAddr) {
+  addMap (state, newAddr) {
     let today = new Date()
     let time = "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes()
     
@@ -29,15 +22,8 @@ const mutations = {
 //    console.log(state.currentMap)
 //    console.log(state.maps)
   },
-  navigateCurrentMap (state, reqAddr) {
-    for (let i=0; i < state.maps.length; i++) {
-//      console.log(state.maps[i].url)
-//      console.log(reqAddr)
-      if (state.maps[i].url == reqAddr) {
-        state.currentMap = state.maps[i]
-//        console.log(state.currentMap)
-      }
-    }
+  navigateCurrentMap (state, reqIndex) {
+    state.currentMap = state.maps[reqIndex] 
   }
 }
 
@@ -64,7 +50,7 @@ const actions = {
     fetch(createMapReq)
       .then((response) => {
         console.log("success call", response)
-        context.commit('updateCurrentMap', `${constants.host}` + newID)
+        context.commit('addMap', `${constants.host}` + newID)
         router.push('map')
       })
       .catch((err) => {
@@ -81,8 +67,8 @@ const actions = {
         bugsnagClient.notify(error)
       })
   },
-  async navigateToMap (context, {addr}) {
-    context.commit('navigateCurrentMap', addr)
+  async navigateToMap (context, {index}) {
+    context.commit('navigateCurrentMap', index)
     router.push('map')
   }
 //  queryMaps (context, { userId }) {

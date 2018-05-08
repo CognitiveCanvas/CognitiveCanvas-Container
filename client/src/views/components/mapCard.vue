@@ -39,11 +39,11 @@ export default {
     navigaToMap: function() {
       let self = this;
       this.$store.dispatch("map/navigateToMap", {
-        addr: self.url
+        index: self.index
       });
     }
   },
-  props: ['title','url']
+  props: ['title','url', 'index']
 }
 </script>
 
