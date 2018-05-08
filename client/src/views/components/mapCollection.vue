@@ -1,9 +1,13 @@
 <template>
   <div :class="$style.mapCollection">
+    
     <div :class="$style.singleMapInCollection">
-<!--      <map-card :title=content.title :url=content.url></map-card>-->
-      <map-card></map-card>
+      <new-map-card></new-map-card>
     </div>
+    <div v-for="(map, index) in maps" :class="$style.singleMapInCollection">
+      <map-card v-bind:title=map.title v-bind:url=map.url v-bind:index=index></map-card>
+    </div>
+    
   </div>
 </template>
 
@@ -15,11 +19,8 @@ export default {
     }
   },
   computed: {
-    label: function() {
-      return this.$store.content.state.label
-    },
-    contents: function() {
-      return this.$store.content.state.contents
+    maps: function() {
+      return this.$store.state.map.maps
     }
   },
   methods: {

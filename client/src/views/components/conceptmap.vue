@@ -3,19 +3,17 @@
   </iframe>
 </template>
 
-<script>
+<script>  
   export default {
 
     name: 'topbar',
     data() {
       return {
-        //source: "http://localhost:7007/ConceptMapping/" //Local Mapping
-        //source: "http://webstrates.ucsd.edu/moriarty/" //Xavier Mapping
-        source: "http://webstrates.ucsd.edu/master/"
       }
     },
     methods: {
       eventListener: function() {
+        let self = this
         window.addEventListener('message', function(event) { 
           
           // IMPORTANT: Check the origin of the data! 
@@ -24,7 +22,7 @@
 
             // The data sent with postMessage is stored in event.data 
             //console.log(event.data); 
-            this.$store.content.dispatch("queryContent", {
+            self.$store.dispatch("content/queryContent", {
               elementUrl: event.data.id,
               label: event.data.label
             });
@@ -39,7 +37,8 @@
         }); 
       }
       
-    }
+    },
+    props: ['source']
   }
 </script>
 
