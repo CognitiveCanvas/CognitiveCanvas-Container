@@ -20,4 +20,3 @@ class LocalUser extends User {
 }
 
 export default LocalUser
-

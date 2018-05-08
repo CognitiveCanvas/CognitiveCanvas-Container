@@ -30,7 +30,7 @@ const actions = {
       method: 'GET',
       mode: 'no-cors',
       headers: headers,
-      credentials: 'include', 
+      credentials: 'include',
       withCredentials: true
     }
 
