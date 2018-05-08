@@ -6,8 +6,7 @@ const api = {}
 
 api.createMap = (req, res) => {
   // email id to find user in db
-  let userId = new ObjectId(req.body.userId);
-  console.log("USER", userId);
+  let userId = new ObjectId(req.body.userID);
   // get name, url from requirement
   let mapAttrs = {};
 
@@ -27,7 +26,7 @@ api.createMap = (req, res) => {
     }
     // Find and update user maps
     models.User.findOne({_id: userId}, function (err, user) {
-      if (err) {
+      if (err || !user) {
         console.log(err);
         return handleError(err);
         res.status(501).send(err);
@@ -40,6 +39,7 @@ api.createMap = (req, res) => {
           return handleError(err);
           res.status(501).send(err);
         }
+        console.log(updatedUser);
         res.status(201).send();
       });
     });
