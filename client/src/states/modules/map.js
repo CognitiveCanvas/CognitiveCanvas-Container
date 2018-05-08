@@ -18,7 +18,7 @@ const mutations = {
     let time = "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes()
     
     state.currentMap = new Map(time, newAddr)   
-    state.maps.push(state.currentMap)
+    state.maps.unshift(state.currentMap)
 //    console.log(state.currentMap)
 //    console.log(state.maps)
   },

@@ -3,9 +3,9 @@
   <div id="management">
     <topbar></topbar>
     <div class="contain_main">
-      <div class="maps">
-        <div><map-collection /></div>
-      </div>
+     <!--<div class="maps">-->
+        <map-collection />
+      <!--</div>-->
     </div>
   </div>
 </template>
