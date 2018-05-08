@@ -41,6 +41,10 @@ const routes = [
     name: 'Map',
     meta: { requiresAuth: true },
     component: Container
+  },
+  {
+    path: '*',
+    redirect: '/login'
   }
 ]
 
