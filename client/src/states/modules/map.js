@@ -24,6 +24,9 @@ const mutations = {
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex] 
+  },
+  syncMaps (state, mapRes) {
+    state.maps = mapRes.map((map) => new Map(map.name, map.url))
   }
 }
 
@@ -71,6 +74,9 @@ const actions = {
   async navigateToMap (context, {index}) {
     context.commit('navigateCurrentMap', index)
     router.push('map')
+  },
+  syncMaps (context, maps) {
+    context.commit('syncMaps', maps)
   }
 //  queryMaps (context, { userId }) {
 //    Axios.get(`${constants.api}/queryMap`, {

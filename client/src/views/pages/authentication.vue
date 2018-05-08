@@ -9,7 +9,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="g-signin2" id="google-signin-btn"></div> -->
 </template>
 
 <script>
@@ -48,7 +47,8 @@ export default {
     let signInChanged = (val) => {
       console.log("in", this)
       console.log('Signin state changed to ', val)
-      if (val) this.$store.dispatch('localUser/login', gapi.auth2.getAuthInstance().currentUser.get())
+      if (val) this.$store.dispatch('localUser/login', 
+        gapi.auth2.getAuthInstance().currentUser.get())
     }
 
     /*

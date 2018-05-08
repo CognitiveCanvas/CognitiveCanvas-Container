@@ -7,24 +7,35 @@ api.syncUser = (req, res) => {
     let email = req.query.email;
 
     models.User.findOne({'email' : email}, 'firstName lastName maps', function(err, user) {
-        if (err) return handleError(err);
         
         let response;
         
         if (user) {
-            response = {
-                authorized: true,
-                user: user
-            }
+            var mapIds = user.maps.map(id => new mongoose.Types.ObjectId(id))
+
+            var mapProp; 
+            models.Map.find({
+                '_id': { $in: mapIds}
+            }, (err, maps) => {
+                mapProp = maps
+            })
+            .then(function() {
+                response = {
+                    authorized: true,
+                    user: user,
+                    maps: mapProp
+                }
+                res.send(response)
+            })
         }
         else {
             response = {
                 authorized: false,
                 user: null
             }
-        }
 
-        res.send(response)
+            res.send(response)
+        }
     })
 }
 
