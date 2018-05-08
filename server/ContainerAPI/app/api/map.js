@@ -25,23 +25,17 @@ api.createMap = (req, res) => {
       res.status(501).send(err);
     }
     // Find and update user maps
-    models.User.findById(userId, function (err, user) {
-      if (err || user == null) {
-        console.log(err);
-        res.status(501).send(err);
-        return;
-      }
-      console.log(user);
-      user.maps.push(newMap._id);
-      // Update user in database
-      user.save(function (err, updatedUser) {
-        if (err) {
+    models.User.findByIdAndUpdate(
+      userId,
+      {$push: {"maps": newMap._id}},
+      function (err, user) {
+        if (err || user == null) {
           console.log(err);
-          return handleError(err);
           res.status(501).send(err);
+          return;
         }
+        console.log(user);
         res.status(201).send();
-      });
     });
   })
 }
