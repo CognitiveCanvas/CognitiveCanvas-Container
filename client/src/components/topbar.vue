@@ -1,36 +1,35 @@
 <template>
-  <nav class="topTitle navbar navbar-expand-lg navbar-light" style="background-color: #D2D2CF">
+  <nav class="topTitle navbar navbar-expand-lg navbar-light" style="background-color: #D2D2CF">    
     <div class="navbar-brand my-2 mr-md-4" v-on:click="menu">
       <icon name="bars"></icon>
     </div>
-    <img src="/static/images/CClogo.png" width="3%">
+    <img src="/static/images/CClogo.png" width="3%" class="mr-0 ml-0">
     <h1 class="mr-md-4" style="color: black"> {{ title }} </h1>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2"v-model="query" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="queryContentByLable">
-        <img src="/static/images/search-icon.png" width="5%">
-      </button>
-    </form>
-    <a href="#" v-on:click="googleSignOut">Sign out</a>
 
-    <!-- Blank image because I don't know how to fix flexbox from freaking out with pictures. -->
-    <div>
-      <img src="/static/images/blank.png" width="700px">
-    </div>
-    <img src="/static/images/helpButton.png" width="1%" v-on:click="showHelp">
+    <ul class="navbar-nav mr-auto">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2"v-model="query" placeholder="Search" aria-label="Search">
 
-    <!-- Toolbar Tabs  -->
-    <vue-tabs>
-      <v-tab title="Resources" on:click="showResources">
+        <!-- Used to have class="btn btn-outline-success my-2 my-sm-0"
+        but can't seem to stop huge button spacing. Should fix later. -->
 
-      </v-tab>
+        <button v-on:click="queryContentByLable">
+          <img src="/static/images/search-icon.png" width="5%" class="m-0">
+        </button>
+      </form>
+    </ul>
+    </ul>
 
-      <v-tab title="Notes" on:click="showNotes">
-      </v-tab>
-
-      <v-tab title="Toolbar" on:click="showToolbar">
-      </v-tab>
-    </vue-tabs>
+    <ul class="navbar-nav ml-auto">
+      <a href="#" class="my-2 my-auto" v-on:click="googleSignOut">Sign out</a>
+      <img src="/static/images/helpButton.png" width="" height="auto" class="px-2 my-auto mx-auto" v-on:click="showHelp">
+      <!-- Toolbar Tabs  -->
+      <vue-tabs>
+        <v-tab title="Resources" on:click="showResources"></v-tab>
+        <v-tab title="Notes" on:click="showNotes"></v-tab>
+        <v-tab title="Toolbar" on:click="showToolbar"></v-tab>
+      </vue-tabs>
+    </ul>
 
     <!-- Help Modal -->
     <div id="helpModal" class="modal">
@@ -119,30 +118,6 @@ export default {
     closeModal: function() {
       var modal = document.getElementById("helpModal");
       modal.style.display = "none";
-    },
-    showResources: function() {
-      var resources = document.getElementById("resourcesTab");
-      var notes = document.getElementById("notesTab");
-      var toolbar = document.getElementById("toolbarTab");
-      resources.style.display = "block";
-      notes.style.display = "none";
-      toolbar.style.display = "none";
-    },
-    showNotes: function() {
-      var notes = document.getElementById("notesTab");
-      var resources = document.getElementById("resourcesTab");
-      var toolbar = document.getElementById("toolbarTab");
-      notes.style.display = "block";
-      resources.style.display = "none";
-      toolbar.style.display = "none";
-    },
-    showResources: function() {
-        var toolbar = document.getElementById("toolbarTab");
-        var notes = document.getElementById("notesTab");
-        var resources = document.getElementById("resourcesTab");
-        toolbar.style.display = "block";
-        notes.style.display = "none";
-        resources.style.display = "none";
     }
   }
 }
