@@ -27,6 +27,8 @@
               label: event.data.label
             });
             
+            self.$store.dispatch("map/selectNode", event.data.id, event.data.label)
+            
           } 
           else { 
               // The data hasn't been sent from your site! 

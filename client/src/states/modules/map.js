@@ -1,4 +1,5 @@
 import Map from '../../models/map'
+import Note from '../../models/note'
 import constants from '../../models/constants'
 import router from '../../router/index'
 import Axios from 'axios'
@@ -6,7 +7,8 @@ import requestPromise from 'request-promise'
 
 const state = {
   currentMap: null,
-  maps: []
+  maps: [],
+  note: null
 }
 
 const getters = {
@@ -27,6 +29,10 @@ const mutations = {
   },
   syncMaps (state, mapRes) {
     state.maps = mapRes.map((map) => new Map(map.name, map.url))
+  },
+  updateNote (state, nodeId, nodeLabel) {
+    state.note = new Note(nodeLabel, nodeId)
+    console.log(state.note)
   }
 }
 
@@ -77,30 +83,13 @@ const actions = {
   },
   syncMaps (context, maps) {
     context.commit('syncMaps', maps)
+  },
+  selectNode (context, nodeId, nodeLabel) {
+    
+    
+    context.commit('updateNote', nodeId, nodeLabel)
   }
-//  queryMaps (context, { userId }) {
-//    Axios.get(`${constants.api}/queryMap`, {
-//      params: {
-//        userID: userId
-//      }
-//    })
-//      .then(function (response) {
-//        if (response.data === 'Not Found') {
-//          let params = {
-//            maps: [],
-//            userId: response.data }
-//          context.commit('updateMaps', { params })
-//        } else {
-//          let params = { maps: response.data,
-//            userId: label }
-//          context.commit('updateMaps', { params })
-//        }
-//      })
-//      .catch(function (error) {
-//        console.log("ERROR: ")
-//        console.log(error)
-//      })
-//  }
+  
 }
 
 const map = {

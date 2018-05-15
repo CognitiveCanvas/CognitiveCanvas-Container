@@ -8,10 +8,9 @@
       </v-tab>
 
       <v-tab title="Notes">
-<!--
-        <iframe class="note-window" id="note-frame" v-on:load="eventListener" v-bind:src="source">
-        </iframe>
--->
+        <div>
+          <note-card v-bind:label=note.title v-bind:url=note.url></note-card>
+        </div>
       </v-tab>
 
       <v-tab title="Toolbar">
@@ -44,6 +43,9 @@ export default {
     },
     open () {
       return this.$store.state.sidebarBehavior.sidebarOpen
+    },
+    note: function() {
+      return this.$store.state.map.note
     }
   },
   methods: {
