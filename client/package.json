@@ -16,13 +16,20 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
     "vue": "^2.5.2",
     "vue-awesome": "^2.3.4",
     "vue-cookie": "^1.1.4",
     "vue-google-signin-button": "^1.0.2",
+    "vue-json-excel": "^0.2.5",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.4",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "nvd3": "^1.8.6",
+    "d3": "^3.5.17",
+    "json2csv": "^4.1.2",
+    "vue-nvd3": "^1.0.0",
+    "vue-konva": "^1.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
