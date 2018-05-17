@@ -1,0 +1,51 @@
+<template>
+  <iframe class="concept-map" id="map-frame" v-on:load="eventListener" v-bind:src="source">
+  </iframe>
+</template>
+
+<script>  
+  export default {
+
+    name: 'topbar',
+    data() {
+      return {
+      }
+    },
+    methods: {
+      eventListener: function() {
+        let self = this
+        window.addEventListener('message', function(event) { 
+          
+          // IMPORTANT: Check the origin of the data! 
+          if (~event.origin.indexOf('http://webstrates.ucsd.edu')) { 
+            // The data has been sent from your site 
+
+            // The data sent with postMessage is stored in event.data 
+            //console.log(event.data); 
+            self.$store.dispatch("content/queryContent", {
+              elementUrl: event.data.id,
+              label: event.data.label
+            });
+            
+          } 
+          else { 
+              // The data hasn't been sent from your site! 
+              // Be careful! Do not use it. 
+              return;
+          }
+          
+        }); 
+      }
+      
+    },
+    props: ['source']
+  }
+</script>
+
+<style>
+.concept-map {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+</style>
