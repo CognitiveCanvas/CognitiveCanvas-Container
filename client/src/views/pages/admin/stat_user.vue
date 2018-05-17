@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import queryData from '../../stores/queryData'
 
 export default {
     name: 'Stat_user',
@@ -54,36 +53,34 @@ export default {
         }
     },
 
-    queryData,
-
     methods: {
         requestData() {
 
         },
         find: function() {
-          queryData.dispatch('findUser', this.check_email);
+          this.$store.dispatch('reporting/findUser', this.check_email);
         }
     },
 
     computed: {
       name: function() {
-        return queryData.state.user_rawdata.users[0].FirstName + " " +
-          queryData.state.user_rawdata.users[0].LastName;
+        return this.$store.state.reporting.user_rawdata.users[0].FirstName + " " +
+          this.$store.state.reporting.user_rawdata.users[0].LastName;
       },
       email: function() {
-        return queryData.state.user_rawdata.users[0].email;
+        return this.$store.state.reporting.user_rawdata.users[0].email;
       },
       type: function() {
-        return queryData.state.user_rawdata.users[0].Type;
+        return this.$store.state.reporting.user_rawdata.users[0].Type;
       },
       surveylink: function() {
         return "http://#";
       },
       vis_on: function() {
-        queryData.state.vis_on[queryData.state.curr_scope];
+        return this.$store.state.reporting.vis_on[queryData.state.curr_scope];
       },
       show_info: function() {
-        if(queryData.state.user_id == '') {
+        if(this.$store.state.reporting.user_id == '') {
           return false;
         }
         return true;

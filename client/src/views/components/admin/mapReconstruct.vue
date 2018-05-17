@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import queryData from '../../stores/queryData'
 
 export default {
   name: 'mapReconstruct',
@@ -35,8 +34,6 @@ export default {
       show: true
     }
   },
-
-  queryData,
 
   watch: {
     sliderVal: function(val) {

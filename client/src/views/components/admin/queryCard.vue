@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import queryData from '../../stores/queryData'
 
 export default {
     name: 'queryCard',
@@ -49,39 +48,38 @@ export default {
             about: ''
         }
     },
-    queryData,
 
     computed: {
         query_data: {
           get: function () {
-            return queryData.state.query.data;
+            return this.$store.state.reporting.query.data;
           },
           set: function (newValue) {
-            queryData.state.query.data = newValue;
+            this.$store.state.reporting.query.data = newValue;
           }
         },
         query_filter: {
           get: function () {
-            return queryData.state.query.filter;
+            return this.$store.state.reporting.query.filter;
           },
           set: function (newValue) {
-            queryData.state.query.filter = newValue;
+            this.$store.state.reporting.query.filter = newValue;
           }
         },
         fromdate: {
           get: function () {
-            return queryData.state.query.fromdate;
+            return this.$store.state.reporting.query.fromdate;
           },
           set: function (newValue) {
-            queryData.state.query.fromdate = newValue;
+            this.$store.state.reporting.query.fromdate = newValue;
           }
         },
         todate: {
           get: function () {
-            return queryData.state.query.todate;
+            return this.$store.state.reporting.query.todate;
           },
           set: function (newValue) {
-            queryData.state.query.todate = newValue;
+            this.$store.state.reporting.query.todate = newValue;
           }
         }
       }

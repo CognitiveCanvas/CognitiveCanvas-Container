@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import queryData from '../../stores/queryData'
 import router from '../../router/index'
 
 export default {
@@ -22,19 +21,17 @@ export default {
         }
     },
 
-    queryData,
-
     methods: {
       navToSys: function() {
-        queryData.state.curr_scope = 'system';
+        this.$store.state.reporting.curr_scope = 'system';
         router.push({ name: "AdminPage" });
       },
       navToUser: function() {
-        queryData.state.curr_scope = 'user';
+        this.$store.state.reporting.curr_scope = 'user';
         router.push({ name: "userStat" });
       },
       navToMap: function() {
-        queryData.state.curr_scope = 'map';
+        this.$store.state.reporting.curr_scope = 'map';
         router.push({ name: "mapStat" });
       }
     }

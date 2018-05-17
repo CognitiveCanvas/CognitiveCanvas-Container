@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import queryData from '../../stores/queryData'
 
 export default {
   name: 'piechart',
@@ -24,15 +23,13 @@ export default {
     }
   },
 
-  queryData,
-
   computed: {
     title: function() {
-      return queryData.state.vis_title[queryData.state.curr_scope];
+      return this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope];
     },
     datapoint: {
       get: function() {
-        return queryData.state.rawdata;
+        return this.$store.state.reporting.rawdata;
       }
     }
   }

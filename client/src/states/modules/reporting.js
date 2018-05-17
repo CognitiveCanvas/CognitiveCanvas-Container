@@ -1,11 +1,6 @@
 import Axios from 'axios'
-import Vue from 'vue'
-import Vuex from 'vuex'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {
+const  state = {
     query: {data: '', filter: '', fromdate: '', todate: ''},
     rawdata: [],
     user_id: '',
@@ -18,9 +13,9 @@ export default new Vuex.Store({
     curr_scope: 'system',
 
     actions_data:[]
-  },
+}
 
-  mutations: {
+const  mutations = {
     updateData(state, params) {
       switch(params.type) {
         case 'system':
@@ -37,9 +32,9 @@ export default new Vuex.Store({
       state.vis_type[state.curr_scope] = params.type;
       state.vis_title[state.curr_scope] = params.title;
     }
-  },
+}
 
-  actions: {
+const  actions = {
     findUser(context, check_email) {
       if (check_email.length != 0) {
         let apiURL = "http://reporting-ccreporting.7e14.starter-us-west-2.openshiftapps.com/" + "users/" + check_email;
@@ -140,5 +135,4 @@ export default new Vuex.Store({
         }
       }]
     }
-  }
-})
+}

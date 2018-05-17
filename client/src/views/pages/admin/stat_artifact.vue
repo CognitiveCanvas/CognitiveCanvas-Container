@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import queryData from '../../stores/queryData'
 
 export default {
     name: 'Stat_artifact',
@@ -57,14 +56,12 @@ export default {
         }
     },
 
-    queryData,
-
     methods: {
       requestData() {
 
       },
       find: function() {
-        queryData.dispatch('findMap', {byID: '', email: this.check_email, title: this.check_title});
+        this.$store.dispatch('reporting/findMap', {byID: '', email: this.check_email, title: this.check_title});
       },
       showChart(t) {
           const type = t;
@@ -72,31 +69,31 @@ export default {
           switch(type) {
               case 'mapR':
                 title = 'Map Reconstruction';
-                queryData.dispatch('snapshotMap', {});
+                this.$store.dispatch('reporting/snapshotMap', {});
           }
-          queryData.commit('visualize', {type: type, title: title});
-          queryData.state.vis_on[queryData.state.curr_scope] = true;
+          this.$store.commit('reporting/visualize', {type: type, title: title});
+          this.$store.state.reporting.vis_on[this.$store.state.reporting.curr_scope] = true;
       }
     },
 
     computed: {
       title: function() {
-        return queryData.state.map_rawdata.maps[0].Title;
+        return this.$store.state.reporting.map_rawdata.maps[0].Title;
       },
       creator: function() {
-        return queryData.state.map_rawdata.maps[0].Owner;
+        return this.$store.state.reporting.map_rawdata.maps[0].Owner;
       },
       init_time: function() {
-        return queryData.state.map_rawdata.maps[0]["Created Date"];
+        return this.$store.state.reporting.map_rawdata.maps[0]["Created Date"];
       },
       last_modify: function() {
-        return queryData.state.map_rawdata.maps[0].Modified;
+        return this.$store.state.reporting.map_rawdata.maps[0].Modified;
       },
       vis_on: function() {
-        return queryData.state.vis_on[queryData.state.curr_scope];
+        return this.$store.state.reporting.vis_on[queryData.state.curr_scope];
       },
       show_info: function() {
-        if(queryData.state.map_id == '') {
+        if(this.$store.state.reporting.map_id == '') {
           return false;
         }
         return true;

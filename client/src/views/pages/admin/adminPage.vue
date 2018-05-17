@@ -21,7 +21,6 @@
 
 <script>
 import axios from "axios";
-import queryData from '../../stores/queryData'
 
 export default {
     name: 'AdminPage',
@@ -32,11 +31,9 @@ export default {
         }
     },
 
-    queryData,
-
     computed: {
       vis_on: function() {
-        return queryData.state.vis_on[queryData.state.curr_scope];
+        return this.$store.state.reporting.vis_on[this.$store.state.reporting.curr_scope];
       }
     },
 
@@ -44,18 +41,18 @@ export default {
         requestData() {
             // make up api request URL
             const apiURL = "http://reporting-ccreporting.7e14.starter-us-west-2.openshiftapps.com/";
-            this.request = queryData.state.query.data;
-            switch(queryData.state.query.filter) {
+            this.request = this.$store.state.reporting.query.data;
+            switch(this.$store.state.reporting.query.filter) {
               case 'timeRange':
-                this.request = this.request + "?fromdate=" + queryData.state.query.fromdate + "&todate=" + queryData.state.query.todate;
+                this.request = this.request + "?fromdate=" + this.$store.state.reporting.query.fromdate + "&todate=" + this.$store.state.reporting.query.todate;
                 break;
             }
             // send request and handle data back
             alert("Sending API request to" + apiURL + this.request);
             axios.get(apiURL + this.request).then(result => {
-                queryData.commit('updateData', {type: 'system', data: result.data});
-                queryData.commit('visualize', {type: 'list', title: queryData.state.query.data});
-                queryData.state.vis_on[queryData.state.curr_scope] = true;
+                this.$store.commit('reporting/updateData', {type: 'system', data: result.data});
+                this.$store.commit('reporting/visualize', {type: 'list', title: this.$store.state.reporting.query.data});
+                this.$store.state.reporting.vis_on[this.$store.state.reporting.curr_scope] = true;
             })
             .catch (err => {
                 alert(err);
@@ -67,9 +64,9 @@ export default {
                 case 'pie':*/
                     //api request here
             const dummy = [{"type": "Administrator", "num": 2}, {"type": "Student", "num": 40}, {"type": "Instructor&TA", "num": 5}];
-            queryData.commit('updateData', {type: 'system', data: dummy});
-            queryData.commit('visualize', {type: type, title: 'users by type'});
-            queryData.state.vis_on[queryData.state.curr_scope] = true;
+            this.$store.commit('reporting/updateData', {type: 'system', data: dummy});
+            this.$store.commit('reporting/visualize', {type: type, title: 'users by type'});
+            this.$store.state.reporting.vis_on[this.$store.state.reporting.curr_scope] = true;
         }
     }
 }

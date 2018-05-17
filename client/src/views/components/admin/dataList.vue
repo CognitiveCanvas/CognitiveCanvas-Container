@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import queryData from '../../stores/queryData'
 import router from '../../router/index'
 
 export default {
@@ -34,30 +33,30 @@ export default {
 
   computed: {
     title: function() {
-      return queryData.state.vis_title[queryData.state.curr_scope];
+      return this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope];
     },
     dataCol: {
       get: function() {
-        switch(queryData.state.vis_title[queryData.state.curr_scope]) {
+        switch(this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope]) {
           case 'users':
-            return Object.keys(queryData.state.rawdata.users[0]);
+            return Object.keys(this.$store.state.reporting.rawdata.users[0]);
           case 'maps':
-            return Object.keys(queryData.state.rawdata.maps[0]);
+            return Object.keys(this.$store.state.reporting.rawdata.maps[0]);
         }
       }
     },
     datapoint: {
       get: function() {
-        switch(queryData.state.vis_title[queryData.state.curr_scope]) {
+        switch(this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope]) {
           case 'users':
-            return queryData.state.rawdata.users;
+            return this.$store.state.reporting.rawdata.users;
           case 'maps':
-            return queryData.state.rawdata.maps;
+            return this.$store.state.reporting.rawdata.maps;
         }
       }
     },
     nav: function() {
-      let title = queryData.state.vis_title[queryData.state.curr_scope];
+      let title = this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope];
       if(title == 'users' || title == 'maps') {
         return true;
       }
@@ -67,15 +66,15 @@ export default {
 
   methods: {
     navTo: function(value) {
-      switch(queryData.state.vis_title[queryData.state.curr_scope]) {
+      switch(this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope]) {
         case 'users':
-          queryData.dispatch('findUser', value.email);
-          queryData.state.curr_scope = 'user';
+          this.$store.dispatch('reporting/findUser', value.email);
+          this.$store.state.reporting.curr_scope = 'user';
           router.push({ name: "userStat" });
           break;
         case 'maps':
-          queryData.dispatch('findMap', {byID: value.MapWebstrateID});
-          queryData.state.curr_scope = 'map';
+          this.$store.dispatch('reporting/findMap', {byID: value.MapWebstrateID});
+          this.$store.state.reporting.curr_scope = 'map';
           router.push({ name: "mapStat" });
       }
     }

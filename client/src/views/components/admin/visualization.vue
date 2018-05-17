@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import queryData from '../../stores/queryData'
 import json2csv from "json2csv";
 
 export default {
@@ -29,16 +28,15 @@ export default {
     }
   },
 
-  queryData,
-
   computed: {
     toShow: function() {
-      return queryData.state.vis_type[queryData.state.curr_scope];
+      return this.$store.state.reporting.vis_type[this.$store.state.reporting.curr_scope];
     }
   },
 
   methods: {
     download: function() {
+      let self = this;
       if(this.export_type == 'chart') {
         // not yet
       }
@@ -54,7 +52,7 @@ export default {
                 blob = new Blob([json], {type: "octet/stream"});
               } else if(type == 'csv') {
                 const Json2csvParser = require('json2csv').Parser;
-                let fields = Object.keys(queryData.state.rawdata[queryData.state.query.data][0]);
+                let fields = Object.keys(self.$store.state.reporting.rawdata[self.$store.state.reporting.query.data][0]);
                 const json2csvParser = new Json2csvParser({ fields });
                 const csv = json2csvParser.parse(data);
                 blob = new Blob([csv], {type: "text/csv"});
@@ -68,7 +66,7 @@ export default {
       }());
 
       const fileName = "rawData." + this.export_type;
-      saveData(queryData.state.rawdata[queryData.state.query.data], this.export_type, fileName);
+      saveData(self.$store.state.reporting.rawdata[self.$store.state.reporting.query.data], this.export_type, fileName);
     }
   }
 }
