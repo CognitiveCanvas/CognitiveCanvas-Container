@@ -20,9 +20,9 @@
           if (~event.origin.indexOf('https://webstrates.ucsd.edu')) { 
             // The data has been sent from your site 
 
-            if (event.data.id == "action-log") {
+            if (event.data.action_log) {
               // Save action-log to db
-              self.$store.dispatch("map/actionLog", data);
+              self.$store.dispatch("map/actionLog", event.data.action_log);
             } else {
               // The data sent with postMessage is stored in event.data 
               //console.log(event.data); 
