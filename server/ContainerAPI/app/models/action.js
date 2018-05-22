@@ -6,8 +6,7 @@ var actionSchema = new mongoose.Schema({
     event_type: Number,
     timestamp: Date,
     level: String,
-    // content: {
-    // },
+    property: JSON
 });
 
 var ActionModel = mongoose.model('Action', actionSchema);
