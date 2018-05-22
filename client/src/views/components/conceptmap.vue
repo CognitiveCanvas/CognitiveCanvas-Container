@@ -17,16 +17,20 @@
         window.addEventListener('message', function(event) { 
           
           // IMPORTANT: Check the origin of the data! 
-          if (~event.origin.indexOf('http://webstrates.ucsd.edu')) { 
+          if (~event.origin.indexOf('https://webstrates.ucsd.edu')) { 
             // The data has been sent from your site 
 
-            // The data sent with postMessage is stored in event.data 
-            //console.log(event.data); 
-            self.$store.dispatch("content/queryContent", {
-              elementUrl: event.data.id,
-              label: event.data.label
-            });
-            
+            if (event.data.id == "action-log") {
+              // Save action-log to db
+              self.$store.dispatch("map/actionLog", data);
+            } else {
+              // The data sent with postMessage is stored in event.data 
+              //console.log(event.data); 
+              self.$store.dispatch("content/queryContent", {
+                elementUrl: event.data.id,
+                label: event.data.label
+              });
+            }
           } 
           else { 
               // The data hasn't been sent from your site! 

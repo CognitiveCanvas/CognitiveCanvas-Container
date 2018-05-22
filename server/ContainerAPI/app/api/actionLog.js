@@ -6,6 +6,7 @@ const api = {}
 api.actionLog = (req, res) => {
     let log = req.body;
     // Create a new log
+    console.log('Action logged');
     models.Action.create(log, function(err, newLog) {
         if (err) {
             console.log(err);
