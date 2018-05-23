@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <topbar></topbar>
+    <maptopbar></maptopbar>
     <div id="map-container">
       <concept-map :source=source></concept-map>
       <side-bar />

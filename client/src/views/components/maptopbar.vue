@@ -21,7 +21,7 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <a href="#" class="my-2 my-auto" v-on:click="googleSignOut">Sign out</a>
+      <a href="#" class="my-2 my-auto" v-on:click="signOut">Sign out</a>
       <img src="/static/images/helpButton.png" width="" height="auto" class="px-2 my-auto mx-auto" v-on:click="showHelp">
       <!-- Toolbar Tabs  -->
       <vue-tabs>
@@ -80,12 +80,10 @@
 </template>
 
 <script>
-import contentStore from '../stores/content'
-import router from '../router/index'
+import router from '../../router/index'
 
 export default {
-  name: 'topbar',
-  contentStore,
+  name: 'maptopbar',
   data() {
     return {
       title: "Cognitive Canvas",
@@ -98,18 +96,17 @@ export default {
     },
     queryContentByLable: function(e) {
       let label = this.$data.query;
-      if (label && label !== "") {
-        contentStore.dispatch("queryContent", {
-        label: label
-      });
+      if ( !!label && label !== "") {
+        if (this.$store.state.content.label !== label) {
+          this.$store.dispatch("content/queryContent", {
+            label: label
+          });
+        }
       }
-    },
-    googleSignOut: function() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-        router.push(`login`);
-      });
+
+      if (!this.$store.getters['sidebarBehavior/sidebarOpen']) {
+        this.$store.dispatch('sidebarBehavior/toggleSidebar')
+      }
     },
     showHelp: function() {
       var modal = document.getElementById("helpModal");
@@ -118,6 +115,9 @@ export default {
     closeModal: function() {
       var modal = document.getElementById("helpModal");
       modal.style.display = "none";
+    },
+    signOut: function() {
+      this.$store.dispatch('localUser/logout')
     }
   }
 }
