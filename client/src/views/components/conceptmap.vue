@@ -9,6 +9,7 @@
     name: 'topbar',
     data() {
       return {
+        temp_buffer: []
       }
     },
     methods: {
@@ -20,9 +21,18 @@
           if (~event.origin.indexOf('https://webstrates.ucsd.edu')) { 
             // The data has been sent from your site 
 
-            if (event.data.action_log) {
+            if (event.data.id == "action_log") {
               // Save action-log to db
-              self.$store.dispatch("map/actionLog", event.data.action_log);
+              event.data.data["user_id"] = self.$store.state.localUser.localUser.email._id;
+              self.$data.temp_buffer.push(event.data.data);
+            } else if (event.data == "post_action_log") {
+              // Receive post request from webstrates, flush db
+              let action_log = self.$data.temp_buffer;
+              if (action_log.length > 0) {
+                self.$store.dispatch("map/actionLog", action_log);
+                self.$data.temp_buffer = [];
+                action_log = [];
+              }
             } else {
               // The data sent with postMessage is stored in event.data 
               //console.log(event.data); 
