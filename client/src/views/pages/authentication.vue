@@ -2,11 +2,13 @@
   <div class="signin_page">
     <div class="signin_box">
       <img src="../../asset/logo.png">
-      <p>Use your @ucsd.edu</p>
+      <div class="line_box"></div>
+      <p>Sign-in with your @ucsd.edu</p>
       <div class ="login-b">
         <div class="g-signin2" id="google-signin-btn"></div>
-        <p></p>
       </div>
+      
+    <h1>Concepts, from paper to pixels</h1>
     </div>
   </div>
 </template>
@@ -92,7 +94,7 @@ export default {
     font-family: "miso-regular"
   }
   .g-signin2{
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 40px; 
   }
   .login-b{
@@ -119,16 +121,23 @@ export default {
     background: #FCE946;
     box-shadow: 0 13px 4px 0 rgba(0,0,0,0.50);
     border-radius: 8px;
-    width: 410px;
-    height: 625px;
+    width: 375px;
+    height: 550px;
     position: absolute;
-    padding-bottom: 200px;
+    padding-bottom: 0;
     top:0;
     bottom: 0;
     left: 0;
     right: 0;
-
     margin: auto;
+    margin-top:60px;
+  }
+  .line_box{
+  	border-top: 5px solid black;
+  	padding-bottom: 20px;
+  	width: 300px;
+  	margin: auto;
+
   }
   .signin_box p{
     font-size: 24px;
@@ -136,9 +145,16 @@ export default {
     margin: 0;
     text-align: center;
   }
+  .signin_page h1{
+  	width: 100%;
+  	font-size: 38px;
+    color:white;
+    margin-top: 50px;
+    text-align: center;
+  }
   .signin_box img{
-    height: 450px;
-    width: 380px;
+    height: 375px;
+    width: 350px;
     padding: 10%;
     padding-bottom: 10px;
     display: block;
