@@ -8,9 +8,11 @@
       <iframe id="add-Window" v-bind:src="url">
         <p>ERROR: Your browser does not support iframes.</p>
       </iframe>
+<!--
       <button type="button" id="addNoteBtn" onclick="appendNote()">Add Sticky Note</button>
       <input type="file" id="addPicBtn" onchange="appendPic()">
       <button type="button" id="closeWindowBtn" onclick="closeContentWindow()">Close Content Window</button>
+-->
     </div>
     
   </div>

@@ -28,9 +28,11 @@ const mutations = {
     state.currentMap = state.maps[reqIndex] 
   },
   syncMaps (state, mapRes) {
-    state.maps = mapRes.map((map) => new Map(map.name, map.url))
+    if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
   },
   updateNote (state, nodeId, nodeLabel) {
+    console.log(nodeLabel)
+    console.log(nodeId)
     state.note = new Note(nodeLabel, nodeId)
     console.log(state.note)
   }
@@ -92,9 +94,30 @@ const actions = {
       })
   },
   selectNode (context, nodeId, nodeLabel) {
-    
-    
-    context.commit('updateNote', nodeId, nodeLabel)
+    console.log("in mapjs: " + event.nodeLabel)
+    console.log(event.nodeId)
+    let token = btoa('web:strate')
+    let requestURL = `${constants.noteTemplate}/?copy=note_` + nodeId
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization', 'Basic ' + token)
+    let init = {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: headers,
+      credentials: 'include',
+      withCredentials: true
+    }
+    let createNoteReq = new Request(requestURL, init)
+
+    fetch(createNoteReq)
+      .then((response) => {
+        console.log("success call", response)
+        context.commit('updateNote', nodeId, nodeLabel)
+      })
+      .catch((err) => {
+        console.log("error", err)
+      })
   }
   
 }

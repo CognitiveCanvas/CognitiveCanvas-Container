@@ -45,6 +45,7 @@ export default {
       return this.$store.state.sidebarBehavior.sidebarOpen
     },
     note: function() {
+      console.log(this.$store.state.map.note)
       return this.$store.state.map.note
     }
   },
