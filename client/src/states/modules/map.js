@@ -84,6 +84,13 @@ const actions = {
   syncMaps (context, maps) {
     context.commit('syncMaps', maps)
   },
+  actionLog (context, data) {
+    Axios
+      .post(`${constants.api}/actionLog`, data)
+      .catch(function (error) {
+        bugsnagClient.notify(error)
+      })
+  },
   selectNode (context, nodeId, nodeLabel) {
     
     
