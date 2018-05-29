@@ -41,10 +41,10 @@
                 label: event.data.label
               });
               
-              console.log("in conceptmap: " + event.data.label)
-              console.log(event.data.id)
-              
-              self.$store.dispatch("map/selectNode", event.data.id, event.data.label)
+              self.$store.dispatch("map/selectNode", {
+                nodeId: event.data.id,
+                nodeLabel: event.data.label
+              })
             }
             
           } 

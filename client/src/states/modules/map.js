@@ -21,8 +21,6 @@ const mutations = {
     
     state.currentMap = new Map(time, newAddr)   
     state.maps.unshift(state.currentMap)
-//    console.log(state.currentMap)
-//    console.log(state.maps)
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex] 
@@ -30,11 +28,8 @@ const mutations = {
   syncMaps (state, mapRes) {
     if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
   },
-  updateNote (state, nodeId, nodeLabel) {
-    console.log(nodeLabel)
-    console.log(nodeId)
-    state.note = new Note(nodeLabel, nodeId)
-    console.log(state.note)
+  updateNote (state, {nodeId, nodeLabel}) {
+    state.note = new Note(nodeLabel, `${constants.host}`+nodeId)
   }
 }
 
@@ -93,9 +88,7 @@ const actions = {
         bugsnagClient.notify(error)
       })
   },
-  selectNode (context, nodeId, nodeLabel) {
-    console.log("in mapjs: " + event.nodeLabel)
-    console.log(event.nodeId)
+  selectNode (context, {nodeId, nodeLabel}) {
     let token = btoa('web:strate')
     let requestURL = `${constants.noteTemplate}/?copy=note_` + nodeId
     let headers = new Headers()
@@ -113,7 +106,10 @@ const actions = {
     fetch(createNoteReq)
       .then((response) => {
         console.log("success call", response)
-        context.commit('updateNote', nodeId, nodeLabel)
+        context.commit('updateNote', {
+          nodeId: "note_" + nodeId, 
+          nodeLabel: nodeLabel
+        })
       })
       .catch((err) => {
         console.log("error", err)
