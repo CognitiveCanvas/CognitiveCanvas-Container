@@ -1,7 +1,7 @@
 <template>
 <div id="mapReconstruct" class="container">
   <div class="slidecontainer">
-    <input type="range" min="1" max="3" v-model:value="sliderVal" class="slider" id="myRange">
+    <input type="range" min="1" max="5" v-model:value="sliderVal" class="slider" id="myRange">
     <p>Value: <span>{{sliderVal}}</span></p>
   </div>
   <div id="canvasBox">
@@ -9,6 +9,8 @@
       <v-layer>
         <v-circle v-for="c in configCircle"
          :config="c"></v-circle>
+        <v-line v-for="l in configEdge"
+         :config="l"></v-line>
       </v-layer>
     </v-stage>
   </div>
@@ -22,9 +24,9 @@ export default {
 
   data() {
     return {
-      sliderVal: 3,
+      sliderVal: 5,
 
-      maxSlider: 3,
+      maxSlider: 5,
 
       configKonva: {
         width: 600,
@@ -73,6 +75,32 @@ export default {
       stroke: "black",
       strokeWidth: 4,
       visible: vis[2]} ]
+    },
+    configEdge: function() {
+      let vis = [true, true];
+      if(this.sliderVal >= 4) {
+        vis[0] = true;
+      } else {
+        vis[0] = false;
+      }
+      if(this.sliderVal >= 5) {
+        vis[1] = true;
+      } else {
+        vis[1] = false;
+      }
+      return [{points: [100, 100, 200, 200],
+      stroke: 'red',
+      strokeWidth: 5,
+      lineCap: 'round',
+      lineJoin: 'round',
+      visible: vis[0]},
+
+      {points: [200, 200, 300, 200],
+      stroke: 'red',
+      strokeWidth: 5,
+      lineCap: 'round',
+      lineJoin: 'round',
+      visible: vis[1]} ]
     }
   }
 

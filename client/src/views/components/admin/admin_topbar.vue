@@ -11,27 +11,24 @@
 </template>
 
 <script>
-import router from '../../router/index'
+import router from '../../../router/index'
 
 export default {
     name: 'admin_topbar',
 
     data () {
-        return {
-        }
+      return {
+      }
     },
 
     methods: {
       navToSys: function() {
-        this.$store.state.reporting.curr_scope = 'system';
         router.push({ name: "AdminPage" });
       },
       navToUser: function() {
-        this.$store.state.reporting.curr_scope = 'user';
         router.push({ name: "userStat" });
       },
       navToMap: function() {
-        this.$store.state.reporting.curr_scope = 'map';
         router.push({ name: "mapStat" });
       }
     }

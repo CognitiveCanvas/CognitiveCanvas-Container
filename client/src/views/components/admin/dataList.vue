@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import router from '../../router/index'
+import router from '../../../router/index'
 
 export default {
   name: 'dataList',
@@ -29,34 +29,46 @@ export default {
     }
   },
 
-  queryData,
-
   computed: {
     title: function() {
       return this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope];
     },
     dataCol: {
       get: function() {
-        switch(this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope]) {
+        const scope = this.$store.getters['reporting/currScope'];
+        switch(this.$store.state.reporting.vis_title[scope]) {
           case 'users':
-            return Object.keys(this.$store.state.reporting.rawdata.users[0]);
+            return Object.keys(this.$store.state.reporting.raw_data[scope].users[0]);
           case 'maps':
-            return Object.keys(this.$store.state.reporting.rawdata.maps[0]);
+            return Object.keys(this.$store.state.reporting.raw_data[scope].maps[0]);
+          case 'nodes':
+            return Object.keys(this.$store.state.reporting.raw_data[scope].nodes[0]);
+          case 'edges':
+            return Object.keys(this.$store.state.reporting.raw_data[scope].edges[0]);
         }
       }
     },
     datapoint: {
       get: function() {
-        switch(this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope]) {
+        const scope = this.$store.getters['reporting/currScope'];
+        switch(this.$store.state.reporting.vis_title[scope]) {
           case 'users':
-            return this.$store.state.reporting.rawdata.users;
+            return this.$store.state.reporting.raw_data[scope].users;
           case 'maps':
-            return this.$store.state.reporting.rawdata.maps;
+            return this.$store.state.reporting.raw_data[scope].maps;
+          case 'nodes':
+            return this.$store.state.reporting.raw_data[scope].nodes;
+          case 'edges':
+            return this.$store.state.reporting.raw_data[scope].edges;
         }
       }
     },
     nav: function() {
-      let title = this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope];
+      const scope = this.$store.getters['reporting/currScope'];
+      if(scope != 'system') {
+        return false;
+      }
+      let title = this.$store.state.reporting.vis_title[scope];
       if(title == 'users' || title == 'maps') {
         return true;
       }
@@ -66,15 +78,15 @@ export default {
 
   methods: {
     navTo: function(value) {
-      switch(this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope]) {
+      switch(this.$store.state.reporting.query[this.$store.state.reporting.curr_scope].data) {
         case 'users':
           this.$store.dispatch('reporting/findUser', value.email);
-          this.$store.state.reporting.curr_scope = 'user';
+          //this.$store.commit('reporting/changeScope', 'user');
           router.push({ name: "userStat" });
           break;
         case 'maps':
           this.$store.dispatch('reporting/findMap', {byID: value.MapWebstrateID});
-          this.$store.state.reporting.curr_scope = 'map';
+          //this.$store.commit('reporting/changeScope', 'map');
           router.push({ name: "mapStat" });
       }
     }

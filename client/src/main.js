@@ -3,6 +3,7 @@ import Vuetify from 'vuetify'
 import VueCookie from 'vue-cookie'
 import Vuex from 'vuex'
 import VueNVD3 from 'vue-nvd3'
+import VueKonva from 'vue-konva'
 import app from './app'
 import container from './views/pages/container'
 import management from './views/pages/management'
@@ -24,12 +25,14 @@ import 'vue-nav-tabs/themes/vue-tabs.css'
 import 'vuetify/dist/vuetify.min.css'
 
 import adminPage from './views/pages/admin/adminPage'
-import stat_user from './view/pages/admin/stat_user'
+import stat_user from './views/pages/admin/stat_user'
 import stat_artifact from './views/pages/admin/stat_artifact'
 import admin_topbar from './views/components/admin/admin_topbar'
 import visualization from './views/components/admin/visualization'
 import dataList from './views/components/admin/dataList'
-import queryCard from './views/components/admin/queryCard'
+import queryCard_sys from './views/components/admin/queryCard_sys'
+import queryCard_map from './views/components/admin/queryCard_map'
+import queryCard_user from './views/components/admin/queryCard_user'
 import piechart from './views/components/admin/piechart'
 import linechart from './views/components/admin/linechart'
 import barchart from './views/components/admin/barchart'
@@ -42,6 +45,7 @@ Vue.use(Vuetify)
 Vue.use(Vuex)
 Vue.use(VueTabs)
 Vue.use(VueNVD3)
+Vue.use(VueKonva)
 Vue.config.productionTip = false
 
 var index = {
@@ -63,13 +67,15 @@ var index = {
     'map-card': mapCard,
     'new-map-card': newMapCard,
     'map-collection': mapCollection,
-    'note-card': noteCard
+    'note-card': noteCard,
 
     // Admin Components
     'admin_topbar': admin_topbar,
     'visualization': visualization,
     'dataList': dataList,
-    'queryCard': queryCard,
+    'queryCard_sys': queryCard_sys,
+    'queryCard_user': queryCard_user,
+    'queryCard_map': queryCard_map,
     'piechart': piechart,
     'barchart': barchart,
     'stackareachart': stackareachart,

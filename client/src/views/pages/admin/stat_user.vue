@@ -30,8 +30,8 @@
             <div class="col"><a v-bind:href="surveylink">link to pre-survey</a></div>
           </div>
 
-          <queryCard v-if="show_info"/>
-          <button v-if="show_info" v-on:click="requestData()">Get data</button>
+          <queryCard_user v-if="show_info"/>
+          <button class="btn btn-primary" type="submit" v-if="show_info" v-on:click="getAndShow()">Get data and show</button>
         </div>
         <div class="col-8">
           <visualization v-if="vis_on" />
@@ -47,40 +47,46 @@ export default {
     name: 'Stat_user',
 
     data () {
-        return {
-            //response: "",
-            check_email: ''
-        }
+      return {
+        check_email: ''
+      }
+    },
+
+    mounted: function() {
+      this.$store.commit('reporting/changeScope', 'user');
     },
 
     methods: {
-        requestData() {
-
-        },
-        find: function() {
-          this.$store.dispatch('reporting/findUser', this.check_email);
-        }
+      getAndShow() {
+        this.$store.dispatch('reporting/requestDataAndShow', {scope: 'user'});
+      },
+      find: function() {
+        this.$store.dispatch('reporting/findUser', this.check_email);
+      }
     },
 
     computed: {
       name: function() {
-        return this.$store.state.reporting.user_rawdata.users[0].FirstName + " " +
-          this.$store.state.reporting.user_rawdata.users[0].LastName;
+        return this.$store.state.reporting.general_info.user.info.FirstName + " " +
+          this.$store.state.reporting.general_info.user.info.LastName;
       },
       email: function() {
-        return this.$store.state.reporting.user_rawdata.users[0].email;
+        return this.$store.state.reporting.general_info.user.info.email;
       },
       type: function() {
-        return this.$store.state.reporting.user_rawdata.users[0].Type;
+        return this.$store.state.reporting.general_info.user.info.Type;
       },
       surveylink: function() {
         return "http://#";
       },
       vis_on: function() {
-        return this.$store.state.reporting.vis_on[queryData.state.curr_scope];
+        if(this.$store.state.reporting.raw_data.user.length != 0) {
+          return this.$store.state.reporting.vis_on.user;
+        }
+        return false;
       },
       show_info: function() {
-        if(this.$store.state.reporting.user_id == '') {
+        if(this.$store.state.reporting.general_info.user.id == '') {
           return false;
         }
         return true;

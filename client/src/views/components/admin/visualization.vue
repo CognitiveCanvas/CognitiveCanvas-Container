@@ -2,11 +2,10 @@
 <div class="container">
   <div class="row">
     <div class="col align-self-end">
-      <button id="export" @click="download">Export</button>
+      <button class="btn btn-primary" type="submit" id="export" @click="download">Export</button>
       <select v-model="export_type" name="type" id="opt">
         <option value="json">as JSON</option>
         <option value="csv">as CSV</option>
-        <option v-if="toShow != 'list'" value="chart">as chart</option>
       </select>
     </div>
   </div>
@@ -30,17 +29,16 @@ export default {
 
   computed: {
     toShow: function() {
-      return this.$store.state.reporting.vis_type[this.$store.state.reporting.curr_scope];
+      const scope = this.$store.getters['reporting/currScope'];
+      return this.$store.state.reporting.vis_type[scope];
     }
   },
 
   methods: {
     download: function() {
+      const scope = this.$store.getters['reporting/currScope'];
+      const datatype = this.$store.state.reporting.query[scope].data;
       let self = this;
-      if(this.export_type == 'chart') {
-        // not yet
-      }
-
       let saveData = (function () {
           let a = document.createElement("a");
           document.body.appendChild(a);
@@ -52,7 +50,7 @@ export default {
                 blob = new Blob([json], {type: "octet/stream"});
               } else if(type == 'csv') {
                 const Json2csvParser = require('json2csv').Parser;
-                let fields = Object.keys(self.$store.state.reporting.rawdata[self.$store.state.reporting.query.data][0]);
+                let fields = Object.keys(data[0]);
                 const json2csvParser = new Json2csvParser({ fields });
                 const csv = json2csvParser.parse(data);
                 blob = new Blob([csv], {type: "text/csv"});
@@ -66,7 +64,7 @@ export default {
       }());
 
       const fileName = "rawData." + this.export_type;
-      saveData(self.$store.state.reporting.rawdata[self.$store.state.reporting.query.data], this.export_type, fileName);
+      saveData(self.$store.state.reporting.raw_data[scope][datatype], this.export_type, fileName);
     }
   }
 }

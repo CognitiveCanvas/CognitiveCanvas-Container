@@ -32,9 +32,9 @@
             <div class="col-8">{{last_modify}}</div>
           </div>
 
-          <queryCard v-if="show_info"/>
-          <button v-if="show_info" v-on:click="requestData()">Get data</button>
-          <button v-if="show_info" v-on:click="showChart('mapR')">Map Reconstruction</button>
+          <queryCard_map v-if="show_info"/>
+          <button class="btn btn-primary" type="submit" v-if="show_info" v-on:click="getAndShow()">Get data and show</button>
+          <!--<button v-if="show_info" v-on:click="showChart('mapR')">Map Reconstruction</button>-->
         </div>
         <div class="col-8">
           <visualization v-if="vis_on" />
@@ -45,55 +45,51 @@
 </template>
 
 <script>
-
+//import axios from "axios";
 export default {
     name: 'Stat_artifact',
 
     data () {
-        return {
-            check_email: '',
-            check_title: ''
-        }
+      return {
+        check_email: '',
+        check_title: ''
+      }
+    },
+
+    mounted: function() {
+      this.$store.commit('reporting/changeScope', 'map');
     },
 
     methods: {
-      requestData() {
-
+      getAndShow() {
+        this.$store.dispatch('reporting/requestDataAndShow', {scope: 'map'});
       },
       find: function() {
         this.$store.dispatch('reporting/findMap', {byID: '', email: this.check_email, title: this.check_title});
-      },
-      showChart(t) {
-          const type = t;
-          let title = '';
-          switch(type) {
-              case 'mapR':
-                title = 'Map Reconstruction';
-                this.$store.dispatch('reporting/snapshotMap', {});
-          }
-          this.$store.commit('reporting/visualize', {type: type, title: title});
-          this.$store.state.reporting.vis_on[this.$store.state.reporting.curr_scope] = true;
       }
     },
 
     computed: {
       title: function() {
-        return this.$store.state.reporting.map_rawdata.maps[0].Title;
+        return this.$store.state.reporting.general_info.map.info.Title;
       },
       creator: function() {
-        return this.$store.state.reporting.map_rawdata.maps[0].Owner;
+        return this.$store.state.reporting.general_info.map.info.Owner;
       },
       init_time: function() {
-        return this.$store.state.reporting.map_rawdata.maps[0]["Created Date"];
+        return this.$store.state.reporting.general_info.map.info["Created Date"];
       },
       last_modify: function() {
-        return this.$store.state.reporting.map_rawdata.maps[0].Modified;
+        return this.$store.state.reporting.general_info.map.info.Modified;
       },
       vis_on: function() {
-        return this.$store.state.reporting.vis_on[queryData.state.curr_scope];
+        if(this.$store.state.reporting.raw_data.map.length != 0) {
+          return this.$store.state.reporting.vis_on.map;
+        }
+        return false;
       },
       show_info: function() {
-        if(this.$store.state.reporting.map_id == '') {
+        if(this.$store.state.reporting.general_info.map.id == '') {
           return false;
         }
         return true;
