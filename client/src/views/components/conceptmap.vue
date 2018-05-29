@@ -40,7 +40,13 @@
                 elementUrl: event.data.id,
                 label: event.data.label
               });
+              
+              self.$store.dispatch("map/selectNode", {
+                nodeId: event.data.id,
+                nodeLabel: event.data.label
+              })
             }
+            
           } 
           else { 
               // The data hasn't been sent from your site! 
