@@ -1,4 +1,5 @@
 import Map from '../../models/map'
+import Note from '../../models/note'
 import constants from '../../models/constants'
 import router from '../../router/index'
 import Axios from 'axios'
@@ -6,7 +7,8 @@ import requestPromise from 'request-promise'
 
 const state = {
   currentMap: null,
-  maps: []
+  maps: [],
+  note: null
 }
 
 const getters = {
@@ -19,14 +21,15 @@ const mutations = {
     
     state.currentMap = new Map(time, newAddr)   
     state.maps.unshift(state.currentMap)
-//    console.log(state.currentMap)
-//    console.log(state.maps)
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex] 
   },
   syncMaps (state, mapRes) {
-    state.maps = mapRes.map((map) => new Map(map.name, map.url))
+    if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
+  },
+  updateNote (state, {nodeId, nodeLabel}) {
+    state.note = new Note(nodeLabel, `${constants.host}`+nodeId)
   }
 }
 
@@ -77,30 +80,42 @@ const actions = {
   },
   syncMaps (context, maps) {
     context.commit('syncMaps', maps)
+  },
+  actionLog (context, data) {
+    Axios
+      .post(`${constants.api}/actionLog`, data)
+      .catch(function (error) {
+        bugsnagClient.notify(error)
+      })
+  },
+  selectNode (context, {nodeId, nodeLabel}) {
+    let token = btoa('web:strate')
+    let requestURL = `${constants.noteTemplate}/?copy=note_` + nodeId
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization', 'Basic ' + token)
+    let init = {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: headers,
+      credentials: 'include',
+      withCredentials: true
+    }
+    let createNoteReq = new Request(requestURL, init)
+
+    fetch(createNoteReq)
+      .then((response) => {
+        console.log("success call", response)
+        context.commit('updateNote', {
+          nodeId: "note_" + nodeId, 
+          nodeLabel: nodeLabel
+        })
+      })
+      .catch((err) => {
+        console.log("error", err)
+      })
   }
-//  queryMaps (context, { userId }) {
-//    Axios.get(`${constants.api}/queryMap`, {
-//      params: {
-//        userID: userId
-//      }
-//    })
-//      .then(function (response) {
-//        if (response.data === 'Not Found') {
-//          let params = {
-//            maps: [],
-//            userId: response.data }
-//          context.commit('updateMaps', { params })
-//        } else {
-//          let params = { maps: response.data,
-//            userId: label }
-//          context.commit('updateMaps', { params })
-//        }
-//      })
-//      .catch(function (error) {
-//        console.log("ERROR: ")
-//        console.log(error)
-//      })
-//  }
+  
 }
 
 const map = {
