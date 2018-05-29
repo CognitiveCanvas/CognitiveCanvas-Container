@@ -174,6 +174,10 @@ const  actions = {
       const dataType = context.state.query[params.scope].data;
       let vis_type = 'list'; // default vis_type
       let vis_title = dataType; // default vis_title
+      if(dataType == '') {
+        alert("Please specify data to query about");
+        return;
+      }
       // make up api request URL
       let apiURL = reportConstants.RESTapiURL;
       switch (params.scope) {
@@ -220,6 +224,10 @@ const  actions = {
       // send request and handle data back
       alert("Sending API request to " + apiURL);
       Axios.get(apiURL).then(result => {
+        if(result.data[dataType].length == 0) {
+          alert("No data found");
+          return;
+        }
         context.commit('updateData', {scope: params.scope, data: result.data});
         context.commit('visOn', {scope: params.scope, type: vis_type, title: vis_title});
       })
