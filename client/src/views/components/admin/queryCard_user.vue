@@ -13,6 +13,7 @@
     <select v-model="query_data" name="data">
       <option value=''>pick one</option>
       <option v-if="query_about == 'map'" value="maps">Maps List</option>
+      <option v-if="query_about == 'map'" value="mapsPerDay">#Maps per day</option>
       <option v-if="query_about == 'action'" value="event">#Events per type</option>
       <option v-if="query_about == 'action'" value="action">#Actions per type</option>
     </select>

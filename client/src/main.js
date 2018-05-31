@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import VueCookie from 'vue-cookie'
 import Vuex from 'vuex'
-import VueNVD3 from 'vue-nvd3'
+import VueChartjs from 'vue-chartjs'
 import VueKonva from 'vue-konva'
 import app from './app'
 import container from './views/pages/container'
@@ -44,7 +44,7 @@ Vue.use(VueCookie)
 Vue.use(Vuetify)
 Vue.use(Vuex)
 Vue.use(VueTabs)
-Vue.use(VueNVD3)
+Vue.use(VueChartjs)
 Vue.use(VueKonva)
 Vue.config.productionTip = false
 

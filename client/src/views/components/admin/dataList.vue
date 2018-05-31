@@ -1,17 +1,16 @@
 <template>
-<div class="outter">
-  <h2>{{title + ' List'}}</h2>
+<div class="container">
   <table class="table">
     <thead>
       <tr>
         <th v-for="col in dataCol">{{col}}</th>
-        <th v-if="nav">link</th>
+        <th v-if="nav"></th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="dp in datapoint">
         <td v-for="d in dp">{{d}}</td>
-        <td v-if="nav"><button @click="navTo(dp)">navigate</button></td>
+        <td v-if="nav"><button type="button" class="btn btn-outline-secondary" @click="navTo(dp)">navigate</button></td>
       </tr>
     </tbody>
   </table>
@@ -30,9 +29,6 @@ export default {
   },
 
   computed: {
-    title: function() {
-      return this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope];
-    },
     dataCol: {
       get: function() {
         const scope = this.$store.getters['reporting/currScope'];
@@ -102,9 +98,5 @@ export default {
     height: 100%;
     display: block;
     padding-top: 10px;
-  }
-  .outer {
-    height: 100%;
-    width: 100%;
   }
 </style>

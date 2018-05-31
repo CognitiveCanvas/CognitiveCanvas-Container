@@ -6,7 +6,7 @@
       <option value=''>pick one</option>
       <option value='nodes'>Nodes</option>
       <option value='edges'>Edges</option>
-      <option value='label'>Labels</option>
+      <!--<option value='label'>Labels</option>-->
       <option value='action'>Actions</option>
     </select>
   </div>
@@ -16,7 +16,7 @@
       <option value=''>pick one</option>
       <option v-if="query_about == 'nodes'" value="nodes">Nodes List</option>
       <option v-if="query_about == 'edges'" value="edges">Edges List</option>
-      <option v-if="query_about == 'label'" value="label">Keywords List</option>
+      <!--<option v-if="query_about == 'label'" value="label">Keywords List</option>-->
       <option v-if="query_about == 'action'" value="event">#Events per type</option>
       <option v-if="query_about == 'action'" value="action">#Actions per type</option>
       <option v-if="query_about == 'action'" value="mapR">Map reconstruction</option>

@@ -45,7 +45,14 @@ const  mutations = {
     },
     // set query criteria when user click options in queryCard, params[scope, type, option]
     setQuery(state, params) {
-        state.query[params.scope][params.type] = params.option;
+      if(params.type == 'about') {
+        state.query[params.scope].data = '';
+        state.query[params.scope].filter = '';
+      }
+      if(params.type == 'data') {
+        state.query[params.scope].filter = '';
+      }
+      state.query[params.scope][params.type] = params.option;
     },
     // set general_info for single user/map, params[scope, data]
     setInfo(state, params) {
@@ -108,7 +115,7 @@ const  actions = {
       });
     },
     // call api to get the snapshot of a map for mapReconstruct
-    snapshotMap(context, mapID) {
+    /*snapshotMap(context, mapID) {
         //for test actions should be ordered by timestamp small to large
         context.state.raw_data.map = [{
           "type": "created",
@@ -168,7 +175,7 @@ const  actions = {
             }]
           }
         }]
-      },
+      },*/
     // given query criteria, request data using RESTful api, params[scope]
     requestDataAndShow(context, params) {
       const dataType = context.state.query[params.scope].data;
@@ -178,14 +185,28 @@ const  actions = {
         alert("Please specify data to query about");
         return;
       }
+      let check = true;
       // make up api request URL
       let apiURL = reportConstants.RESTapiURL;
       switch (params.scope) {
         case 'system':
-          apiURL = apiURL + context.state.query.system.data;
+          switch(dataType) {
+            case 'event':
+              alert("not ready yet");
+              return;
+              break;
+            case 'action':
+              alert("not ready yet");
+              return;
+              break;
+            default:
+              apiURL = apiURL + dataType;
+          }
           switch(context.state.query.system.filter) {
             case 'timeRange':
-              apiURL = apiURL + "?fromdate=" + context.state.query.system.fromdate + "&todate=" + context.state.query.system.todate;
+              let from = dateToTimestamp(context.state.query.system.fromdate);
+              let to = dateToTimestamp(context.state.query.system.todate);
+              apiURL = apiURL + "?fromdate=" + from + "&todate=" + to;
               break;
           }
           break;
@@ -193,10 +214,19 @@ const  actions = {
           apiURL = apiURL + "users/" + context.state.general_info.user.id + "/";
           switch(dataType) {
             case 'event':
-              //
+              alert("not ready yet");
+              return;
               break;
             case 'action':
-              //
+              alert("not ready yet, test");
+              context.commit('visOn', {scope: params.scope, type: 'pie', title: vis_title});
+              return;
+              break;
+            case 'mapsPerDay':
+              apiURL = apiURL + "maps/timeline?filter=days";
+              vis_type = 'bar';
+              vis_title = '#Maps created each day';
+              check = false;
               break;
             default:
               apiURL = apiURL + dataType;
@@ -206,16 +236,23 @@ const  actions = {
           apiURL = apiURL + "maps/" + context.state.general_info.map.id + "/";
           switch(dataType) {
             case 'event':
-              // make up URL and set vis_type and title
+              alert("not ready yet");
+              return;
               break;
             case 'action':
-              //
+              alert("not ready yet");
+              return;
               break;
             case 'label':
-              //
+              alert("not ready yet");
+              return;
               break;
             case 'mapR':
-              //
+              alert("api not ready yet, show fake data");
+              vis_type = 'mapR';
+              vis_title = 'Map Reconstruction';
+              context.commit('visOn', {scope: params.scope, type: vis_type, title: vis_title});
+              return;
               break;
             default:
               apiURL = apiURL + dataType;
@@ -224,7 +261,7 @@ const  actions = {
       // send request and handle data back
       alert("Sending API request to " + apiURL);
       Axios.get(apiURL).then(result => {
-        if(result.data[dataType].length == 0) {
+        if(check && result.data[dataType].length == 0) {
           alert("No data found");
           return;
         }
@@ -235,6 +272,12 @@ const  actions = {
         alert(err);
       });
     }
+}
+
+function dateToTimestamp(dateVal) {
+  let myDate = dateVal.split("-");
+  let newDate = myDate[1]+"/"+myDate[0]+"/"+myDate[2];
+  return new Date(newDate).getTime()/1000;
 }
 
 const reporting = {

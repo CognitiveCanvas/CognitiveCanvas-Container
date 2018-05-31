@@ -1,6 +1,9 @@
 <template>
 <div class="container">
   <div class="row">
+    <div class="col">
+      <h2>{{title}}</h2>
+    </div>
     <div class="col align-self-end">
       <button class="btn btn-primary" type="submit" id="export" @click="download">Export</button>
       <select v-model="export_type" name="type" id="opt">
@@ -9,9 +12,18 @@
       </select>
     </div>
   </div>
-  <dataList class="content" v-if="toShow == 'list'" />
-  <piechart class="content" v-if="toShow == 'pie'" />
-  <mapReconstruct class="content" v-if="toShow == 'mapR'" />
+  <dataList id="list" v-if="toShow == 'list'" />
+  <piechart v-if="toShow == 'pie'"
+    :options="{responsive: false, maintainAspectRatio: false}"
+    :width="500"
+    :height="450">
+  </piechart>
+  <barchart v-if="toShow == 'bar'"
+    :options="{responsive: false, maintainAspectRatio: false}"
+    :width="500"
+    :height="450">
+  </barchart>
+  <mapReconstruct id="mapR" v-if="toShow == 'mapR'" />
 </div>
 </template>
 
@@ -28,6 +40,9 @@ export default {
   },
 
   computed: {
+    title: function() {
+      return this.$store.state.reporting.vis_title[this.$store.state.reporting.curr_scope];
+    },
     toShow: function() {
       const scope = this.$store.getters['reporting/currScope'];
       return this.$store.state.reporting.vis_type[scope];
@@ -72,7 +87,7 @@ export default {
 </script>
 
 <style>
-  .content {
+  #list, #mapR {
     height: 450px;
   }
   #export {

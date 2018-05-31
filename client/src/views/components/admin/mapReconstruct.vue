@@ -1,10 +1,10 @@
 <template>
-<div id="mapReconstruct" class="container">
-  <div class="slidecontainer">
+<div class="container">
+  <div class="row">
     <input type="range" min="1" max="5" v-model:value="sliderVal" class="slider" id="myRange">
     <p>Value: <span>{{sliderVal}}</span></p>
   </div>
-  <div id="canvasBox">
+  <div class=row id="canvasBox">
     <v-stage :config="configKonva">
       <v-layer>
         <v-circle v-for="c in configCircle"
@@ -53,7 +53,6 @@ export default {
       for(; i < vis.length; i++) {
         vis[i] = false;
       }
-      console.log(vis);
       return [{x: 100,
       y: 100,
       radius: 50,

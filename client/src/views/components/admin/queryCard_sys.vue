@@ -6,7 +6,7 @@
       <option value=''>pick one</option>
       <option value='user'>User</option>
       <option value='map'>Map</option>
-      <option value='action'>Action</option>
+      <!--<option value='action'>Action</option>-->
     </select>
   </div>
   <div class="row">
@@ -15,25 +15,26 @@
       <option value=''>pick one</option>
       <option v-if="query_about == 'user'" value="users">User List</option>
       <option v-if="query_about == 'map'" value="maps">Map List</option>
-      <option v-if="query_about == 'map'" value="label">Key Words</option>
-      <option v-if="query_about == 'action'" value="event">#Events per type</option>
-      <option v-if="query_about == 'action'" value="action">#Actions per type</option>
+      <option v-if="query_about == 'map'" value="nodes/frequency">Node label frequency</option>
+      <option v-if="query_about == 'map'" value="edges/frequency">Edge label frequency</option>
+      <!--<option v-if="query_about == 'action'" value="event">#Events per type</option>
+      <option v-if="query_about == 'action'" value="action">#Actions per type</option>-->
     </select>
   </div>
   <div class="row">
     <a>Filter</a>
     <select v-model="query_filter" name="filter">
       <option value=''>No filter</option>
-      <option value="timeRange">Time Range</option>
-      <option v-if="query_data == 'users'" value="type">Type</option>
+      <option v-if="query_data == 'maps'" value="timeRange">Time Range</option>
+      <!--<option v-if="query_data == 'users'" value="type">Type</option>
       <option v-if="query_data == 'users'" value="#maps">#Maps Create</option>
-      <option v-if="query_data == 'keyword'" value="onNodes">On Nodes</option>
-      <option v-if="query_data == 'keyword'" value="onEdges">On Edges</option>
+      <option v-if="query_data == 'frequency'" value="nodes">On Nodes</option>
+      <option v-if="query_data == 'frequency'" value="edges">On Edges</option>-->
     </select>
   </div>
   <div class="row" v-if="query_filter == 'timeRange'" id="time_range">
-    <input v-model="fromdate" type="text" class="form-control" placeholder="from">
-    <input v-model="todate" type="text" class="form-control" placeholder="to">
+    <input v-model="fromdate" type="text" class="form-control" placeholder="from: dd-mm-yyyy">
+    <input v-model="todate" type="text" class="form-control" placeholder="to: dd-mm-yyyy">
   </div>
   </div>
 </template>
