@@ -37,6 +37,8 @@ export default {
             return Object.keys(this.$store.state.reporting.raw_data[scope].users[0]);
           case 'maps':
             return Object.keys(this.$store.state.reporting.raw_data[scope].maps[0]);
+          case 'frequency':
+            return Object.keys(this.$store.state.reporting.raw_data[scope].frequency[0]);
           case 'nodes':
             return Object.keys(this.$store.state.reporting.raw_data[scope].nodes[0]);
           case 'edges':
@@ -52,6 +54,8 @@ export default {
             return this.$store.state.reporting.raw_data[scope].users;
           case 'maps':
             return this.$store.state.reporting.raw_data[scope].maps;
+          case 'frequency':
+            return this.$store.state.reporting.raw_data[scope].frequency;
           case 'nodes':
             return this.$store.state.reporting.raw_data[scope].nodes;
           case 'edges':
@@ -61,10 +65,10 @@ export default {
     },
     nav: function() {
       const scope = this.$store.getters['reporting/currScope'];
-      if(scope != 'system') {
+      let title = this.$store.state.reporting.vis_title[scope];
+      if(scope == 'map') {
         return false;
       }
-      let title = this.$store.state.reporting.vis_title[scope];
       if(title == 'users' || title == 'maps') {
         return true;
       }

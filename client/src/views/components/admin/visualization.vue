@@ -14,12 +14,12 @@
   </div>
   <dataList id="list" v-if="toShow == 'list'" />
   <piechart v-if="toShow == 'pie'"
-    :options="{responsive: false, maintainAspectRatio: false}"
+    :chartData="configData"
     :width="500"
     :height="450">
   </piechart>
   <barchart v-if="toShow == 'bar'"
-    :options="{responsive: false, maintainAspectRatio: false}"
+    :chartData="configData"
     :width="500"
     :height="450">
   </barchart>
@@ -32,6 +32,8 @@ import json2csv from "json2csv";
 
 export default {
   name: 'visualization',
+
+  //components: { barchart },
 
   data() {
     return {
@@ -46,6 +48,62 @@ export default {
     toShow: function() {
       const scope = this.$store.getters['reporting/currScope'];
       return this.$store.state.reporting.vis_type[scope];
+    },
+    configData: function() {
+      const scope = this.$store.getters['reporting/currScope'];
+      const type = this.$store.state.reporting.vis_type[scope];
+      const visType = this.$store.state.reporting.vis_title[scope];
+      const rawData = this.$store.state.reporting.raw_data[scope];
+      let labels_ = [];
+      let data_ = [];
+      let label_ = '';
+      let config = null;
+      switch(type) {
+        case 'bar':
+          switch(visType) {
+            case '#Maps created each day':
+              Object.keys(rawData.maps).forEach((x) => {
+                labels_.push(x);
+                data_.push(rawData.maps[x]);
+              });
+              label_ = '#Maps created that day';
+              break;
+          }
+          config = {
+            labels: labels_,
+            datasets: [
+              {
+                label: label_,
+                backgroundColor: '#f87979',
+                data: data_
+              }
+            ]
+          }
+          break;
+        case 'pie':
+          switch(visType) {
+            case '#Actions per type by this user':
+              labels_ = ['Delete', 'Create', 'Change'];
+              data_ = [12, 56, 73];
+              break;
+            case '#Events per type by this user':
+              labels_ = ['keyboard', 'Mouse', 'Touch'];
+              data_ = [134, 107, 40];
+              break;
+          }
+          config = {
+            labels: labels_,
+            datasets: [
+              {
+                backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
+                data: data_
+              }
+            ]
+          }
+          break;
+      }
+      //console.log(config);
+      return config;
     }
   },
 

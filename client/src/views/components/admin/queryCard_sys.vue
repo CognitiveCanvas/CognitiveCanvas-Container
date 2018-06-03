@@ -15,9 +15,9 @@
       <option value=''>pick one</option>
       <option v-if="query_about == 'user'" value="users">User List</option>
       <option v-if="query_about == 'map'" value="maps">Map List</option>
-      <option v-if="query_about == 'map'" value="nodes/frequency">Node label frequency</option>
-      <option v-if="query_about == 'map'" value="edges/frequency">Edge label frequency</option>
-      <!--<option v-if="query_about == 'action'" value="event">#Events per type</option>
+      <option v-if="query_about == 'map'" value="frequency">Label frequency</option>
+      <!--<option v-if="query_about == 'map'" value="edges/frequency">Edge label frequency</option>
+      <option v-if="query_about == 'action'" value="event">#Events per type</option>
       <option v-if="query_about == 'action'" value="action">#Actions per type</option>-->
     </select>
   </div>
@@ -25,11 +25,11 @@
     <a>Filter</a>
     <select v-model="query_filter" name="filter">
       <option value=''>No filter</option>
-      <option v-if="query_data == 'maps'" value="timeRange">Time Range</option>
+      <option v-if="query_data == 'maps'" value="timeRange">Time created</option>
       <!--<option v-if="query_data == 'users'" value="type">Type</option>
-      <option v-if="query_data == 'users'" value="#maps">#Maps Create</option>
+      <option v-if="query_data == 'users'" value="#maps">#Maps Create</option>-->
       <option v-if="query_data == 'frequency'" value="nodes">On Nodes</option>
-      <option v-if="query_data == 'frequency'" value="edges">On Edges</option>-->
+      <option v-if="query_data == 'frequency'" value="edges">On Edges</option>
     </select>
   </div>
   <div class="row" v-if="query_filter == 'timeRange'" id="time_range">

@@ -181,6 +181,8 @@ const  actions = {
       const dataType = context.state.query[params.scope].data;
       let vis_type = 'list'; // default vis_type
       let vis_title = dataType; // default vis_title
+      let returnedDataKey = dataType;
+      const filter = context.state.query[params.scope].filter;
       if(dataType == '') {
         alert("Please specify data to query about");
         return;
@@ -199,10 +201,15 @@ const  actions = {
               alert("not ready yet");
               return;
               break;
+            case 'frequency':
+              apiURL = apiURL + filter + "/frequency";
+              returnedDataKey = 'frequency';
+              //vis_title = 'Label frequency on ' + filter;
+              break;
             default:
               apiURL = apiURL + dataType;
           }
-          switch(context.state.query.system.filter) {
+          switch(filter) {
             case 'timeRange':
               let from = dateToTimestamp(context.state.query.system.fromdate);
               let to = dateToTimestamp(context.state.query.system.todate);
@@ -214,11 +221,14 @@ const  actions = {
           apiURL = apiURL + "users/" + context.state.general_info.user.id + "/";
           switch(dataType) {
             case 'event':
-              alert("not ready yet");
+              alert("not ready yet, show dummy data");
+              vis_title = '#Events per type by this user';
+              context.commit('visOn', {scope: params.scope, type: 'pie', title: vis_title});
               return;
               break;
             case 'action':
-              alert("not ready yet, test");
+              alert("not ready yet, show dummy data");
+              vis_title = '#Actions per type by this user';
               context.commit('visOn', {scope: params.scope, type: 'pie', title: vis_title});
               return;
               break;
@@ -236,11 +246,15 @@ const  actions = {
           apiURL = apiURL + "maps/" + context.state.general_info.map.id + "/";
           switch(dataType) {
             case 'event':
-              alert("not ready yet");
+              alert("not ready yet, show dummy data");
+              vis_title = '#Events per type by this user';
+              context.commit('visOn', {scope: params.scope, type: 'pie', title: vis_title});
               return;
               break;
             case 'action':
-              alert("not ready yet");
+              alert("not ready yet, show dummy data");
+              vis_title = '#Actions per type by this user';
+              context.commit('visOn', {scope: params.scope, type: 'pie', title: vis_title});
               return;
               break;
             case 'label':
@@ -261,12 +275,13 @@ const  actions = {
       // send request and handle data back
       alert("Sending API request to " + apiURL);
       Axios.get(apiURL).then(result => {
-        if(check && result.data[dataType].length == 0) {
+        if(check && result.data[returnedDataKey].length == 0) {
           alert("No data found");
           return;
         }
         context.commit('updateData', {scope: params.scope, data: result.data});
         context.commit('visOn', {scope: params.scope, type: vis_type, title: vis_title});
+        console.log(context.state);
       })
       .catch (err => {
         alert(err);
