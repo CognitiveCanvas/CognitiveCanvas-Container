@@ -33,13 +33,13 @@ const routes = [
   {
     path: '/management',
     name: 'Management',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
     component: Management
   },
   {
     path: '/map',
     name: 'Map',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
     component: Container
   },
   {
