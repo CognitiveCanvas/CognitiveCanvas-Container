@@ -27,19 +27,19 @@ const routes = [
   {
     path: '/login',
     name: 'Authentication',
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: true },
     component: Authentication
   },
   {
     path: '/management',
     name: 'Management',
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: true },
     component: Management
   },
   {
     path: '/map',
     name: 'Map',
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: true },
     component: Container
   },
   {
