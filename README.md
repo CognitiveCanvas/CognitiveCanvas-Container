@@ -51,7 +51,7 @@ cd client
 npm start
 ```
 
-The CognitiveCanvas webapp should be access at port 8080 of local host. 
+The CognitiveCanvas webapp should be accessible at port 8080 of local host. 
 
 ## Deployment
 
