@@ -29,7 +29,9 @@
       </v-tab>
 
       <v-tab title="Notes">
-
+        <div>
+          <note-card v-bind:label=note.title v-bind:url=note.url></note-card>
+        </div>
       </v-tab>
 
       <v-tab title="Toolbar">
@@ -62,6 +64,9 @@ export default {
     },
     open () {
       return this.$store.state.sidebarBehavior.sidebarOpen
+    },
+    note: function() {
+      return this.$store.state.map.note
     }
   },
   data: function() {
