@@ -5,7 +5,6 @@
 
         <!-- expandable list, not sure why it won't show as button but is functional -->
         <button id="resourcesTab" class="expandResource" v-on:click="expandBlog">
-          <h4>Blog</h4>
         </button>
 
         <ul id="blogContent">
