@@ -1,5 +1,4 @@
 <template>
-  
   <div id="management">
     <topbar></topbar>
     <div class="contain_main">
@@ -38,6 +37,9 @@ export default {
     min-height: 320px; 
     max-height: 500px;
     height: 42vh;
+  }
+  .contain_main {
+    margin-top: 60px;
   }
   
 </style>

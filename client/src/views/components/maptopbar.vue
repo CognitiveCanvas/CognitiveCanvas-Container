@@ -1,5 +1,5 @@
 <template>
-  <nav class="topTitle navbar navbar-expand-lg navbar-light" style="background-color: #D2D2CF">    
+  <nav class="topTitle navbar navbar-expand-lg" style="background-color: #D2D2CF">    
     <div class="navbar-brand my-2 mr-md-4" v-on:click="iconClick">
       <svg width="100%" height="100%" viewBox="0 0 86 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->

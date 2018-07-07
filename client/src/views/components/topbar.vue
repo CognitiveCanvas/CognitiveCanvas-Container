@@ -1,5 +1,5 @@
 <template>  
-  <nav class="topTitle navbar navbar-expand-lg navbar-light">
+  <nav class="topTitle navbar navbar-expand-lg">
     <div class="navbar-brand my-2 mr-md-4" v-on:click="iconClick">
       <svg width="100%" height="100%" viewBox="0 0 86 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
@@ -115,12 +115,18 @@ export default {
     background-color: #4D5160;
     top: 0;
     margin: 0 auto;
-    padding: 0 auto;
+    padding: 0.5rem 1rem;
     height: 60px;
     width: 100%;
     border-radius: 0px;
     list-style-type: none;
     box-shadow: 0 2px 6px 0 rgba(176,186,197,0.60);
+    
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
   .topTitle h1{
     font-family: "miso-bold";
