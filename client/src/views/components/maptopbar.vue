@@ -71,11 +71,13 @@
       </a>
       
       <!-- Toolbar Tabs  -->
+<!--
       <vue-tabs>
         <v-tab title="Resources" on:click="showResources"></v-tab>
         <v-tab title="Notes" on:click="showNotes"></v-tab>
         <v-tab title="Toolbar" on:click="showToolbar"></v-tab>
       </vue-tabs>
+-->
     </ul>
   
 
@@ -202,7 +204,7 @@ export default {
     border-radius: 0px;
     list-style-type: none;
     box-shadow: 0 2px 6px 0 rgba(176,186,197,0.60);
-    position: fixed;
+    position: relative;
   }
   .topTitle h1{
     font-family: "miso-bold";
@@ -284,6 +286,8 @@ export default {
 
   .dropbtn {
       padding:10px;
+      width: 60px;
+      height: 60px;
       border: none;
       cursor: pointer;
   }
