@@ -165,6 +165,8 @@ export default {
   }
   .dropbtn {
       padding:10px;
+      width: 60px;
+      height: 60px;
       border: none;
       cursor: pointer;
   }
