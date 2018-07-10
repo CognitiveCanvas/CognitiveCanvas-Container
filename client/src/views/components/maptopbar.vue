@@ -28,9 +28,7 @@
 
     
     <ul class="navbar-nav mr-auto">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" v-model="query" placeholder="Search " aria-label="Search" >
-      </form>
+        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" v-model="query" v-on:input="queryContentByLable"> 
     </ul>
 
 
@@ -147,6 +145,7 @@ export default {
     },
     queryContentByLable: function(e) {
       let label = this.$data.query;
+      //console.log(label);
       if ( !!label && label !== "") {
         if (this.$store.state.content.label !== label) {
           this.$store.dispatch("content/queryContent", {
@@ -198,13 +197,19 @@ export default {
     background-color: #4D5160;
     top: 0;
     margin: 0 auto;
-    padding: 0 auto;
+    padding: 0.5rem 1rem;
     height: 60px;
     width: 100%;
     border-radius: 0px;
     list-style-type: none;
     box-shadow: 0 2px 6px 0 rgba(176,186,197,0.60);
-    position: relative;
+    z-index: 1;
+    
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
   .topTitle h1{
     font-family: "miso-bold";

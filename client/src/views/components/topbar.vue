@@ -121,6 +121,7 @@ export default {
     border-radius: 0px;
     list-style-type: none;
     box-shadow: 0 2px 6px 0 rgba(176,186,197,0.60);
+    z-index: 1;
     
     position: fixed;
     display: flex;

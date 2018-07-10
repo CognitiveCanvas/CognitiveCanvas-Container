@@ -31,6 +31,7 @@ export default {
   #map-container {
     width: 100%;
     height: 100%;
+    margin-top: 60px;
     position: relative;
   }
 </style>

@@ -111,6 +111,7 @@ export default {
     display: flex;
     flex-direction: column;
     overflow: scroll;
+    z-index: 1;
   }
   .title {
     top: 0;
