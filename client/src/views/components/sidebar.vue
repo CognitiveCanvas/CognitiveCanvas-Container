@@ -4,8 +4,11 @@
       <v-tab title="Resources">
 
         <!-- expandable list, not sure why it won't show as button but is functional -->
+<!--
         <button id="resourcesTab" class="expandResource" v-on:click="expandBlog">
+        Blogs
         </button>
+-->
 
         <ul id="blogContent">
           <div v-for="content in contents">
@@ -14,17 +17,6 @@
             </li>
           </div>
         </ul>
-
-        <!-- Originally meant to show the Notes and Toolbar when clicking on tabs on navbar, but never got it linked/working
-        
-        <button id="notesTab">
-          <h4>Notes</h4>
-        </button>
-
-        <button id="toolbarTab">
-          <h4>Toolbar</h4>
-        </button> -->
-
       </v-tab>
 
       <v-tab title="Notes">
