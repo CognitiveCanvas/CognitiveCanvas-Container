@@ -31,6 +31,16 @@
         <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" v-model="query" v-on:input="queryContentByLable"> 
     </ul>
 
+    <ul class="navbar-nav mr-auto">
+      <h2 class="mr-md-4" style="color: #4D5160">ConceptMap:</h2>
+      <div v-show = "subTitle.edit == false">
+        <h2 class="mr-md-4" style="color: #4D5160" @dblclick = "subTitle.edit = true">{{ subTitle.name }}</h2>
+      </div>
+      <input v-show = "subTitle.edit == true" v-model = "subTitle.name" 
+             v-on:blur = "subTitle.edit = false; updateMapTitle(subTitle.name)" 
+             @keyup.enter = "subTitle.edit = false; updateMapTitle(subTitle.name)"
+             style = "background: white">
+    </ul>
 
     <ul class="navbar-nav ml-auto">
       <div class="dropdown">
@@ -136,6 +146,7 @@ export default {
   data() {
     return {
       title: "Cognitive Canvas",
+      subTitle: { 'name': this.mapTitle, 'edit': false },
       query: null
     }
   },
@@ -158,6 +169,12 @@ export default {
         this.$store.dispatch('sidebarBehavior/toggleSidebar')
       }
     },
+    updateMapTitle: function(newTitle) {
+      let self = this;
+      this.$store.dispatch("map/updateMapName", {
+        newTitle: newTitle
+      });
+    },
     showHelp: function() {
       var modal = document.getElementById("helpModal");
       modal.style.display = "block";
@@ -169,7 +186,8 @@ export default {
     signOut: function() {
       this.$store.dispatch('localUser/logout')
     }
-  }
+  },
+  props: ['mapTitle']
 }
 </script>
 

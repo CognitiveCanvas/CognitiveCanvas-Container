@@ -7,6 +7,7 @@ import requestPromise from 'request-promise'
 
 const state = {
   currentMap: null,
+  currentMapIndex: null,
   maps: [],
   note: null
 }
@@ -23,13 +24,17 @@ const mutations = {
     state.maps.unshift(state.currentMap)
   },
   navigateCurrentMap (state, reqIndex) {
-    state.currentMap = state.maps[reqIndex] 
+    state.currentMap = state.maps[reqIndex]
+    state.currentMapIndex = reqIndex
   },
   syncMaps (state, mapRes) {
     if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
   },
   updateNote (state, {nodeId, nodeLabel}) {
     state.note = new Note(nodeLabel, `${constants.host}`+nodeId)
+  },
+  updateTitle (state, newTitle) {
+    state.currentMap.title = newTitle
   }
 }
 
@@ -114,6 +119,11 @@ const actions = {
       .catch((err) => {
         console.log("error", err)
       })
+  },
+  updateMapName (context, {newTitle}) {
+    console.log("in map.js, newTitle = ")
+    console.log(newTitle)
+    context.commit('updateTitle', newTitle)
   }
   
 }
