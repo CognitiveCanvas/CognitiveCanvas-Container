@@ -121,8 +121,8 @@ const actions = {
       })
   },
   updateMapName (context, {newTitle}) {
-    console.log("in map.js, newTitle = ")
-    console.log(newTitle)
+    //console.log("in map.js, newTitle = ")
+    //console.log(newTitle)
     context.commit('updateTitle', newTitle)
   }
   
