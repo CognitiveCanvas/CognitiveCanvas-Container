@@ -28,7 +28,7 @@
 
     
     <ul class="navbar-nav mr-auto">
-        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" v-model="query" v-on:input="queryContentByLable"> 
+        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" v-model="query" v-on:input="queryContentByLable" v-on:keyup.delete="closeSearchResults" v-on:blur="closeSearchResults"> 
     </ul>
 
     <ul class="navbar-nav mr-auto">
@@ -164,8 +164,14 @@ export default {
           });
         }
       }
-
-      if (!this.$store.getters['sidebarBehavior/sidebarOpen']) {
+      
+      if (!this.$store.getters['sidebarBehavior/sidebarOpen'] && e.data) {
+        this.$store.dispatch('sidebarBehavior/toggleSidebar')
+      }
+    },
+    closeSearchResults: function(e) {
+      // Close Search Results Sidebar when deleting
+      if (this.$store.getters['sidebarBehavior/sidebarOpen']) {
         this.$store.dispatch('sidebarBehavior/toggleSidebar')
       }
     },
