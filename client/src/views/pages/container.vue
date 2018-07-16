@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <maptopbar v-bind:mapTitle=map.title></maptopbar>
+    <maptopbar v-bind:mapTitle=map.title v-bind:mapUrl=map.url></maptopbar>
     <div id="map-container">
       <concept-map :source=map.url></concept-map>
       <side-bar />

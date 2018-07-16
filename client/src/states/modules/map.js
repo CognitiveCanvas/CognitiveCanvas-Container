@@ -120,10 +120,17 @@ const actions = {
         console.log("error", err)
       })
   },
-  updateMapName (context, {newTitle}) {
-    //console.log("in map.js, newTitle = ")
-    //console.log(newTitle)
+  updateMapName (context, {mapUrl, newTitle, userID}) {
     context.commit('updateTitle', newTitle)
+    Axios
+      .post(`${constants.api}/updateMapTitle`, {
+        'url': mapUrl,
+        'newName': newTitle,
+        'userID': userID
+      })
+      .catch(function (error) {
+        bugsnagClient.notify(error)
+      })
   }
   
 }

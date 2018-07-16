@@ -171,8 +171,12 @@ export default {
     },
     updateMapTitle: function(newTitle) {
       let self = this;
+      if (newTitle == this.mapTitle) return;
+      let userId = this.$store.state.localUser.localUser.email._id;
       this.$store.dispatch("map/updateMapName", {
-        newTitle: newTitle
+        mapUrl: this.mapUrl,
+        newTitle: newTitle,
+        userID: userId
       });
     },
     showHelp: function() {
@@ -187,7 +191,7 @@ export default {
       this.$store.dispatch('localUser/logout')
     }
   },
-  props: ['mapTitle']
+  props: ['mapTitle', 'mapUrl']
 }
 </script>
 
