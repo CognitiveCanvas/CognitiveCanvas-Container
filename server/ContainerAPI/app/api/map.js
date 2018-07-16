@@ -42,13 +42,18 @@ api.createMap = (req, res) => {
 
 api.updateMapTitle = (req, res) => {
   
-  console.log("in updateMapTitle")
-  console.log(req.body.url)
-  console.log(req.body.newName)
-  console.log(req.body.userID)
   // Find and update user maps
-//  models.Map.findOneAndUpdate({"url" : req.body.url}, 
-//                              {$set: {"name" : req.body.title} });
+  models.Map.findOneAndUpdate({'url' : req.body.url}, 
+                              { $set : {'name' : req.body.newName}},
+                            function(err, map) {
+                              if (err || map == null) {
+                                console.log(err);
+                                res.status(501).send(err);
+                                return;
+                              }
+                              console.log(map); // with original name
+                              res.status(201).send();
+  });
   
 }
 

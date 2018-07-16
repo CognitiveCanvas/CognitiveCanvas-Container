@@ -172,11 +172,9 @@ export default {
     updateMapTitle: function(newTitle) {
       let self = this;
       if (newTitle == this.mapTitle) return;
-      let userId = this.$store.state.localUser.localUser.email._id;
       this.$store.dispatch("map/updateMapName", {
         mapUrl: this.mapUrl,
-        newTitle: newTitle,
-        userID: userId
+        newTitle: newTitle
       });
     },
     showHelp: function() {
