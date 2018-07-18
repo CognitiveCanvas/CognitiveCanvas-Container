@@ -10,4 +10,9 @@ module.exports = (app) => {
        .post ((req, res) => {
             api.updateMapTitle(req, res);
        });
+  
+    app.route('/api/invisibleMap')
+       .post ((req, res) => {
+            api.invisibleMap(req, res);
+       });
 }

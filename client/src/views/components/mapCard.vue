@@ -1,24 +1,18 @@
 <template>
   <div class="cards">
-    <div class="map_card" v-on:click="navigaToMap">
-      <h1>Title: {{title}}</h1>
-      <div class="map_pic">
+    <div class="map_card" v-on:mouseover="toggleDeleteBtn" v-on:mouseout="toggleDeleteBtn">
+      <h1 v-on:click="navigaToMap">Title: {{title}}</h1>
+      <div class="map_pic" v-on:click="navigaToMap">
         <img src="../../asset/screen1.png">
       </div>
+      <div class="deletion" v-show="delete_mode">
+        <v-layout align-center justify-center>
+          <v-flex xs6 md6 sm6 text-xs-center text-md-center text-sm-center>
+            <v-btn class="raised delete_btn" v-on:click="deleteMap"> Delete Map </v-btn>
+          </v-flex>
+        </v-layout>
+      </div>
     </div>
-    <button class="delete_btn">
-      <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-         viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
-      <path style="fill:#E04F5F;" d="M496.158,248.085c0-137.021-111.07-248.082-248.076-248.082C111.07,0.003,0,111.063,0,248.085
-        c0,137.002,111.07,248.07,248.082,248.07C385.088,496.155,496.158,385.087,496.158,248.085z"/>
-      <path style="fill:#FFFFFF;" d="M277.042,248.082l72.528-84.196c7.91-9.182,6.876-23.041-2.31-30.951
-        c-9.172-7.904-23.032-6.876-30.947,2.306l-68.236,79.212l-68.229-79.212c-7.91-9.188-21.771-10.216-30.954-2.306
-        c-9.186,7.91-10.214,21.77-2.304,30.951l72.522,84.196l-72.522,84.192c-7.91,9.182-6.882,23.041,2.304,30.951
-        c4.143,3.569,9.241,5.318,14.316,5.318c6.161,0,12.294-2.586,16.638-7.624l68.229-79.212l68.236,79.212
-        c4.338,5.041,10.47,7.624,16.637,7.624c5.069,0,10.168-1.749,14.311-5.318c9.186-7.91,10.22-21.77,2.31-30.951L277.042,248.082z"/>
-      </svg>
-    </button>
   </div>
 </template>
 
@@ -38,6 +32,23 @@ export default {
       this.$store.dispatch("map/navigateToMap", {
         index: self.index
       });
+    },
+    toggleDeleteBtn: function() {
+      let self = this;
+      this.delete_mode = !(this.delete_mode);
+    },
+    deleteMap: function() {
+      let self = this;
+      let option = confirm("Do you really want to delete this map?\nThis action cannot be undone later.");
+      if (option == true) {
+        this.$store.dispatch("map/retractPermission", {
+          index: self.index,
+          url: self.url
+        });
+        alert("Map Deletion Confirmed!")
+      } else {
+        alert("Map Deletion Canceled!")
+      }
     }
   },
   props: ['title','url', 'index']
@@ -76,22 +87,26 @@ export default {
   .map_card:hover{
     opacity: 0.7;
   }
+  .map_pic {
+    height: 72%;
+  }
   .map_pic img{
     min-width: 420px;
     width: 100%;
-    height: 100%;
+    height: 120%;
     padding-left: 15%;
     overflow: hidden;
   }
   input{
     width: 100%;
   }
-  .delete_btn{
-    margin-bottom: -20vh;
-    z-index: 1;
+  .delete_btn {
+    background-color:  red;
+    color: whitesmoke;
+    font-size: 2.5vh;
   }
-  .delete_btn svg{
-    margin-bottom: -20vh;
+  .delete_btn .btn__content {
+    padding-bottom: 0.5em;
   }
 
 </style>

@@ -35,6 +35,10 @@ const mutations = {
   },
   updateTitle (state, newTitle) {
     state.currentMap.title = newTitle
+  },
+  deletePermission (state, reqIndex) {
+    state.maps[reqIndex].permission = 'DELETED';
+    state.currentMap = state.maps[reqIndex];
   }
 }
 
@@ -82,6 +86,19 @@ const actions = {
   async navigateToMap (context, {index}) {
     context.commit('navigateCurrentMap', index)
     router.push('map')
+  },
+  async retractPermission (context, {index, url}) {
+    context.commit('deletePermission', index)
+    console.log("in retractPermission")
+    console.log(url)
+    //Request server to change visibility
+    Axios
+      .post(`${constants.api}/invisibleMap`, {
+        'url': url
+      })
+      .catch(function (error) {
+        bugsnagClient.notify(error)
+      })
   },
   syncMaps (context, maps) {
     context.commit('syncMaps', maps)
