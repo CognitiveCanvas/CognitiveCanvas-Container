@@ -5,4 +5,9 @@ module.exports = (app) => {
        .post((req, res) => {
            api.createMap(req, res);
        });
+  
+    app.route('/api/updateMapTitle')
+       .post ((req, res) => {
+            api.updateMapTitle(req, res);
+       });
 }

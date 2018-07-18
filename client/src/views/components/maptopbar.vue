@@ -1,5 +1,5 @@
-<template>  
-  <nav class="topTitle navbar navbar-expand-lg">
+<template>
+  <nav class="topTitle navbar navbar-expand-lg" style="background-color: #D2D2CF">
     <div class="navbar-brand my-2 mr-md-4" v-on:click="iconClick">
       <svg width="100%" height="100%" viewBox="0 0 86 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
@@ -24,60 +24,129 @@
       </svg>
     </div>
     
-    <h1 class="mr-md-4"> {{ title }} </h1>
+    <h1 class="mr-md-4" style="color: #4D5160"> {{ title }} </h1>
+
     
-    <div class="right">
-      <div class="account">
-        <a href="#"  v-on:click="/*Help button*/">
-          
-          <svg id="help" width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
-              <desc>Created with Sketch.</desc>
-              <defs></defs>
-              <g id="Hi-Fi-Prototypes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="Map-Management" transform="translate(-1336.000000, -30.000000)" fill="#FFFFFF">
-                    <path d="M1358,30 C1345.85028,30 1336,39.85028 1336,52 C1336,64.14972 1345.85028,74 1358,74 C1370.14972,74 1380,64.14972 1380,52 C1380,39.85028 1370.14972,30 1358,30 Z M1357.58523,41 C1360.22611,41 1361.92988,41.3451737 1363.8892,42.9847545 C1364.48553,43.5888141 1365.16705,44.4517374 1365.50778,45.3146607 C1366.53008,47.6445669 1365.84854,49.3704577 1364.48549,51.0101931 C1363.37801,52.477176 1361.41869,53.771583 1360.48158,54.8071263 C1359.88524,55.5837617 1359.80006,56.5329729 1359.80006,58 L1355.96311,58 C1355.87792,57.6548263 1355.79274,57.7411186 1355.79274,57.4822283 C1355.79274,54.1167789 1356.81503,52.7361723 1359.20032,50.8376615 C1360.47816,49.8884502 1361.75601,48.8529069 1361.75601,47.3859241 C1361.75601,44.2776152 1357.07067,43.5027029 1355.11139,45.5737454 C1354.60025,46.091517 1354.00391,47.3859241 1353.91873,48.2488474 C1353.74835,48.162555 1350.42596,47.7310757 1350,47.7310757 L1350,47.6447834 C1350,45.487453 1351.0223,44.1067581 1352.38533,42.8987273 C1353.40762,41.863184 1355.54076,41.0002607 1357.58535,41.0002607 L1357.58523,41 Z M1356,59 L1361,59 L1361,64 L1356,64 L1356,59 Z" id="Page-1"></path>
-                </g>
-              </g>
+    <ul class="navbar-nav mr-auto">
+        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" v-model="query" v-on:input="queryContentByLable" v-on:keyup.delete="closeSearchResults" v-on:blur="closeSearchResults"> 
+    </ul>
+
+    <ul class="navbar-nav mr-auto">
+      <h2 class="mr-md-4" style="color: #4D5160">ConceptMap:</h2>
+      <div v-show = "subTitle.edit == false">
+        <h2 class="mr-md-4" style="color: #4D5160" @dblclick = "subTitle.edit = true">{{ subTitle.name }}</h2>
+      </div>
+      <input v-show = "subTitle.edit == true" v-model = "subTitle.name" 
+             v-on:blur = "subTitle.edit = false; updateMapTitle(subTitle.name)" 
+             @keyup.enter = "subTitle.edit = false; updateMapTitle(subTitle.name)"
+             style = "background: white">
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <div class="dropdown">
+        <button class="dropbtn">
+          <svg id="acct" fill="#4D5160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+            <title>User</title>
+
+            <defs>
+              <clipPath id="circular-border">
+                <circle cx="23" cy="23" r="19" />
+              </clipPath>
+            </defs>
+
+            <circle cx="23" cy="23" r="21" fill="#D2D2CF" />
+            <circle cx="23" cy="17" r="8" />
+            <circle cx="23" cy="41" r="14" clip-path="url(#circular-border)" />
           </svg>
-        </a>
-        
-        <div class="dropdown">
-    		  <button class="dropbtn">
-            <svg id="acct" width="44" height="44" viewBox="0 0 44 44" fill="white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        </button>
+        <div class="dropdown-content">
+          <a href="#" v-on:click="signOut">Sign Out</a>
+        </div>
+      </div>
 
-              <title>User</title>
+      <a href="#" v-on:click="showHelp">    
+        <svg id="help" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+          <desc>Created with Sketch.</desc>
+          <defs></defs>
+          <g id="Hi-Fi-Prototypes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Map-Management" transform="translate(-1336.000000, -30.000000)" fill="#4D5160">
+                <path d="M1358,30 C1345.85028,30 1336,39.85028 1336,52 C1336,64.14972 1345.85028,74 1358,74 C1370.14972,74 1380,64.14972 1380,52 C1380,39.85028 1370.14972,30 1358,30 Z M1357.58523,41 C1360.22611,41 1361.92988,41.3451737 1363.8892,42.9847545 C1364.48553,43.5888141 1365.16705,44.4517374 1365.50778,45.3146607 C1366.53008,47.6445669 1365.84854,49.3704577 1364.48549,51.0101931 C1363.37801,52.477176 1361.41869,53.771583 1360.48158,54.8071263 C1359.88524,55.5837617 1359.80006,56.5329729 1359.80006,58 L1355.96311,58 C1355.87792,57.6548263 1355.79274,57.7411186 1355.79274,57.4822283 C1355.79274,54.1167789 1356.81503,52.7361723 1359.20032,50.8376615 C1360.47816,49.8884502 1361.75601,48.8529069 1361.75601,47.3859241 C1361.75601,44.2776152 1357.07067,43.5027029 1355.11139,45.5737454 C1354.60025,46.091517 1354.00391,47.3859241 1353.91873,48.2488474 C1353.74835,48.162555 1350.42596,47.7310757 1350,47.7310757 L1350,47.6447834 C1350,45.487453 1351.0223,44.1067581 1352.38533,42.8987273 C1353.40762,41.863184 1355.54076,41.0002607 1357.58535,41.0002607 L1357.58523,41 Z M1356,59 L1361,59 L1361,64 L1356,64 L1356,59 Z" id="Page-1"></path>
+            </g>
+          </g>
+        </svg>
+      </a>
+      
+      <!-- Toolbar Tabs  -->
+<!--
+      <vue-tabs>
+        <v-tab title="Resources" on:click="showResources"></v-tab>
+        <v-tab title="Notes" on:click="showNotes"></v-tab>
+        <v-tab title="Toolbar" on:click="showToolbar"></v-tab>
+      </vue-tabs>
+-->
+    </ul>
+  
 
-              <defs>
-                <clipPath id="circular-border">
-                  <circle cx="23" cy="23" r="19" />
-                </clipPath>
-              </defs>
-
-              <circle cx="23" cy="23" r="21" fill="#4D5160" />
-              <circle cx="23" cy="17" r="8" />
-              <circle cx="23" cy="41" r="14" clip-path="url(#circular-border)" />
-            </svg>
-          </button>
-    		  <div class="dropdown-content">
-    		    <a href="#" v-on:click="signOut">Sign Out</a>
-    		  </div>
-    		</div>
-        
+    <!-- Help Model -->
+    <div id="helpModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Help</h2>
+          <span class="close" v-on:click="closeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <p>To create a node, double click on the canvas and type a label.</p>
+          <img src="/static/images/double-click.png" width="20%"><br><br>
+          <p>Click and drag nodes to move them around.</p>
+          <img src="/static/images/click-and-drag.jpg" width="20%"><br><br>
+          <p>To remove nodes, use your local undo shortcut.</p>
+          <ul>
+            <li>Ctrl + Z for Windows</li>
+            <li>Cmd + Z for Mac</li>
+            <li>Undo/Redo for iPad</li>
+            <li>Currently no undo or delete feature for other tablets.</li>
+          </ul>
+          <p>Right click anywhere to access the context menu.</p>
+          <img src="/static/images/right-click.png" width="15%"><br><br>
+          <img src="/static/images/context-menu.png"><br>
+          <p>Click to start drawing. A toolbar will appear in the top left.</p>
+          <img src="/static/images/draw.png"><br>
+          <p>Delete specific drawings.</p>
+          <img src="/static/images/delete-specific-drawing.png"><br><br>
+          <p>Clear map of all drawings.</p>
+          <img src="/static/images/clear-drawings.png"><br><br>
+          <p>Increase/decrease text size.</p>
+          <img src="/static/images/textSize.png"><br><br>
+          <p>Bold or italicize your text.</p>
+          <img src="/static/images/boldItalic.png"><br><br>
+          <p>Pick a text color.</p>
+          <img src="/static/images/textColor.png"><br><br>
+          <p>Pick a node color.</p>
+          <img src="/static/images/nodeColor.png"><br><br>
+        </div>
+        <div class="modal-footer">
+          <span class="close" v-on:click="closeModal">
+            <button id="closeButton" class="toolbar">Close</button>
+          </span>
+        </div>
       </div>
     </div>
   </nav>
 
+          
 </template>
 
 <script>
 import router from '../../router/index'
 
 export default {
-  name: 'topbar',
+  name: 'maptopbar',
   data() {
     return {
       title: "Cognitive Canvas",
+      subTitle: { 'name': this.mapTitle, 'edit': false },
       query: null
     }
   },
@@ -85,14 +154,53 @@ export default {
     iconClick: function(e) {
       router.push('management')
     },
+    queryContentByLable: function(e) {
+      let label = this.$data.query;
+      //console.log(label);
+      if ( !!label && label !== "") {
+        if (this.$store.state.content.label !== label) {
+          this.$store.dispatch("content/queryContent", {
+            label: label
+          });
+        }
+      }
+      
+      if (!this.$store.getters['sidebarBehavior/sidebarOpen'] && e.data) {
+        this.$store.dispatch('sidebarBehavior/toggleSidebar')
+      }
+    },
+    closeSearchResults: function(e) {
+      // Close Search Results Sidebar when deleting
+      if (this.$store.getters['sidebarBehavior/sidebarOpen']) {
+        this.$store.dispatch('sidebarBehavior/toggleSidebar')
+      }
+    },
+    updateMapTitle: function(newTitle) {
+      let self = this;
+      if (newTitle == this.mapTitle) return;
+      this.$store.dispatch("map/updateMapName", {
+        mapUrl: this.mapUrl,
+        newTitle: newTitle
+      });
+    },
+    showHelp: function() {
+      var modal = document.getElementById("helpModal");
+      modal.style.display = "block";
+    },
+    closeModal: function() {
+      var modal = document.getElementById("helpModal");
+      modal.style.display = "none";
+    },
     signOut: function() {
       this.$store.dispatch('localUser/logout')
     }
-  }
+  },
+  props: ['mapTitle', 'mapUrl']
 }
 </script>
 
 <style>
+
   @font-face {
     font-family: 'miso-regular';
     src: url('../../asset/font/miso_regular_macroman/miso-regular-webfont.woff2') format('woff2'),
@@ -138,32 +246,75 @@ export default {
     height: 50px;
     margin: 0;
   }
-  .navbar-brand  svg{
+  .navbar-brand svg{
     margin-left: 10px;
     margin-top: 5px;
     height: 55px;
     width: 55px;
   }
-  .account svg#acct{
-    height: 40px;
-    width: 40px;
-    float: right;
+
+  /* The Modal (background) */
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 75px;
+      width: 600px;
+      height: 100%;
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0); /* Black w/ opacity */
   }
-  .account svg#help{
+
+  /* Modal Header */
+  .modal-header {
+      padding: 2px 16px;
+      background-color: #5CB8E0;
+      color: white;
+  }
+
+  /* Modal Body */
+  .modal-body {
+      padding: 16px;
+  }
+
+  /* Modal Footer */
+  .modal-footer {
+      padding: 4px 16px;
+      background-color: #5CB8E0;
+      color: white;
+  }
+
+  /* Modal Content */
+  .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      animation-name: animatetop;
+      animation-duration: 0.4s
+  }
+
+  svg#acct{
+    height: 44px;
+    width: 44px;
+  }
+
+  svg#help{
     margin-top: 10px;
-    height: 40px;
-    width: 40px;
+    margin-right: 10px;
+    height: 44px;
+    width: 44px;
     float: right;
   }
-  .account svg#help:hover{
+  svg#help:hover{
     opacity: 0.7;
   }
-  .right{
-    margin-left: auto;
-    padding-right: 2px;
-    margin-right: 20px;
-    float: right;
-  }
+
   .dropbtn {
       padding:10px;
       width: 60px;
@@ -202,5 +353,29 @@ export default {
 
   .dropdown:hover .dropbtn {
       opacity: 0.7;
+  }
+
+  @keyframes animatetop {
+      from {top: -300px; opacity: 0}
+      to {top: 0; opacity: 1}
+  }
+
+  h1, h2, {
+    font-family: 'miso-bold';
+  }
+
+  p, div, ul {
+    font-family: 'miso-regular';
+    font-size: 18px;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>

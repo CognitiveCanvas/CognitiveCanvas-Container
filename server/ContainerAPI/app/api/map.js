@@ -40,4 +40,21 @@ api.createMap = (req, res) => {
   })
 }
 
+api.updateMapTitle = (req, res) => {
+  
+  // Find and update user maps
+  models.Map.findOneAndUpdate({'url' : req.body.url}, 
+                              { $set : {'name' : req.body.newName}},
+                            function(err, map) {
+                              if (err || map == null) {
+                                console.log(err);
+                                res.status(501).send(err);
+                                return;
+                              }
+                              console.log(map); // with original name
+                              res.status(201).send();
+  });
+  
+}
+
 module.exports = api;

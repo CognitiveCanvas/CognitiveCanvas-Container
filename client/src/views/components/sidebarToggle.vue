@@ -43,6 +43,7 @@
     justify-content: center;
     line-height: 0;
     transition: transform 300ms ease-out, border-color 300ms ease-out;
+    z-index: 1;
   }
   
   .button svg{

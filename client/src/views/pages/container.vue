@@ -1,8 +1,8 @@
 <template>
   <div id="container">
-    <topbar></topbar>
+    <maptopbar v-bind:mapTitle=map.title v-bind:mapUrl=map.url></maptopbar>
     <div id="map-container">
-      <concept-map :source=source></concept-map>
+      <concept-map :source=map.url></concept-map>
       <side-bar />
       <side-bar-toggle />
     </div>
@@ -13,8 +13,8 @@
 export default {
   name: 'Container',
   computed: {
-    source: function () {
-      return this.$store.state.map.currentMap.url
+    map: function () {
+      return this.$store.state.map.currentMap
     }
   }
 }
@@ -31,5 +31,7 @@ export default {
   #map-container {
     width: 100%;
     height: 100%;
+    margin-top: 60px;
+    position: relative;
   }
 </style>

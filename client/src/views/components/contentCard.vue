@@ -3,6 +3,7 @@
     <div class="card-header">
       {{ type }}
     </div>
+
     <div class="card-body bd-callout-info">
       <p class="card-title">{{ title }}</p>
       <a v-bind:href="url" class = "btn btn-primary">Read</a>

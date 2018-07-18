@@ -2,9 +2,21 @@
   <div :class="$style.sidebar">
     <vue-tabs>
       <v-tab title="Resources">
-        <div v-for="content in contents">
-          <content-card :title=content.title :url=content.url :type=content.type></content-card>
-        </div>
+
+        <!-- expandable list, not sure why it won't show as button but is functional -->
+<!--
+        <button id="resourcesTab" class="expandResource" v-on:click="expandBlog">
+        Blogs
+        </button>
+-->
+
+        <ul id="blogContent">
+          <div v-for="content in contents">
+            <li>     
+              <content-card v-if="content.type == 'blog'" :title=content.title :url=content.url :type=content.type></content-card>
+            </li>
+          </div>
+        </ul>
       </v-tab>
 
       <v-tab title="Notes">
@@ -14,9 +26,9 @@
       </v-tab>
 
       <v-tab title="Toolbar">
-        Third tab content
       </v-tab>
     </vue-tabs>
+
   </div>
 </template>
 
@@ -48,8 +60,31 @@ export default {
       return this.$store.state.map.note
     }
   },
+  data: function() {
+      return {
+        blogType: false
+      }
+  },
   methods: {
-    
+    expandBlog: function () {
+      
+      console.log("expandBlog working")
+
+      /* To filter cards by type*/
+      if ( this.type === "blog") {
+        blogType = true;
+        console.log("blogType true")
+      } else {
+        console.log("blogType false")
+      }
+
+      if (blogContent.style.display === "block") {
+        blogContent.style.display = "none";
+      } else {
+        blogContent.style.display = "block";
+      }
+
+    }
   },
   watch: {
     open: function (open) {
@@ -61,6 +96,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style module>
@@ -75,6 +111,7 @@ export default {
     display: flex;
     flex-direction: column;
     overflow: scroll;
+    z-index: 1;
   }
   .title {
     top: 0;
@@ -87,4 +124,13 @@ export default {
     height: 100%;
     width: 100%;
   }
+
+.blogContent {
+    display: none;
+    overflow: hidden;
+}
+
+.expandResource {
+  margin-top: 20px;
+}
 </style>
