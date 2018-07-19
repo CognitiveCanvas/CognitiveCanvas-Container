@@ -22,10 +22,12 @@ const mutations = {
     
     state.currentMap = new Map(time, newAddr)   
     state.maps.unshift(state.currentMap)
+    state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex]
     state.currentMapIndex = reqIndex
+    state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
   },
   syncMaps (state, mapRes) {
     if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
