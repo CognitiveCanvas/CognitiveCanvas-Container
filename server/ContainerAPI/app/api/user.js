@@ -17,7 +17,8 @@ api.syncUser = (req, res) => {
             models.Map.find({
                 '_id': { $in: mapIds}
             }, (err, maps) => {
-                mapProp = maps
+                // No longer put deleted map (visibility == 0) in res
+                mapProp = maps.filter(map => map.visibility !== 0)
             })
             .then(function() {
                 response = {

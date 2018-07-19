@@ -89,8 +89,6 @@ const actions = {
   },
   async retractPermission (context, {index, url}) {
     context.commit('deletePermission', index)
-    console.log("in retractPermission")
-    console.log(url)
     //Request server to change visibility
     Axios
       .post(`${constants.api}/invisibleMap`, {
