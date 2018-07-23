@@ -24,10 +24,10 @@
           <h2>Map ID: </h2>
         </v-flex>
         <v-flex xs5 md5 sm5 text-xs-center text-md-center text-sm-center>
-          <input class="mapId_input" v-model="colaboration_title" style="background: white">
+          <input class="mapId_input" v-model="collaboration_id" style="background: white">
         </v-flex>
         <v-flex xs3 md3 sm3 text-xs-center text-md-center text-sm-center>
-          <v-btn outline class="confirm_btn" color="indigo">Confirm</v-btn>
+          <v-btn outline class="confirm_btn" color="indigo" v-on:click="enterCollaboration">Confirm</v-btn>
         </v-flex>
       </v-layout>
     </div>
@@ -40,7 +40,7 @@ export default {
   data(){
     return {
       create_mode: false,
-      colaboration_title: null
+      collaboration_id: null
     }
   },
   computed: {
@@ -61,7 +61,27 @@ export default {
     },
     toggleCollaboration: function() {
       let self = this;
-      this.create_mode = !(this.create_mode);
+      self.create_mode = !(this.create_mode);
+    },
+    enterCollaboration: function() {
+      let self = this;
+      let userId = this.$store.state.localUser.localUser.email._id;
+      let mapId = self.collaboration_id;
+      console.log("collaboration_id: " + mapId);
+      if (mapId == null || mapId == '') {
+        mapId = self.getId();
+        alert("Map ID is not entered, CogCanvas creates a new map for you instead!")
+        self.$store.dispatch("map/createNewMap", {
+          userID: userId,
+          newID: mapId
+        });
+      } else {
+        self.$store.dispatch("map/createNewMap", {
+          userID: userId,
+          newID: mapId
+        });
+      }
+      
     }
   }
 }
