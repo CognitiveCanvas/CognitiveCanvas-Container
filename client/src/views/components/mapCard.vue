@@ -133,6 +133,10 @@ export default {
   .map_card:hover{
     opacity: 0.7;
   }
+  .map_card h1{
+    white-space: nowrap;  
+    overflow: hidden;
+  }
   .map_pic {
     height: 72%;
   }
