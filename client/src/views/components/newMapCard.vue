@@ -52,11 +52,12 @@ export default {
     createNewMap: function() {
       let self = this;
       let mapId = self.getId();
-      console.log(mapId);
+      //console.log(mapId);
       let userId = this.$store.state.localUser.localUser.email._id;
       self.$store.dispatch("map/createNewMap", {
         userID: userId,
-        newID: mapId
+        newID: mapId,
+        owner: true
       });
     },
     toggleCollaboration: function() {
@@ -73,12 +74,14 @@ export default {
         alert("Map ID is not entered, CogCanvas creates a new map for you instead!")
         self.$store.dispatch("map/createNewMap", {
           userID: userId,
-          newID: mapId
+          newID: mapId,
+          owner: true
         });
       } else {
         self.$store.dispatch("map/createNewMap", {
           userID: userId,
-          newID: mapId
+          newID: mapId,
+          owner: false
         });
       }
       
