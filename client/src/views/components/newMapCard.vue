@@ -1,8 +1,8 @@
 <template>
-  <div class="new_map" v-on:click="createNewMap">
-    <h1>Start New Map</h1>
+  <div class="new_map" v-on:mouseover="toggleCollaboration" v-on:mouseout="toggleCollaboration">
+    <h1 class="new_map_prompt" v-on:click="createNewMap">Start New Map</h1>
     
-    <svg width="99px" height="99px" viewBox="0 0 99 99" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg width="99px" height="99px" viewBox="0 0 99 99" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" v-on:click="createNewMap">
         <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
         <desc>Created with Sketch.</desc>
         <defs></defs>
@@ -12,12 +12,37 @@
             </g>
         </g>
     </svg>
+    <br>
+    <div class="collaboration" v-show="create_mode">
+      <v-layout align-center justify-center>
+        <v-flex xs12 md12 sm12 text-xs-center text-md-center text-sm-center>
+          <h1>or Collaborate on Existing Map</h1>
+        </v-flex>
+      </v-layout>
+      <v-layout align-center justify-center>
+        <v-flex xs3 md3 sm3 text-xs-center text-md-center text-sm-center>
+          <h2>Map ID: </h2>
+        </v-flex>
+        <v-flex xs5 md5 sm5 text-xs-center text-md-center text-sm-center>
+          <input class="mapId_input" v-model="colaboration_title" style="background: white">
+        </v-flex>
+        <v-flex xs3 md3 sm3 text-xs-center text-md-center text-sm-center>
+          <v-btn outline class="confirm_btn" color="indigo">Confirm</v-btn>
+        </v-flex>
+      </v-layout>
+    </div>
   </div>
 </template>
 
 <script>  
 export default {
   name: 'newMapCard',
+  data(){
+    return {
+      create_mode: false,
+      colaboration_title: null
+    }
+  },
   computed: {
   },
   methods: {
@@ -33,6 +58,10 @@ export default {
         userID: userId,
         newID: mapId
       });
+    },
+    toggleCollaboration: function() {
+      let self = this;
+      this.create_mode = !(this.create_mode);
     }
   }
 }
@@ -46,7 +75,7 @@ export default {
     height:42vh;
     width: 100%;
   }
-  .new_map h1{
+  .new_map .new_map_prompt{
     padding-top: 60px;
     font-size: 34px;
     text-align: center;
@@ -61,6 +90,12 @@ export default {
     width: 60px;
   }
   .new_map:hover {
-    opacity: 0.7;
+    opacity: 0.8;
+  }
+  .mapId_input {
+    height: 33px
+  }
+  .confirm_btn .btn__content {
+    padding-bottom: 0.5em;
   }
 </style>
