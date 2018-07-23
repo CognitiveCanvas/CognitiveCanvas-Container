@@ -17,9 +17,6 @@ const getters = {
 
 const mutations = {
   addMap (state, {newAddr, newTitle}) {
-//    let today = new Date()
-//    let time = "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes()
-    
     state.currentMap = new Map(newTitle, newAddr)   
     state.maps.unshift(state.currentMap)
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
