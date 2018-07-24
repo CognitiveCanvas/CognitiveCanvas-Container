@@ -16,11 +16,8 @@ const getters = {
 }
 
 const mutations = {
-  addMap (state, newAddr) {
-    let today = new Date()
-    let time = "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes()
-    
-    state.currentMap = new Map(time, newAddr)   
+  addMap (state, {newAddr, newTitle}) {
+    state.currentMap = new Map(newTitle, newAddr)   
     state.maps.unshift(state.currentMap)
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
   },
@@ -45,7 +42,7 @@ const mutations = {
 }
 
 const actions = {
-  async createNewMap (context, {userID, newID}) {
+  async createNewMap (context, {userID, newID, owner}) {
     let token = btoa('web:strate')
 
     let requestURL = `${constants.template}/?copy=` + newID
@@ -63,21 +60,30 @@ const actions = {
     }
 
     let createMapReq = new Request(requestURL, init)
+    let today = new Date();
+    if (owner) {
+      var mapTitle = "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes();
+    } else {
+      var mapTitle = "Collaborated Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes()
+    }
 
     fetch(createMapReq)
       .then((response) => {
         console.log("success call", response)
-        context.commit('addMap', `${constants.host}` + newID)
+        context.commit('addMap', {
+          newAddr: `${constants.host}` + newID,
+          newTitle: mapTitle
+        })
         router.push('map')
       })
       .catch((err) => {
         console.log("error", err)
       })
 
-    let today = new Date();
+    
     Axios
       .post(`${constants.api}/createMap`, {
-        'name': "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes(),
+        'name': mapTitle,
         'url': `${constants.host}` + newID,
         'userID': userID
       })
