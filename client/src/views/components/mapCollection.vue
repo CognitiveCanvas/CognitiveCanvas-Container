@@ -3,7 +3,7 @@
     <div :class="$style.newMapInCollection">
       <new-map-card></new-map-card>
     </div>
-    <div v-for="(map, index) in maps" :class="$style.existingMapInCollection">
+    <div v-for="(map, index) in maps" v-if="map.permission=='EDIT'" :class="$style.existingMapInCollection">
       <map-card v-bind:title=map.title v-bind:url=map.url v-bind:index=index></map-card>
     </div>
   </div>
