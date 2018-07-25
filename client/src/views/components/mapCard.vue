@@ -5,21 +5,10 @@
       <div class="map_pic" v-on:click="navigaToMap">
         <img src="../../asset/screen1.png">
       </div>
-      
-      <div class="options" v-show="option_mode">
+      <div class="deletion" v-show="delete_mode">
         <v-layout align-center justify-center>
-          <v-flex xs5 md5 sm5 text-xs-center text-md-center text-sm-center>
-            <v-btn class="raised share_btn" v-on:click="shareMap"> Share Map </v-btn>
-          </v-flex>
-          <v-flex xs1 md1 sm1></v-flex>
-          <v-flex xs5 md5 sm5 text-xs-center text-md-center text-sm-center>
+          <v-flex xs6 md6 sm6 text-xs-center text-md-center text-sm-center>
             <v-btn class="raised delete_btn" v-on:click="deleteMap"> Delete Map </v-btn>
-          </v-flex>
-        </v-layout>
-        
-        <v-layout align-center justify-center>
-          <v-flex xs12 md12 sm12 text-xs-center text-md-center text-sm-center>
-            <input type="hidden" id="idToShare" :value="hovered_map_id">
           </v-flex>
         </v-layout>
       </div>
@@ -28,15 +17,11 @@
 </template>
 
 <script>  
-import constants from '../../models/constants'  
-  
 export default {
   name: 'mapCard',
   data() {
     return {
-      option_mode: false,
-      hidden: false,
-      hovered_map_id: this.url.substring(`${constants.host}`.length)
+      delete_mode: false
     }
   },
   computed: {
@@ -50,7 +35,7 @@ export default {
     },
     toggleDeleteBtn: function() {
       let self = this;
-      this.option_mode = !(this.option_mode);
+      this.delete_mode = !(this.delete_mode);
     },
     deleteMap: function() {
       let self = this;
@@ -64,37 +49,6 @@ export default {
       } else {
         alert("Map Deletion Canceled!")
       }
-    },
-    shareMap: function() {
-      let self = this;
-      let option = confirm("Do you want to share this map?\nClick OK will copy your map ID to clipboard.");
-      
-      if (option == true) {
-        /* Select the text field */
-        let copyText = document.querySelectorAll('#idToShare')[self.index];
-        copyText.setAttribute('type', 'text')
-        copyText.select();
-        
-        /* Copy the text inside the text field */
-        try {
-          var successful = document.execCommand('copy');
-          if (successful) {
-            alert("Map ID copied into clipboard!\nYou can share this ID with your partners, but please note that any person with your map ID has edit access of your map.")
-          } else {
-            alert('Oops, unable to copy!\nNothing is copied to clipboard.');
-          }         
-        } catch (err) {
-          alert('Oops, unable to copy!\nNothing is copied to clipboard.');
-        }  
-        
-        /* unselect the range */
-        copyText.setAttribute('type', 'hidden')
-        window.getSelection().removeAllRanges()
-        
-      } else {
-        alert("Map Sharing Canceled!\nNothing is copied to clipboard.")
-      }
-      
     }
   },
   props: ['title','url', 'index']
@@ -133,10 +87,6 @@ export default {
   .map_card:hover{
     opacity: 0.7;
   }
-  .map_card h1{
-    white-space: nowrap;  
-    overflow: hidden;
-  }
   .map_pic {
     height: 72%;
   }
@@ -156,14 +106,6 @@ export default {
     font-size: 2.5vh;
   }
   .delete_btn .btn__content {
-    padding-bottom: 0.5em;
-  }
-  .share_btn {
-    background-color:  #5EB6DD;
-    color: whitesmoke;
-    font-size: 2.5vh;
-  }
-  .share_btn .btn__content {
     padding-bottom: 0.5em;
   }
 
