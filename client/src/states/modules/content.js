@@ -3,7 +3,8 @@ import constants from '../../models/constants'
 
 const state = {
   contents: [],
-  label: ''
+  label: '',
+  toBrowse: ''
 }
 
 const mutations = {
@@ -11,11 +12,15 @@ const mutations = {
     state.contents = params.contents
     state.label = params.label
     console.log(state.contents)
+  },
+  updatetoBrowse (state, newLabel) {
+    state.toBrowse = newLabel
   }
 }
 
 const actions = {
   queryContent (context, { label }) {
+    context.commit('updatetoBrowse', label)
     Axios.get(`${constants.api}/queryContent`, {
       params: {
         label: label

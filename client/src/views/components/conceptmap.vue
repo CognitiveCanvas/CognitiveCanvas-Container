@@ -6,10 +6,28 @@
 <script>  
   export default {
 
-    name: 'topbar',
+    name: 'conceptmap',
     data() {
       return {
         temp_buffer: []
+      }
+    },
+    computed: {
+      toSearchLabel () {
+        return this.$store.state.content.toBrowse
+      }
+    },
+    watch: {
+      toSearchLabel (newLabel, oldLabel) {
+        console.log(`Searching ${newLabel} instead of ${oldLabel} now!`)
+        let self = this;
+        let toBrowseRelatedElement = {
+          id: "search",
+          query: newLabel
+        }
+        console.log("Sending Browse Request:")
+        console.log(toBrowseRelatedElement)
+        self.$el.contentWindow.postMessage(toBrowseRelatedElement, '*')
       }
     },
     methods: {
@@ -41,6 +59,7 @@
                 elementUrl: event.data.uid,
                 label: event.data.label
               });
+              console.log(`In Message Listener: Searching ${this.$store.state.content.label} Done!`)
               
               self.$store.dispatch("map/selectNode", {
                 nodeId: event.data.uid,
@@ -48,6 +67,7 @@
               })
             } 
             else if (event.data.id == "related_element") {
+              console.log(event.data)
               // TODO: Process the related element
               
               
