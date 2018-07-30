@@ -19,14 +19,14 @@
     },
     watch: {
       toSearchLabel (newLabel, oldLabel) {
-        console.log(`Searching ${newLabel} instead of ${oldLabel} now!`)
+        //console.log(`Searching ${newLabel} instead of ${oldLabel} now!`)
         let self = this;
         let toBrowseRelatedElement = {
           id: "search",
           query: newLabel
         }
-        console.log("Sending Browse Request:")
-        console.log(toBrowseRelatedElement)
+        //console.log("Sending Browse Request:")
+        //console.log(toBrowseRelatedElement)
         self.$el.contentWindow.postMessage(toBrowseRelatedElement, '*')
       }
     },
@@ -59,7 +59,7 @@
                 elementUrl: event.data.uid,
                 label: event.data.label
               });
-              console.log(`In Message Listener: Searching ${this.$store.state.content.label} Done!`)
+              //console.log(`In Message Listener: Searching ${this.$store.state.content.label} Done!`)
               
               self.$store.dispatch("map/selectNode", {
                 nodeId: event.data.uid,
