@@ -37,6 +37,12 @@
       </v-tab>
 
       <v-tab title="Elements">
+        <div v-for="node in rel_nodes">
+          <content-card v-bind:title=node.label v-bind:url=node.id v-bind:type="node.type"></content-card>
+        </div>
+        <div v-for="edge in rel_edges">
+          <content-card v-bind:title=edge.label v-bind:url=edge.id v-bind:type="edge.type"></content-card>
+        </div>
       </v-tab>
     </vue-tabs>
 
@@ -69,6 +75,12 @@ export default {
     },
     note: function() {
       return this.$store.state.map.note
+    },
+    rel_nodes: function() {
+      return this.$store.state.relatedElement.relatedNodes
+    },
+    rel_edges: function() {
+      return this.$store.state.relatedElement.relatedEdges
     }
   },
   data: function() {

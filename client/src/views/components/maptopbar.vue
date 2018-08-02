@@ -28,7 +28,7 @@
 
     
     <ul class="navbar-nav mr-auto">
-        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" v-model="query" v-on:input="queryContentByLable" v-on:keyup.delete="closeSearchResults" v-on:blur="closeSearchResults"> 
+        <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" v-model="query" v-on:input="queryContentByLable" v-on:keyup.delete="closeSearchResults"> 
     </ul>
 
     <ul class="navbar-nav mr-auto">
