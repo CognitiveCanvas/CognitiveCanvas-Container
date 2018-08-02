@@ -4,16 +4,27 @@
       <v-tab title="Resources">
 
         <!-- expandable list, not sure why it won't show as button but is functional -->
-<!--
-        <button id="resourcesTab" class="expandResource" v-on:click="expandBlog">
+
+        <button id="blogTab" class="expandResource" v-on:click="expandBlog">
         Blogs
         </button>
--->
 
         <ul id="blogContent">
           <div v-for="content in contents">
             <li>     
               <content-card v-if="content.type == 'blog'" :title=content.title :url=content.url :type=content.type></content-card>
+            </li>
+          </div>
+        </ul>
+        
+        <button id="articleTab" class="expandResource" v-on:click="expandArticle">
+        Articles
+        </button>
+
+        <ul id="articleContent">
+          <div v-for="content in contents">
+            <li>     
+              <content-card v-if="content.type == 'article'" :title=content.title :url=content.url :type=content.type></content-card>
             </li>
           </div>
         </ul>
@@ -25,7 +36,7 @@
         </div>
       </v-tab>
 
-      <v-tab title="Toolbar">
+      <v-tab title="Elements">
       </v-tab>
     </vue-tabs>
 
@@ -67,23 +78,18 @@ export default {
   },
   methods: {
     expandBlog: function () {
-      
-      console.log("expandBlog working")
-
-      /* To filter cards by type*/
-      if ( this.type === "blog") {
-        blogType = true;
-        console.log("blogType true")
-      } else {
-        console.log("blogType false")
-      }
-
       if (blogContent.style.display === "block") {
         blogContent.style.display = "none";
       } else {
         blogContent.style.display = "block";
       }
-
+    },
+    expandArticle: function () {
+      if (articleContent.style.display === "block") {
+        articleContent.style.display = "none";
+      } else {
+        articleContent.style.display = "block";
+      }
     }
   },
   watch: {

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import localUser from './modules/localUser'
 import map from './modules/map'
 import content from './modules/content'
+import relatedElement from './modules/relatedElement'
 import sidebarBehavior from './modules/sidebarBehavior'
 import createPersistedState from 'vuex-persistedstate'
 
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
     localUser: localUser,
     map: map,
     content: content,
+    relatedElement: relatedElement,
     sidebarBehavior: sidebarBehavior
   },
   strict: true

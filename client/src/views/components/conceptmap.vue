@@ -67,11 +67,13 @@
               })
             } 
             else if (event.data.id == "related_element") {
-              console.log(event.data)
-              // TODO: Process the related element
-              
-              
-              
+              //console.log(event.data)
+              self.$store.dispatch("relatedElement/storeElements", {
+                status_code: event.data.response_status,
+                label: event.data.query,
+                nodes: event.data.nodes,
+                edges: event.data.edges
+              }) 
               
             }
             
