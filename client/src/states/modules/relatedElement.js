@@ -19,7 +19,7 @@ const mutations = {
     state.empty = result
     state.relatedNodes = resNodes
     state.relatedEdges = resEdges
-    console.log(state)
+    //console.log(state)
   },
   setTraceTag (state, id) {
     state.toTrace = id
