@@ -7,7 +7,7 @@
     <div class="card-body bd-callout-info">
       <p class="card-title">{{ title }}</p>
       <v-btn v-show="type == 'blog' || type == 'article'" v-bind:href="url" class="raised goto_btn">Read</v-btn>
-      <v-btn v-show="type == 'edge' || type == 'node'" v-on:click="url" class="raised goto_btn">Go to Element</v-btn>
+      <v-btn v-show="type == 'edge' || type == 'node'" v-on:click="traceElement" class="raised goto_btn">Go to Element</v-btn>
     </div>
   </div>
 </template>
@@ -20,7 +20,14 @@ data() {
   }
 },
 methods: {
-  
+  traceElement: function() {
+    let self = this
+    self.$store.dispatch("relatedElement/startTracing", {
+      label: self.title,
+      id: self.url,
+      type: self.type
+    })
+  }
 },
 props: ['title','url', 'type']
 }

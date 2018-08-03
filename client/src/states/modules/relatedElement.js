@@ -6,7 +6,8 @@ const state = {
   label: '',
   empty: true,
   relatedNodes: [],
-  relatedEdges: []
+  relatedEdges: [],
+  toTrace: ''
 }
 
 const getters = {
@@ -19,6 +20,9 @@ const mutations = {
     state.relatedNodes = resNodes
     state.relatedEdges = resEdges
     console.log(state)
+  },
+  setTraceTag (state, id) {
+    state.toTrace = id
   }
   
 }
@@ -38,6 +42,9 @@ const actions = {
       resNodes: nodes,
       resEdges: edges
     })
+  },
+  startTracing (context, {label, id, type}) {
+    context.commit('setTraceTag', id)
   }
   
 }

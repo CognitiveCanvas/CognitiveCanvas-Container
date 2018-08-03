@@ -38,10 +38,10 @@
 
       <v-tab title="Elements">
         <div v-for="node in rel_nodes">
-          <content-card v-bind:title=node.label v-bind:url=node.id v-bind:type="node.type"></content-card>
+          <content-card v-bind:title=node.label v-bind:url=node.id v-bind:type="node_type"></content-card>
         </div>
         <div v-for="edge in rel_edges">
-          <content-card v-bind:title=edge.label v-bind:url=edge.id v-bind:type="edge.type"></content-card>
+          <content-card v-bind:title=edge.label v-bind:url=edge.id v-bind:type="edge_type"></content-card>
         </div>
       </v-tab>
     </vue-tabs>
@@ -81,7 +81,9 @@ export default {
     },
     rel_edges: function() {
       return this.$store.state.relatedElement.relatedEdges
-    }
+    },
+    node_type: function() { return 'node'},
+    edge_type: function() { return 'edge'}
   },
   data: function() {
       return {

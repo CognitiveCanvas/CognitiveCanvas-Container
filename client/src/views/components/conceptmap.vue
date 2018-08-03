@@ -15,6 +15,9 @@
     computed: {
       toSearchLabel () {
         return this.$store.state.content.toBrowse
+      },
+      toTraceId () {
+        return this.$store.state.relatedElement.toTrace
       }
     },
     watch: {
@@ -28,6 +31,15 @@
         //console.log("Sending Browse Request:")
         //console.log(toBrowseRelatedElement)
         self.$el.contentWindow.postMessage(toBrowseRelatedElement, '*')
+      },
+      toTraceId (newId, oldId) {
+        //console.log(`Tracing ${newId} instead of ${oldId} now!`)
+        let self = this;
+        let toTraceRelatedElement = {
+          id: "trace",
+          query: newId
+        }
+        self.$el.contentWindow.postMessage(toTraceRelatedElement, '*')
       }
     },
     methods: {
