@@ -6,17 +6,6 @@
         <img src="../../asset/screen1.png">
       </div>
       
-      
-<!--
-      <div class="deletion" v-show="delete_mode">
-        <v-layout align-center justify-center>
-          <v-flex xs6 md6 sm6 text-xs-center text-md-center text-sm-center>
-            <v-btn class="raised delete_btn" v-on:click="deleteMap"> Delete Map </v-btn>
-          </v-flex>
-        </v-layout>
-      </div>
--->
-      
       <div class="options" v-show="option_mode">
         <v-layout align-center justify-center>
           <v-flex xs5 md5 sm5 text-xs-center text-md-center text-sm-center>
@@ -44,6 +33,9 @@ export default {
   computed: {
   },
   methods: {
+    getId: function() {
+      return this._uid + '_' + Date.now();
+    },
     navigaToMap: function() {
       let self = this;
       this.$store.dispatch("map/navigateToMap", {
@@ -52,7 +44,7 @@ export default {
     },
     toggleDeleteBtn: function() {
       let self = this;
-      this.option_mode = !(this.option_mode);
+      self.option_mode = !(this.option_mode);
     },
     deleteMap: function() {
       let self = this;
@@ -72,7 +64,14 @@ export default {
       let option = confirm("Do you want to make a copy of this map?\nClick OK will make a deep copy of this map in your management page.")
       
       if (option == true) {
-        
+        let userId = this.$store.state.localUser.localUser.email._id;
+        self.$store.dispatch("map/copyToNewMap", {
+          userId: userId,
+          title:  self.title,
+          url:    self.url,
+          index:  self.index,
+          newId:  self.getId()
+        })
       } else {
         alert("Map Copying was Cancelled!")
       }
