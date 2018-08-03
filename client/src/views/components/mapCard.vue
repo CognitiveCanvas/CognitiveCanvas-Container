@@ -69,6 +69,13 @@ export default {
     },
     copyMap: function() {
       let self = this;
+      let option = confirm("Do you want to make a copy of this map?\nClick OK will make a deep copy of this map in your management page.")
+      
+      if (option == true) {
+        
+      } else {
+        alert("Map Copying was Cancelled!")
+      }
     }
   },
   props: ['title','url', 'index']
