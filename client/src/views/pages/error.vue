@@ -2,6 +2,7 @@
   <div id="error-container">
     <topbar></topbar>
     <div id="error">
+      <!-- The following svg path is a Floating Icon for Error Page-->
       <svg width="380px" height="500px" viewBox="0 0 837 1045" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
             <path d="M353,9 L626.664028,170 L626.664028,487 L353,642 L79.3359724,487 L79.3359724,170 L353,9 Z" id="Polygon-1" stroke="#007FB2" stroke-width="6" sketch:type="MSShapeGroup"></path>
@@ -13,8 +14,8 @@
       </svg>
       <div class="message-box">
         <h1>Page Not Found</h1>
-        <p>You seem to reach a dead corner where the cognitive system of CogCanvas cannot reach. Please head back to where your experience and CogCanvas' cognition are guaranteed. </p>
-        <p>If you think some service is down, please contact Cognitive Canvas Technical Team for help. </p>
+        <p>You have reached an unmapped location where there are no canvases to be cognitized. </p>
+        <p>If you think some service is down, please contact Cognitive Canvas technical support team for help. </p>
         <div class="buttons-con">
           <div class="action-link-wrap">
             <a onclick="history.back(-1)" class="link-button link-back-button">Go Back</a>
