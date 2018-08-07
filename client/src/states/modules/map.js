@@ -16,11 +16,8 @@ const getters = {
 }
 
 const mutations = {
-  addMap (state, newAddr) {
-    let today = new Date()
-    let time = "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes()
-    
-    state.currentMap = new Map(time, newAddr)   
+  addMap (state, {newAddr, newTitle}) {
+    state.currentMap = new Map(newTitle, newAddr)   
     state.maps.unshift(state.currentMap)
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
   },
@@ -47,10 +44,9 @@ const mutations = {
 const actions = {
   async createNewMap (context, {userID, newID}) {
     let token = btoa('web:strate')
-
     let requestURL = `${constants.template}/?copy=` + newID
+    
     let headers = new Headers()
-
     headers.append('Content-Type', 'application/json')
     headers.append('Authorization', 'Basic ' + token)
 
@@ -61,23 +57,28 @@ const actions = {
       credentials: 'include',
       withCredentials: true
     }
-
     let createMapReq = new Request(requestURL, init)
+    
+    let today = new Date();
+    let mapTitle = "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes();
 
     fetch(createMapReq)
       .then((response) => {
         console.log("success call", response)
-        context.commit('addMap', `${constants.host}` + newID)
+        context.commit('addMap', {
+          newAddr: `${constants.host}` + newID,
+          newTitle: mapTitle
+        })
         router.push('map')
       })
       .catch((err) => {
         console.log("error", err)
       })
 
-    let today = new Date();
+
     Axios
       .post(`${constants.api}/createMap`, {
-        'name': "New Map on "+(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes(),
+        'name': mapTitle,
         'url': `${constants.host}` + newID,
         'userID': userID
       })
@@ -95,6 +96,49 @@ const actions = {
     Axios
       .post(`${constants.api}/invisibleMap`, {
         'url': url
+      })
+      .catch(function (error) {
+        bugsnagClient.notify(error)
+      })
+  },
+  async copyToNewMap (context, {userId, title, url, index, newId}) {
+    let token = btoa('web:strate')
+    let requestURL = url + `/?copy=` + newId
+    
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    headers.append('Authorization', 'Basic ' + token)
+
+    let init = {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: headers,
+      credentials: 'include',
+      withCredentials: true
+    }
+    let createMapReq = new Request(requestURL, init)
+    
+    let today = new Date();
+    let mapTitle = "Copy of " + title + " on " + (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear()+' '+today.getHours()+':'+today.getMinutes();
+
+    fetch(createMapReq)
+      .then((response) => {
+        console.log("success call", response)
+        context.commit('addMap', {
+          newAddr: `${constants.host}` + newId,
+          newTitle: mapTitle 
+        })
+        router.push('map')
+      })
+      .catch((err) => {
+        console.log("error", err)
+      })
+
+    Axios
+      .post(`${constants.api}/createMap`, {
+        'name': mapTitle,
+        'url': `${constants.host}` + newId,
+        'userID': userId
       })
       .catch(function (error) {
         bugsnagClient.notify(error)

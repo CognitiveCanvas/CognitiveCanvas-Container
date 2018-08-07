@@ -5,13 +5,19 @@
       <div class="map_pic" v-on:click="navigaToMap">
         <img src="../../asset/screen1.png">
       </div>
-      <div class="deletion" v-show="delete_mode">
+      
+      <div class="options" v-show="option_mode">
         <v-layout align-center justify-center>
-          <v-flex xs6 md6 sm6 text-xs-center text-md-center text-sm-center>
+          <v-flex xs5 md5 sm5 text-xs-center text-md-center text-sm-center>
+            <v-btn class="raised share_btn" v-on:click="copyMap"> Copy Map </v-btn>
+          </v-flex>
+          <v-flex xs1 md1 sm1></v-flex>
+          <v-flex xs5 md5 sm5 text-xs-center text-md-center text-sm-center>
             <v-btn class="raised delete_btn" v-on:click="deleteMap"> Delete Map </v-btn>
           </v-flex>
         </v-layout>
       </div>
+      
     </div>
   </div>
 </template>
@@ -21,12 +27,15 @@ export default {
   name: 'mapCard',
   data() {
     return {
-      delete_mode: false
+      option_mode: false
     }
   },
   computed: {
   },
   methods: {
+    getId: function() {
+      return this._uid + '_' + Date.now();
+    },
     navigaToMap: function() {
       let self = this;
       this.$store.dispatch("map/navigateToMap", {
@@ -35,7 +44,7 @@ export default {
     },
     toggleDeleteBtn: function() {
       let self = this;
-      this.delete_mode = !(this.delete_mode);
+      self.option_mode = !(this.option_mode);
     },
     deleteMap: function() {
       let self = this;
@@ -48,6 +57,23 @@ export default {
         alert("Map Deletion Confirmed!")
       } else {
         alert("Map Deletion Canceled!")
+      }
+    },
+    copyMap: function() {
+      let self = this;
+      let option = confirm("Do you want to make a copy of this map?\nClick OK will make a deep copy of this map in your management page.")
+      
+      if (option == true) {
+        let userId = this.$store.state.localUser.localUser.email._id;
+        self.$store.dispatch("map/copyToNewMap", {
+          userId: userId,
+          title:  self.title,
+          url:    self.url,
+          index:  self.index,
+          newId:  self.getId()
+        })
+      } else {
+        alert("Map Copying was Cancelled!")
       }
     }
   },
@@ -110,6 +136,14 @@ export default {
     font-size: 2.5vh;
   }
   .delete_btn .btn__content {
+    padding-bottom: 0.5em;
+  }
+  .share_btn {
+    background-color:  #5EB6DD;
+    color: whitesmoke;
+    font-size: 2.5vh;
+  }
+  .share_btn .btn__content {
     padding-bottom: 0.5em;
   }
 
