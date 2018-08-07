@@ -4,16 +4,27 @@
       <v-tab title="Resources">
 
         <!-- expandable list, not sure why it won't show as button but is functional -->
-<!--
-        <button id="resourcesTab" class="expandResource" v-on:click="expandBlog">
+
+        <button id="blogTab" class="expandResource" v-on:click="expandBlog">
         Blogs
         </button>
--->
 
         <ul id="blogContent">
           <div v-for="content in contents">
             <li>     
               <content-card v-if="content.type == 'blog'" :title=content.title :url=content.url :type=content.type></content-card>
+            </li>
+          </div>
+        </ul>
+        
+        <button id="articleTab" class="expandResource" v-on:click="expandArticle">
+        Articles
+        </button>
+
+        <ul id="articleContent">
+          <div v-for="content in contents">
+            <li>     
+              <content-card v-if="content.type == 'article'" :title=content.title :url=content.url :type=content.type></content-card>
             </li>
           </div>
         </ul>
@@ -25,7 +36,13 @@
         </div>
       </v-tab>
 
-      <v-tab title="Toolbar">
+      <v-tab title="Elements">
+        <div v-for="node in rel_nodes">
+          <content-card v-bind:title=node.label v-bind:url=node.id v-bind:type="node_type"></content-card>
+        </div>
+        <div v-for="edge in rel_edges">
+          <content-card v-bind:title=edge.label v-bind:url=edge.id v-bind:type="edge_type"></content-card>
+        </div>
       </v-tab>
     </vue-tabs>
 
@@ -58,7 +75,15 @@ export default {
     },
     note: function() {
       return this.$store.state.map.note
-    }
+    },
+    rel_nodes: function() {
+      return this.$store.state.relatedElement.relatedNodes
+    },
+    rel_edges: function() {
+      return this.$store.state.relatedElement.relatedEdges
+    },
+    node_type: function() { return 'node'},
+    edge_type: function() { return 'edge'}
   },
   data: function() {
       return {
@@ -67,23 +92,18 @@ export default {
   },
   methods: {
     expandBlog: function () {
-      
-      console.log("expandBlog working")
-
-      /* To filter cards by type*/
-      if ( this.type === "blog") {
-        blogType = true;
-        console.log("blogType true")
-      } else {
-        console.log("blogType false")
-      }
-
       if (blogContent.style.display === "block") {
         blogContent.style.display = "none";
       } else {
         blogContent.style.display = "block";
       }
-
+    },
+    expandArticle: function () {
+      if (articleContent.style.display === "block") {
+        articleContent.style.display = "none";
+      } else {
+        articleContent.style.display = "block";
+      }
     }
   },
   watch: {
