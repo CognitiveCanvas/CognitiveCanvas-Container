@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Authentication from '../views/pages/authentication'
 import Container from '../views/pages/container'
 import Management from '../views/pages/management'
+import Error from '../views/pages/error'
 
 import store from '../states/store'
 
@@ -44,7 +45,9 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/login'
+    name: 'Error',
+    meta: { requiresAuth: true },
+    component: Error
   }
 ]
 
