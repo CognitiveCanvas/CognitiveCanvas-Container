@@ -63,17 +63,17 @@ export default {
   }
 
     let signInChanged = (val) => {
-      console.log("in", this)
+      console.log("in signInChanged", this)
       console.log('Signin state changed to ', val)
       if (val) this.$store.dispatch('localUser/login', 
         gapi.auth2.getAuthInstance().currentUser.get())
     }
 
-    /*
-    let userChanged = (user) => {
-      console.log('user', user)
-    }
-    */
+    
+//    let userChanged = (user) => {
+//      console.log('user', user)
+//    }
+    
 
     initiateSignIn()
   },

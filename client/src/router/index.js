@@ -26,9 +26,13 @@ function requireAuth(to, from, next) {
 }
 const routes = [
   {
+    path: '/', 
+    redirect: '/management'
+  },
+  {
     path: '/login',
     name: 'Authentication',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
     component: Authentication
   },
   {
@@ -44,7 +48,7 @@ const routes = [
     component: Container
   },
   {
-    path: '*',
+    path: '/*',
     name: 'Error',
     meta: { requiresAuth: true },
     component: Error
