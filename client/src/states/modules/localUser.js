@@ -35,6 +35,8 @@ const actions = {
       email: googleUser.getBasicProfile().getEmail(),
       token: googleUser.getAuthResponse().id_token
     }
+    
+    //console.log('guser', guser)
 
     // get user information from the database
     let userRes = null
