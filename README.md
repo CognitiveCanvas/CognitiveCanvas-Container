@@ -16,14 +16,21 @@ Download the repository to your local system.
 npm install
 ```
 
-### Establish a MongoDB instance named 'CognitiveCanvas' & Load Data to Database
+### Establish a MongoDB instance named 'CognitiveCanvas' & Load Data to Database (ATTENTION: The following 3 json files are loaded into 3 DIFFERENT database collections.)
 
+#### Load Course Resourse Data (articles, blogs, etc)
 ```
 mongoimport --db CognitiveCanvas --collection contents --file <Path to Your Local Repo>/server/asset/content.json
 ```
 
+#### Load Keyword Data (Keyword to search for resources)
 ```
 mongoimport --db CognitiveCanvas --collection keywords --file <Path to Your Local Repo>/server/asset/label.json 
+```
+
+#### Load User Data (authorized user)
+```
+mongoimport --db CognitiveCanvas --collection users --file <Path to Your Local Repo>/server/asset/authorized_user.json
 ```
 
 ### Start MongoDB

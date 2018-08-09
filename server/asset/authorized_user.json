@@ -1,0 +1,112 @@
+{
+	"_id" : ObjectId("5af156d249f80ce5a45217b1"),
+	"email" : "hollan@ucsd.edu",
+	"firstName" : "Jim",
+	"lastName" : "Hollan",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af1570a49f80ce5a45217b2"),
+	"email" : "mboyle@ucsd.edu",
+	"firstName" : "Mary",
+	"lastName" : "Boyle",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af1573049f80ce5a45217b3"),
+	"email" : "j5tung@ucsd.edu",
+	"firstName" : "Janet",
+	"lastName" : "Tung",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af1588149f80ce5a45217bb"),
+	"email" : "hhieung@ucsd.edu",
+	"firstName" : "Howyan",
+	"lastName" : "Leung",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af158b049f80ce5a45217bc"),
+	"email" : "rdawis@ucsd.edu",
+	"firstName" : "Raki",
+	"lastName" : "Dawis",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af158e649f80ce5a45217bd"),
+	"email" : "bheeragu@eng.ucsd.edu",
+	"firstName" : "Bhargav",
+	"lastName" : "Sridharan",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af1575549f80ce5a45217b4"),
+	"email" : "ifehr@ucsd.edu",
+	"firstName" : "Isaac",
+	"lastName" : "Fehr",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af1582649f80ce5a45217b9"),
+	"email" : "mrostami@ucsd.edu",
+	"firstName" : "Mejan",
+	"lastName" : "Rostamian",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af157db49f80ce5a45217b7"),
+	"email" : "gparmar@ucsd.edu",
+	"firstName" : "Gav",
+	"lastName" : "Parmar",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af157ff49f80ce5a45217b8"),
+	"email" : "jtjong@ucsd.edu",
+	"firstName" : "Joshua",
+	"lastName" : "Tjong",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af1590a49f80ce5a45217be"),
+	"email" : "shg034@ucsd.edu",
+	"firstName" : "Shangqing",
+	"lastName" : "Gu",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af163b56050da0ad443708f"),
+	"email" : "a2fox@ucsd.edu",
+	"firstName" : "Amy",
+	"lastName" : "Fox",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af1585049f80ce5a45217ba"),
+	"email" : "meicheng96@gmail.com",
+	"firstName" : "Helen",
+	"lastName" : "Cheng",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af157b149f80ce5a45217b6"),
+	"email" : "matolent@ucsd.edu",
+	"firstName" : "Michael",
+	"lastName" : "Tolentino",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af152836122697768fdf281"),
+	"email" : "xizhao@ucsd.edu",
+	"firstName" : "Steve",
+	"lastName" : "Zhao",
+	"maps" : [ ]
+}
+{
+	"_id" : ObjectId("5af1578149f80ce5a45217b5"),
+	"email" : "xinweixavier@gmail.com",
+	"firstName" : "Xavier",
+	"lastName" : "Wang",
+	"maps" : [ ]
+}
