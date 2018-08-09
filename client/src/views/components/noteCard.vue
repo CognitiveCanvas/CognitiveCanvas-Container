@@ -32,7 +32,7 @@
           if (~event.origin.indexOf('https://webstrates.ucsd.edu')) { 
             // The data has been sent from your site 
             if (event.data.id == "edit_note") {
-              
+              console.log(event.data)
             }
         
           }
