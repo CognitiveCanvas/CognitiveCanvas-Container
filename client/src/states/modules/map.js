@@ -9,7 +9,8 @@ const state = {
   currentMap: null,
   currentMapIndex: null,
   maps: [],
-  note: null
+  note: null,
+  noteCollection: []
 }
 
 const getters = {
