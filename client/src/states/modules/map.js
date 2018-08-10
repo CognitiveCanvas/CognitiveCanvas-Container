@@ -21,11 +21,13 @@ const mutations = {
     state.currentMap = new Map(newTitle, newAddr)   
     state.maps.unshift(state.currentMap)
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
+    state.noteCollection = []
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex]
     state.currentMapIndex = reqIndex
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
+    state.noteCollection = []
   },
   syncMaps (state, mapRes) {
     if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
@@ -47,6 +49,9 @@ const mutations = {
         state.noteCollection.unshift(state.note)
       }
     }
+  },
+  displayNote (state, {title, url}) {
+    state.note = new Note(title, url)
   }
 }
 
@@ -207,6 +212,12 @@ const actions = {
       .catch(function (error) {
         bugsnagClient.notify(error)
       })
+  },
+  openNote (context, {label, id}) {
+    context.commit('displayNote', {
+      title: label,
+      url: id
+    })
   }
   
 }
