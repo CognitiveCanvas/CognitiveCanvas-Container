@@ -39,6 +39,14 @@ const mutations = {
   deletePermission (state, reqIndex) {
     state.maps[reqIndex].permission = 'DELETED';
     state.currentMap = state.maps[reqIndex];
+  },
+  addEditNote (state, {edit, title, url}) {
+    if (!state.noteCollection.find(function(element) {return element.url == url;})) {
+      state.note.edited = edit;
+      if (edit) {
+        state.noteCollection.unshift(state.note)
+      }
+    }
   }
 }
 
@@ -181,6 +189,13 @@ const actions = {
       .catch((err) => {
         console.log("error", err)
       })
+  },
+  markNoteEdit (context, {edited, label, url}) {
+    context.commit('addEditNote', {
+      edit: edited,
+      title: label,
+      url: url
+    })
   },
   updateMapName (context, {mapUrl, newTitle}) {
     context.commit('updateTitle', newTitle)
