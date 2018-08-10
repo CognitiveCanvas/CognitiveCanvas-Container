@@ -4,6 +4,8 @@
 </template>
 
 <script>  
+  import constants from '../../models/constants'
+  
   export default {
 
     name: 'conceptmap',
@@ -18,6 +20,9 @@
       },
       toTraceId () {
         return this.$store.state.relatedElement.toTrace
+      },
+      toUpdateNote () {
+        return this.$store.state.map.noteCollection
       }
     },
     watch: {
@@ -40,6 +45,17 @@
           query: newId
         }
         self.$el.contentWindow.postMessage(toTraceRelatedElement, '*')
+      },
+      toUpdateNote (newCollection, oldCollection) {
+        let self = this
+        let header = `${constants.host}` + 'note_'
+        let toSetEdited = {
+          id: "edited",
+          query: newCollection[0].url.slice(header.length)
+        }
+        //console.log(newCollection[0].url)
+        //console.log(toSetEdited)
+        self.$el.contentWindow.postMessage(toSetEdited, '*')
       }
     },
     methods: {
