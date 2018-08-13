@@ -21,13 +21,15 @@ const mutations = {
     state.currentMap = new Map(newTitle, newAddr)   
     state.maps.unshift(state.currentMap)
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
-    state.noteCollection = []
+    state.noteCollection.splice(0, state.noteCollection.length)
+    console.log("state after addMap Mutation: ", state)
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex]
     state.currentMapIndex = reqIndex
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
-    state.noteCollection = []
+    state.noteCollection.splice(0, state.noteCollection.length)
+    console.log("state after navigateCurrentMap Mutation: ", state)
   },
   syncMaps (state, mapRes) {
     if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
@@ -49,6 +51,7 @@ const mutations = {
         state.noteCollection.unshift(state.note)
       }
     }
+    console.log("state after addEditNote Mutation: ", state)
   },
   displayNote (state, {title, url}) {
     state.note = new Note(title, url)
