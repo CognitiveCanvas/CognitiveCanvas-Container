@@ -102,7 +102,12 @@
                 nodes: event.data.nodes,
                 edges: event.data.edges
               }) 
-              
+            }
+            else if (event.data.id == "edited_elements") {
+              console.log("logging edited elements, ", event.data)
+              self.$store.dispatch("map/refreshNoteCollection", {
+                edited: event.data.elements
+              })
             }
             
           } 

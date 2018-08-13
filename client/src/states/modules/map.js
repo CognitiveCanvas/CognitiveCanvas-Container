@@ -22,14 +22,14 @@ const mutations = {
     state.maps.unshift(state.currentMap)
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
     state.noteCollection.splice(0, state.noteCollection.length)
-    console.log("state after addMap Mutation: ", state)
+    console.log("noteCollection after addMap Mutation: ", state.noteCollection)
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex]
     state.currentMapIndex = reqIndex
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
     state.noteCollection.splice(0, state.noteCollection.length)
-    console.log("state after navigateCurrentMap Mutation: ", state)
+    console.log("noteCollection after navigateCurrentMap Mutation: ", state.noteCollection)
   },
   syncMaps (state, mapRes) {
     if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
@@ -51,10 +51,20 @@ const mutations = {
         state.noteCollection.unshift(state.note)
       }
     }
-    console.log("state after addEditNote Mutation: ", state)
+    console.log("noteCollection after addEditNote Mutation: ", state.noteCollection)
   },
   displayNote (state, {title, url}) {
     state.note = new Note(title, url)
+  },
+  refreshEditedNotes (state, {elements}) {
+    state.noteCollection.length = 0
+    state.noteCollection = []
+    
+    for (let i = 0; i < elements.length; i++) {
+      state.noteCollection.push(new Note(elements[i].label, `${constants.host}` + "note_" + elements[i].id))  
+    }
+    
+    console.log("noteCollection after refreshEditedNotes Mutation: ", state.noteCollection)
   }
 }
 
@@ -220,6 +230,11 @@ const actions = {
     context.commit('displayNote', {
       title: label,
       url: id
+    })
+  },
+  refreshNoteCollection (state, {edited}) {
+    context.commit('refreshEditedNotes', {
+      elements: edited
     })
   }
   
