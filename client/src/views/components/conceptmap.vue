@@ -121,6 +121,15 @@
       }
       
     },
+    mounted() {
+      console.log(`Requesting Note info on Map!`)
+      let self = this;
+      let signal = {
+        id: "reload_note_list"
+      }
+      console.log(self.$el)
+      self.$el.contentWindow.postMessage(signal, '*')
+    },
     props: ['source']
   }
 </script>
