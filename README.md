@@ -30,7 +30,7 @@ mongoimport --db CognitiveCanvas --collection keywords --file <Path to Your Loca
 
 #### Load User Data (authorized user)
 
-Build your own authorized_user.json based on the database schema in server/ContainerAPI/app/models/user.js model. The webstrate team's authorized users are omitted in the public repo here for the protection of privacy. (For UCSD CogCanvas Team, you can find this json in our shared Google Drive: "Cognitive Canvas/3_development_DATA LOAD/container_server_asset/". Please DO NOT push to the remote with authorized_user.json!)
+Build your own authorized_user.json based on the database schema in server/ContainerAPI/app/models/user.js model. The webstrate team's authorized users are omitted in the public repo here for the protection of privacy. (For UCSD CogCanvas Team, you can find this json in our shared Google Drive: "Cognitive Canvas/3_development/DATA LOAD/container_server_asset/". Please DO NOT push to the remote with authorized_user.json!)
 
 ```
 mongoimport --db CognitiveCanvas --collection users --file <Path to Your Local Repo>/server/asset/authorized_user.json
@@ -90,7 +90,7 @@ Checkout & Pull the branch you want to deploy; merge branch "Deployment" (which 
 #### Deploy Container Vue App
 
 ```
-cd /home/xizhao/CognitiveCanvas-Container/client
+cd client
 ```
 
 ```
@@ -100,7 +100,7 @@ sudo npm run-script build
 #### Deploy Server Api
 
 ```
-cd /home/xizhao/CognitiveCanvas-Container/server
+cd server
 ```
 
 ```
