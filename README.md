@@ -29,6 +29,9 @@ mongoimport --db CognitiveCanvas --collection keywords --file <Path to Your Loca
 ```
 
 #### Load User Data (authorized user)
+
+Build your own authorized_user.json based on the database schema in server/ContainerAPI/app/models/user.js model. The webstrate team's authorized users are omitted in the public repo here for the protection of privacy. (For UCSD CogCanvas Team, you can find this json in our shared Google Drive: "Cognitive Canvas/3_development/DATA LOAD/container_server_asset/". Please DO NOT push to the remote with authorized_user.json!)
+
 ```
 mongoimport --db CognitiveCanvas --collection users --file <Path to Your Local Repo>/server/asset/authorized_user.json
 ```
@@ -63,6 +66,47 @@ The CognitiveCanvas webapp should be accessible at port 8080 of local host.
 ## Deployment
 
 A deployed stable version of CognitiveCanvas is published at https://cogcanvas.ucsd.edu/ for now. Please noted that only authorized user are allow to login right now. 
+
+### Deployment Procedure
+
+#### Login to the Server and Enter Deployment Directory
+
+Login to the webstrates server using an account with sudoer permission.
+
+```
+cd /home/xizhao/CognitiveCanvas-Container
+```
+
+#### Set client/src/models/constants.js to be the Deployment Settings
+
+Checkout & Pull the branch you want to deploy; merge branch "Deployment" (which contains the constant.js settings) or manually setting the constants.js:
+
+1. All the "http" should be modified to "https";
+
+2. Take out the port number in "api", ex. Delete ":8081";
+
+3. Make sure all the webstrate templates are the most updated ones.
+
+#### Deploy Container Vue App
+
+```
+cd client
+```
+
+```
+sudo npm run-script build
+```
+
+#### Deploy Server Api
+
+```
+cd server
+```
+
+```
+sudo service nginx restart
+```
+
 
 ## Authors
 
