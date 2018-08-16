@@ -24,7 +24,6 @@ const mutations = {
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
     state.justEditedNote = null
     state.noteCollection.splice(0, state.noteCollection.length)
-    console.log("noteCollection after addMap Mutation: ", state.noteCollection)
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex]
@@ -32,7 +31,6 @@ const mutations = {
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
     state.justEditedNote = null
     state.noteCollection.splice(0, state.noteCollection.length)
-    console.log("noteCollection after navigateCurrentMap Mutation: ", state.noteCollection)
   },
   syncMaps (state, mapRes) {
     if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
@@ -47,19 +45,9 @@ const mutations = {
     state.maps[reqIndex].permission = 'DELETED';
     state.currentMap = state.maps[reqIndex];
   },
-//  addEditNote (state, {edit, title, url}) {
-//    if (!state.noteCollection.find(function(element) {return element.url == url;})) {
-//      state.note.edited = edit;
-//      if (edit) {
-//        state.noteCollection.unshift(state.note)
-//      }
-//    }
-//    console.log("noteCollection after addEditNote Mutation: ", state.noteCollection)
-//  },
   addEditNote (state, {edit, title, url}) {
     state.note.edited = edit;
     state.justEditedNote = state.note;
-    console.log("justEditedNote after addEditNote Mutation: ", state.justEditedNote)
   },
   displayNote (state, {title, url}) {
     state.note = new Note(title, url)
@@ -71,8 +59,6 @@ const mutations = {
     for (let i = 0; i < elements.length; i++) {
       state.noteCollection.push(new Note(elements[i].label, `${constants.host}` + "note_" + elements[i].id))  
     }
-    
-    console.log("noteCollection after refreshEditedNotes Mutation: ", state.noteCollection)
   }
 }
 
