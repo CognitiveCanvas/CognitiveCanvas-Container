@@ -10,6 +10,7 @@ const state = {
   currentMapIndex: null,
   maps: [],
   note: null,
+  justEditedNote: null,
   noteCollection: []
 }
 
@@ -21,6 +22,7 @@ const mutations = {
     state.currentMap = new Map(newTitle, newAddr)   
     state.maps.unshift(state.currentMap)
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
+    state.justEditedNote = null
     state.noteCollection.splice(0, state.noteCollection.length)
     console.log("noteCollection after addMap Mutation: ", state.noteCollection)
   },
@@ -28,6 +30,7 @@ const mutations = {
     state.currentMap = state.maps[reqIndex]
     state.currentMapIndex = reqIndex
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
+    state.justEditedNote = null
     state.noteCollection.splice(0, state.noteCollection.length)
     console.log("noteCollection after navigateCurrentMap Mutation: ", state.noteCollection)
   },
@@ -44,14 +47,19 @@ const mutations = {
     state.maps[reqIndex].permission = 'DELETED';
     state.currentMap = state.maps[reqIndex];
   },
+//  addEditNote (state, {edit, title, url}) {
+//    if (!state.noteCollection.find(function(element) {return element.url == url;})) {
+//      state.note.edited = edit;
+//      if (edit) {
+//        state.noteCollection.unshift(state.note)
+//      }
+//    }
+//    console.log("noteCollection after addEditNote Mutation: ", state.noteCollection)
+//  },
   addEditNote (state, {edit, title, url}) {
-    if (!state.noteCollection.find(function(element) {return element.url == url;})) {
-      state.note.edited = edit;
-      if (edit) {
-        state.noteCollection.unshift(state.note)
-      }
-    }
-    console.log("noteCollection after addEditNote Mutation: ", state.noteCollection)
+    state.note.edited = edit;
+    state.justEditedNote = state.note;
+    console.log("justEditedNote after addEditNote Mutation: ", state.justEditedNote)
   },
   displayNote (state, {title, url}) {
     state.note = new Note(title, url)
@@ -232,7 +240,7 @@ const actions = {
       url: id
     })
   },
-  refreshNoteCollection (state, {edited}) {
+  refreshNoteCollection (context, {edited}) {
     context.commit('refreshEditedNotes', {
       elements: edited
     })

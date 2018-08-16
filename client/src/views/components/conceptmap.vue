@@ -22,7 +22,7 @@
         return this.$store.state.relatedElement.toTrace
       },
       toUpdateNote () {
-        return this.$store.state.map.noteCollection
+        return this.$store.state.map.justEditedNote
       }
     },
     watch: {
@@ -46,12 +46,15 @@
         }
         self.$el.contentWindow.postMessage(toTraceRelatedElement, '*')
       },
-      toUpdateNote (newCollection, oldCollection) {
-        let self = this
+      toUpdateNote (newEditedNote, oldEditedNote) {
+        let self = this;
         let header = `${constants.host}` + 'note_'
+        
+        console.log("newEditedNote", newEditedNote)
+        
         let toSetEdited = {
           id: "edited",
-          query: newCollection[0].url.slice(header.length)
+          query: newEditedNote.url.slice(header.length)
         }
         //console.log(newCollection[0].url)
         //console.log(toSetEdited)
@@ -120,15 +123,6 @@
         }); 
       }
       
-    },
-    mounted() {
-      console.log(`Requesting Note info on Map!`)
-      let self = this;
-      let signal = {
-        id: "reload_note_list"
-      }
-      console.log(self.$el)
-      self.$el.contentWindow.postMessage(signal, '*')
     },
     props: ['source']
   }
