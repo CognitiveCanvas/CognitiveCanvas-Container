@@ -4,6 +4,8 @@
 </template>
 
 <script>  
+  import constants from '../../models/constants'
+  
   export default {
 
     name: 'conceptmap',
@@ -18,28 +20,37 @@
       },
       toTraceId () {
         return this.$store.state.relatedElement.toTrace
+      },
+      toUpdateNote () {
+        return this.$store.state.map.justEditedNote
       }
     },
     watch: {
       toSearchLabel (newLabel, oldLabel) {
-        //console.log(`Searching ${newLabel} instead of ${oldLabel} now!`)
         let self = this;
         let toBrowseRelatedElement = {
           id: "search",
           query: newLabel
         }
-        //console.log("Sending Browse Request:")
-        //console.log(toBrowseRelatedElement)
         self.$el.contentWindow.postMessage(toBrowseRelatedElement, '*')
       },
       toTraceId (newId, oldId) {
-        //console.log(`Tracing ${newId} instead of ${oldId} now!`)
         let self = this;
         let toTraceRelatedElement = {
           id: "trace",
           query: newId
         }
         self.$el.contentWindow.postMessage(toTraceRelatedElement, '*')
+      },
+      toUpdateNote (newEditedNote, oldEditedNote) {
+        let self = this;
+        let header = `${constants.host}` + 'note_'
+                
+        let toSetEdited = {
+          id: "edited",
+          query: newEditedNote.url.slice(header.length)
+        }
+        self.$el.contentWindow.postMessage(toSetEdited, '*')
       }
     },
     methods: {
@@ -47,7 +58,7 @@
         let self = this
         window.addEventListener('message', function(event) { 
           
-          // IMPORTANT: Check the origin of the data! 
+          // Check the origin of the data! 
           if (~event.origin.indexOf('https://webstrates.ucsd.edu')) { 
             // The data has been sent from your site 
             
@@ -71,7 +82,6 @@
                 elementUrl: event.data.uid,
                 label: event.data.label
               });
-              //console.log(`In Message Listener: Searching ${this.$store.state.content.label} Done!`)
               
               self.$store.dispatch("map/selectNode", {
                 nodeId: event.data.uid,
@@ -79,14 +89,17 @@
               })
             } 
             else if (event.data.id == "related_element") {
-              //console.log(event.data)
               self.$store.dispatch("relatedElement/storeElements", {
                 status_code: event.data.response_status,
                 label: event.data.query,
                 nodes: event.data.nodes,
                 edges: event.data.edges
               }) 
-              
+            }
+            else if (event.data.id == "edited_elements") {
+              self.$store.dispatch("map/refreshNoteCollection", {
+                edited: event.data.elements
+              })
             }
             
           } 

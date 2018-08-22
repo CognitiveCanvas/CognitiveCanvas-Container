@@ -20,6 +20,9 @@ const mutations = {
 const actions = {
   toggleSidebar (module) {
     module.commit('TOGGLE_SIDEBAR')
+  },
+  closeSidebar (module) {
+    if (state.sidebarOpen) module.commit('TOGGLE_SIDEBAR')
   }
 }
 

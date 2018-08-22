@@ -1,58 +1,48 @@
 <template>
-    <div class="card m-2">
+  <div class="card m-2">
     <div class="card-header">
       <h1>Note for {{ label }}</h1>
     </div>
     <div class="card-body bd-callout-info">
-      <iframe id="add-Window" v-bind:src="url">
+      <iframe id="add-Window" v-on:load="noteListener" v-bind:src="url">
         <p>ERROR: Your browser does not support iframes.</p>
       </iframe>
-<!--
-      <button type="button" id="addNoteBtn" onclick="appendNote()">Add Sticky Note</button>
-      <input type="file" id="addPicBtn" onchange="appendPic()">
--->
     </div>
-    
   </div>
 </template>
 
 <script>
-    export default {
-        name: "noteCard",
-        data () {
-            return {
+  export default {
+    name: "noteCard",
+    data () {
+      return {
+      }
+    },
+    methods: {
+      noteListener: function() {
+        let self = this
+        window.addEventListener('message', function(event) {
+          
+          // Check the origin of the data
+          if (~event.origin.indexOf('https://webstrates.ucsd.edu')) { 
+            // The data has been sent from your site 
+            if (event.data.id == "edit_note") {              
+              self.$store.dispatch("map/markNoteEdit", {
+                edited: true,
+                label: self.label,
+                url: self.url
+              })
             }
-        },
-        methods: {
-//          appendNote: function(){
-//            let appendElement = '<div class="note" contenteditable="true" style="left: 8px;top: 8px;width: 235px;min-height: 100px;padding: 16px;box-shadow: 5px 5px 10px gray;background-color: rgb(255, 255, 150);font-size: 12pt;word-wrap: break-word;"></div><br>';  
-//            let addWindow = document.getElementById("add-Window");
-//            addWindow.contentWindow.document.body.innerHTML += appendElement;
-//          },
-//          appendPic: function(){
-//            let appendElement = document.createElement('img');
-//            appendElement.setAttribute("width", "235");
-//            appendElement.setAttribute("alt", "Loading Image...");
-//            let addWindow = document.getElementById("add-Window");
-//            addWindow.contentWindow.document.body.appendChild(appendElement);
-//
-//            let imgList = addWindow.contentWindow.document.querySelectorAll('img'); //selects the query named img
-//            let preview = imgList[imgList.length-1];
-//            let file    = document.querySelector('input[type=file]').files[0];
-//            let reader  = new FileReader();
-//
-//            reader.onloadend = function () {
-//              preview.src = reader.result;
-//            }
-//
-//            if (file) reader.readAsDataURL(file); //reads the data as a URL
-//            else preview.src = "";
-//          }
-        },
-        components: {
-        },
-        props: ['label','url']
-    }
+          }
+          else return;
+          
+        })
+      }
+    },
+    components: {
+    },
+    props: ['label','url']
+  }
 </script>
 
 <style>

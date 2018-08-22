@@ -9,7 +9,9 @@ const state = {
   currentMap: null,
   currentMapIndex: null,
   maps: [],
-  note: null
+  note: null,
+  justEditedNote: null,
+  noteCollection: []
 }
 
 const getters = {
@@ -20,11 +22,15 @@ const mutations = {
     state.currentMap = new Map(newTitle, newAddr)   
     state.maps.unshift(state.currentMap)
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
+    state.justEditedNote = null
+    state.noteCollection.splice(0, state.noteCollection.length)
   },
   navigateCurrentMap (state, reqIndex) {
     state.currentMap = state.maps[reqIndex]
     state.currentMapIndex = reqIndex
     state.note = new Note('Invalid Note', `${constants.invalidNoteTemplate}`)
+    state.justEditedNote = null
+    state.noteCollection.splice(0, state.noteCollection.length)
   },
   syncMaps (state, mapRes) {
     if (mapRes) state.maps = mapRes.map((map) => new Map(map.name, map.url))
@@ -38,6 +44,21 @@ const mutations = {
   deletePermission (state, reqIndex) {
     state.maps[reqIndex].permission = 'DELETED';
     state.currentMap = state.maps[reqIndex];
+  },
+  addEditNote (state, {edit, title, url}) {
+    state.note.edited = edit;
+    state.justEditedNote = state.note;
+  },
+  displayNote (state, {title, url}) {
+    state.note = new Note(title, url)
+  },
+  refreshEditedNotes (state, {elements}) {
+    state.noteCollection.length = 0
+    state.noteCollection = []
+    
+    for (let i = 0; i < elements.length; i++) {
+      state.noteCollection.push(new Note(elements[i].label, `${constants.host}` + "note_" + elements[i].id))  
+    }
   }
 }
 
@@ -181,6 +202,13 @@ const actions = {
         console.log("error", err)
       })
   },
+  markNoteEdit (context, {edited, label, url}) {
+    context.commit('addEditNote', {
+      edit: edited,
+      title: label,
+      url: url
+    })
+  },
   updateMapName (context, {mapUrl, newTitle}) {
     context.commit('updateTitle', newTitle)
     Axios
@@ -191,6 +219,17 @@ const actions = {
       .catch(function (error) {
         bugsnagClient.notify(error)
       })
+  },
+  openNote (context, {label, id}) {
+    context.commit('displayNote', {
+      title: label,
+      url: id
+    })
+  },
+  refreshNoteCollection (context, {edited}) {
+    context.commit('refreshEditedNotes', {
+      elements: edited
+    })
   }
   
 }

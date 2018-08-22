@@ -34,6 +34,10 @@
         <div>
           <note-card v-bind:label=note.title v-bind:url=note.url></note-card>
         </div>
+        
+        <div v-for="note in edited_notes">
+          <content-card v-bind:title=note.title v-bind:url=note.url v-bind:type="note_type"></content-card>
+        </div>
       </v-tab>
 
       <v-tab title="Elements">
@@ -82,8 +86,12 @@ export default {
     rel_edges: function() {
       return this.$store.state.relatedElement.relatedEdges
     },
+    edited_notes: function() {
+      return this.$store.state.map.noteCollection
+    },
     node_type: function() { return 'node'},
-    edge_type: function() { return 'edge'}
+    edge_type: function() { return 'edge'},
+    note_type: function() { return 'note'}
   },
   data: function() {
       return {
