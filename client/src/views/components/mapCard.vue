@@ -1,6 +1,13 @@
 <template>
   <div class="cards">
     <div class="map_card" v-on:mouseover="toggleDeleteBtn" v-on:mouseout="toggleDeleteBtn">
+<!--
+      <form ref="credential" target="frame" method="post" :action="url">
+        <input type="hidden" name="username" value="web" />
+        <input type="hidden" name="password" value="strate" />
+      </form>
+-->
+      
       <h1 v-on:click="navigaToMap">Title: {{title}}</h1>
       <div class="map_pic" v-on:click="navigaToMap">
         <img src="../../asset/screen1.png">
@@ -41,6 +48,7 @@ export default {
       this.$store.dispatch("map/navigateToMap", {
         index: self.index
       });
+//      this.$refs.credential.submit()
     },
     toggleDeleteBtn: function() {
       let self = this;

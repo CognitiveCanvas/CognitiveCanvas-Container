@@ -2,12 +2,10 @@
   <div id="container">
     <maptopbar v-bind:mapTitle=map.title v-bind:mapUrl=map.url></maptopbar>
     
-<!--
-    <form ref="login" target="frame" method="post" action=map.url>
+    <form ref="login" target="frame" method="post" :action=map.url>
       <input type="hidden" name="username" value="web" />
       <input type="hidden" name="password" value="strate" />
     </form>
--->
     
     <div id="map-container">
       <concept-map :source=map.url></concept-map>
@@ -25,14 +23,10 @@ export default {
       return this.$store.state.map.currentMap
     }
   },
-//  mounted: function () {
-//    this.$nextTick(function () {
-//      // Code here will run only after the 
-//      // entire view has been rendered
-//      console.log("Full Container mounted with, ", this.$refs.login)
-//      this.$refs.login.submit()
-//    })
-//  }
+  mounted: function () {
+      console.log("posting form, ", this.$refs.login)
+      this.$refs.login.submit()
+  }
 }
 </script>
 
