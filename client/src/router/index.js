@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 // Pages
 import Authentication from '../views/pages/authentication'
+import Login from '../views/pages/login'
 import Container from '../views/pages/container'
 import Management from '../views/pages/management'
 import Error from '../views/pages/error'
@@ -31,6 +32,12 @@ const routes = [
   },
   {
     path: '/login',
+    name: 'Login',
+    meta: { requiresAuth: false },
+    component: Login
+  },
+  {
+    path: '/deprecated_login',
     name: 'Authentication',
     meta: { requiresAuth: false },
     component: Authentication
