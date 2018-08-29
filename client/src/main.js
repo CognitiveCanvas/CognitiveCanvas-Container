@@ -7,6 +7,7 @@ import container from './views/pages/container'
 import management from './views/pages/management'
 import topbar from './views/components/topbar'
 import maptopbar from './views/components/maptopbar'
+import titlebar from './views/components/titlebar'
 import conceptmap from './views/components/conceptmap'
 import sidebar from './views/components/sidebar'
 import sidebarToggle from './views/components/sidebarToggle'
@@ -42,6 +43,7 @@ var index = {
     // Container Components
     'topbar': topbar,
     'maptopbar': maptopbar,
+    'titlebar': titlebar,
     'concept-map': conceptmap,
     'side-bar': sidebar,
     'side-bar-toggle': sidebarToggle,

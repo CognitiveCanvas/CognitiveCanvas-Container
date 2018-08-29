@@ -1,0 +1,16 @@
+<svg width="1440px" height="1024px" viewBox="0 0 1440 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="45.9104292%" y1="100%" x2="159.628254%" y2="-73.1436596%" id="linearGradient-1">
+            <stop stop-color="#006A96" offset="0%"></stop>
+            <stop stop-color="#FFCD00" offset="51.9564354%"></stop>
+            <stop stop-color="#F5EFEF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.103794643">
+        <g id="color/cc-gradient" fill="url(#linearGradient-1)">
+            <rect id="GRADIENT-BACKGROUND" x="0" y="0" width="1440" height="1024"></rect>
+        </g>
+    </g>
+</svg>

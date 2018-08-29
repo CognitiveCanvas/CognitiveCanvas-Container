@@ -1,11 +1,11 @@
 <template>
   <div id="management">
-    <topbar></topbar>
-    <div class="contain_main">
-     <!--<div class="maps">-->
-        <map-collection />
-      <!--</div>-->
-    </div>
+    <v-app>
+      <titlebar></titlebar>
+      <div class="contain_main">
+      <map-collection />
+      </div>
+    </v-app>
   </div>
 </template>
 
@@ -40,6 +40,11 @@ export default {
   }
   .contain_main {
     margin-top: 60px;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(34deg, #006A96 6%, #FFCD00 55%, #F5EFEF 100%);
+    position: fixed;
+    opacity: 0.1;
   }
   
 </style>
