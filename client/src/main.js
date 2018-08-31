@@ -14,7 +14,9 @@ import sidebarToggle from './views/components/sidebarToggle'
 import contentCard from './views/components/contentCard'
 import mapCard from './views/components/mapCard'
 import newMapCard from './views/components/newMapCard'
+import createMap from './views/components/createMap'
 import mapCollection from './views/components/mapCollection'
+import mapFolder from './views/components/mapFolder'
 import noteCard from './views/components/noteCard'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
@@ -50,7 +52,9 @@ var index = {
     'content-card': contentCard,
     'map-card': mapCard,
     'new-map-card': newMapCard,
+    'create-map-card': createMap,
     'map-collection': mapCollection,
+    'map-folder': mapFolder,
     'note-card': noteCard
   },
   initiate () {

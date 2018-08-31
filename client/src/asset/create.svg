@@ -1,8 +1,4 @@
-<template>
-  <div class="new_map" v-on:click="createNewMap">
-    <h1>Start New Map</h1>
-    
-    <svg width="99px" height="99px" viewBox="0 0 99 99" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="99px" height="99px" viewBox="0 0 99 99" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
         <desc>Created with Sketch.</desc>
         <defs></defs>
@@ -12,56 +8,3 @@
             </g>
         </g>
     </svg>
-  </div>
-</template>
-
-<script>  
-export default {
-  name: 'newMapCard',
-  computed: {
-  },
-  methods: {
-    getId: function() {
-      return this._uid + '_' + Date.now();
-    },
-    createNewMap: function() {
-      let self = this;
-      let mapId = self.getId();
-      console.log(mapId);
-      let userId = this.$store.state.localUser.localUser.email._id;
-      self.$store.dispatch("map/createNewMap", {
-        userID: userId,
-        newID: mapId
-      });
-    }
-  }
-}
-</script>
-  
-<style>
-  .new_map{
-    top: 100px;
-    background-color: #5EB6DD;
-    min-height: 320px;
-    max-height: 350px;
-    height:42vh;
-    overflow: hidden;
-  }
-  .new_map h1{
-    padding-top: 60px;
-    font-size: 34px;
-    text-align: center;
-  }
-  .new_map svg{
-    margin-top: 40px;
-    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 60px;
-    width: 60px;
-  }
-  .new_map:hover {
-    opacity: 0.7;
-  }
-</style>

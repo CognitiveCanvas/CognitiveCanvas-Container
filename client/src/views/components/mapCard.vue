@@ -101,7 +101,6 @@ export default {
   }
   .map_card{
     min-height: 320px;
-    //min-width: 350px;
     max-height: 350px;
     height: 42vh;
     width: 100%;

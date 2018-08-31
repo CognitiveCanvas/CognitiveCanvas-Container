@@ -9,16 +9,27 @@
     <v-spacer></v-spacer>
   
     <v-toolbar-items>
-      <v-btn fab flat>
-        <icon name="user" scale="2.3"></icon>
-      </v-btn>
+      
+       <v-menu :nudge-width="100">
+        <v-toolbar-title slot="activator">
+          <v-btn fab flat>
+            <icon name="user" scale="2.3"></icon>
+          </v-btn>
+        </v-toolbar-title>
+
+        <v-list>
+          <v-list-tile
+            v-for="item in dropdown_user"
+            :key="item"
+            @click="signOut"
+          >
+            <v-list-tile-title v-text="item"></v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
       
       <v-btn fab flat>
         <icon name="question" scale="2.3"></icon>
-      </v-btn>
-      
-      <v-btn fab flat v-on:click="signOut">
-        <icon name="sign-out" scale="2.3"></icon>
       </v-btn>
 
     </v-toolbar-items>
