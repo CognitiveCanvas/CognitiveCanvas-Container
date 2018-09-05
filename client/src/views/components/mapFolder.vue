@@ -9,10 +9,10 @@
                 v-if="map.permission=='EDIT'" 
                 v-bind:key="map.id"
                 class="existingMapInCollection" xs12 sm3 md3 lg3>
-          <map-card v-bind:title=map.title 
+          <enter-map-card v-bind:title=map.title 
                     v-bind:url=map.url 
                     v-bind:index=index 
-                    class="map_representation" ></map-card>
+                    class="map_representation" ></enter-map-card>
         </v-flex>
       </v-layout>
     </v-container>

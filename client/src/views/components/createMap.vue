@@ -1,22 +1,17 @@
 <template>
   <v-card class="new_map_card white--text"
-          color="#006A96">
-    <v-layout v-on:click="createNewMap" align-center column fill-height>
+          color="#006A96"
+          height="20vh">
+    <v-layout v-on:click="createNewMap" 
+              align-center justify-space-between column fill-height>
       <v-flex xs12>
-        <v-card-text>
-          <br>
+        <v-card-text class="prompt">
           <p class="prompt_text text-xs-center">Create New Map</p>
         </v-card-text>
       </v-flex>
       
       <v-flex xs12>
         <icon name="plus-circle" scale="3"></icon>
-      </v-flex>
-      
-      <v-flex xs12>
-        <v-card-text>
-          <br>
-        </v-card-text>
       </v-flex>
 
     </v-layout>
@@ -68,6 +63,9 @@ export default {
     overflow: hidden;
     min-height: 175px;
     min-width: 255px;
+  }
+  .prompt{
+    margin-top: 2vh;
   }
   .prompt_text{
     font-family: Roboto-Bold;

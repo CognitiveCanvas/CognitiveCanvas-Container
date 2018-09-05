@@ -15,6 +15,7 @@ import contentCard from './views/components/contentCard'
 import mapCard from './views/components/mapCard'
 import newMapCard from './views/components/newMapCard'
 import createMap from './views/components/createMap'
+import enterMap from './views/components/enterMap'
 import mapCollection from './views/components/mapCollection'
 import mapFolder from './views/components/mapFolder'
 import noteCard from './views/components/noteCard'
@@ -53,6 +54,7 @@ var index = {
     'map-card': mapCard,
     'new-map-card': newMapCard,
     'create-map-card': createMap,
+    'enter-map-card': enterMap,
     'map-collection': mapCollection,
     'map-folder': mapFolder,
     'note-card': noteCard
