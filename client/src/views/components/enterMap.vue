@@ -19,7 +19,7 @@
                  color="#747678"
                  depressed block>
             <icon name="copy" 
-                  scale="1.5"
+                  scale="1.4"
                   color="white"></icon>
           </v-btn>
         </v-flex>
@@ -29,7 +29,7 @@
                  color="#747678"
                  depressed block>
             <icon name="trash" 
-                  scale="1.5"
+                  scale="1.4"
                   color="white"></icon>
           </v-btn>
         </v-flex>

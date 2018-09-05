@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.sidebar">
-    <vue-tabs>
+    <vue-tabs :class="$style.sidebar_tabs">
       <v-tab title="Resources">
 
         <!-- expandable list, not sure why it won't show as button but is functional -->
@@ -64,7 +64,8 @@ export default {
   },
   mounted () {
     TweenMax.set(this.$el, {
-      x: this.$el.offsetWidth
+      x: 0,
+      y: -this.$el.offsetHeight
     })
   },
   computed: {
@@ -116,9 +117,9 @@ export default {
   },
   watch: {
     open: function (open) {
-      const dX = open ? 0 : this.$el.offsetWidth
+      const dY = open ? 0 : -this.$el.offsetHeight
       TweenMax.to(this.$el, 0.6, {
-        x: dX,
+        y: dY,
         ease: Power4.easeOut
       })
     }
@@ -140,6 +141,9 @@ export default {
     flex-direction: column;
     overflow: scroll;
     z-index: 1;
+  }
+  .sidebar_tabs{
+    margin-top: 64px !important;
   }
   .title {
     top: 0;
