@@ -122,7 +122,7 @@ export default {
     text-align: center;
   }
   .enter_map_btn{
-    margin-bottom:  0.5vh !important;
+    margin-bottom:  0.4vh !important;
     padding: 0px !important;
   }
   .enter_map_btn:hover{
