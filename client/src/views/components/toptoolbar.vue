@@ -121,13 +121,11 @@ export default {
       });
     },
     sendUndo: function() {
-      console.log("Undo Clicked")
       this.$store.dispatch("map/fireUndo", {
             command: true
       });
     },
     sendRedo: function() {
-      console.log("Redo Clicked")
       this.$store.dispatch("map/fireRedo", {
             command: true
       });

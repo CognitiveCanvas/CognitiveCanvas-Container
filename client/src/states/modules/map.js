@@ -64,11 +64,9 @@ const mutations = {
   },
   undoStateChange (state, {desire_state}) {
     state.undo_fire = desire_state;
-    console.log("state.undo_fire = ", state.undo_fire)
   },
   redoStateChange (state, {desire_state}) {
     state.redo_fire = desire_state;
-    console.log("state.redo_fire = ", state.redo_fire)
   }
 }
 
@@ -242,13 +240,11 @@ const actions = {
     })
   },
   fireUndo (context, {command}) {
-    console.log("Firing Undo")
     context.commit('undoStateChange', {
       desire_state: command
     })
   },
   fireRedo (context, {command}) {
-    console.log("Firing Redo")
     context.commit('redoStateChange', {
       desire_state: command
     })

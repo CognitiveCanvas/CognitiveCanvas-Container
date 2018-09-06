@@ -59,13 +59,11 @@
         self.$el.contentWindow.postMessage(toSetEdited, '*')
       },
       toUndo (newCmd, oldCmd) {
-        console.log("New Undo Command: ", newCmd, "; Old Undo Command: ", oldCmd);
         let self = this;
         if (newCmd) {
           let undoMsg = {
             id: "undo",
           }
-          console.log("undo message", undoMsg)
           self.$el.contentWindow.postMessage(undoMsg, '*')
           // Reset undo state
           this.$store.dispatch("map/fireUndo", {
@@ -74,13 +72,11 @@
         }     
       },
       toRedo (newCmd, oldCmd) {
-        console.log("New Redo Command: ", newCmd, "; Old Redo Command: ", oldCmd);
         let self = this;
         if (newCmd) {
           let redoMsg = {
             id: "redo",
           }
-          console.log("redo message", redoMsg)
           self.$el.contentWindow.postMessage(redoMsg, '*')
           // Reset undo state
           this.$store.dispatch("map/fireRedo", {
