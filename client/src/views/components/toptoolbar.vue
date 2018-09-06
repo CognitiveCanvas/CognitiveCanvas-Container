@@ -40,11 +40,13 @@
     
     <v-toolbar-items>
       
-      <v-btn fab flat>
+      <v-btn fab flat
+             v-on:click="sendUndo">
         <icon name="undo" scale="2.3"></icon>
       </v-btn>
       
-      <v-btn fab flat>
+      <v-btn fab flat
+             v-on:click="sendRedo">
         <icon name="repeat" scale="2.3"></icon>
       </v-btn>
 
@@ -54,11 +56,13 @@
   
     <v-toolbar-items>
       
-      <v-btn fab flat v-on:click="toggleSidebar">
+      <v-btn fab flat 
+             v-on:click="toggleSidebar">
         <icon name="sticky-note" scale="2.3"></icon>
       </v-btn>
       
-      <v-btn fab flat v-on:click="toggleSidebar">
+      <v-btn fab flat 
+             v-on:click="toggleSidebar">
         <icon name="book" scale="2.3"></icon>
       </v-btn>
       
@@ -114,6 +118,18 @@ export default {
       this.$store.dispatch("map/updateMapName", {
         mapUrl: this.mapUrl,
         newTitle: newTitle
+      });
+    },
+    sendUndo: function() {
+      console.log("Undo Clicked")
+      this.$store.dispatch("map/fireUndo", {
+            command: true
+      });
+    },
+    sendRedo: function() {
+      console.log("Redo Clicked")
+      this.$store.dispatch("map/fireRedo", {
+            command: true
       });
     },
     showHelp: function() {

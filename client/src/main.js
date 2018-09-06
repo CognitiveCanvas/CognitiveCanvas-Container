@@ -5,12 +5,10 @@ import Vuex from 'vuex'
 import app from './app'
 import container from './views/pages/container'
 import management from './views/pages/management'
-import maptopbar from './views/components/maptopbar'
 import titlebar from './views/components/titlebar'
 import toptoolbar from './views/components/toptoolbar'
 import conceptmap from './views/components/conceptmap'
 import sidebar from './views/components/sidebar'
-import sidebarToggle from './views/components/sidebarToggle'
 import contentCard from './views/components/contentCard'
 import createMap from './views/components/createMap'
 import enterMap from './views/components/enterMap'
@@ -41,12 +39,10 @@ var index = {
     'management': management,
 
     // Container Components
-    'maptopbar': maptopbar,
     'titlebar': titlebar,
     'top-toolbar': toptoolbar,
     'concept-map': conceptmap,
     'side-bar': sidebar,
-    'side-bar-toggle': sidebarToggle,
     'content-card': contentCard,
     'create-map-card': createMap,
     'enter-map-card': enterMap,

@@ -11,9 +11,7 @@
 
         <ul id="blogContent">
           <div v-for="content in contents">
-            <li>     
               <content-card v-if="content.type == 'blog'" :title=content.title :url=content.url :type=content.type></content-card>
-            </li>
           </div>
         </ul>
         
@@ -23,9 +21,7 @@
 
         <ul id="articleContent">
           <div v-for="content in contents">
-            <li>     
               <content-card v-if="content.type == 'article'" :title=content.title :url=content.url :type=content.type></content-card>
-            </li>
           </div>
         </ul>
       </v-tab>
