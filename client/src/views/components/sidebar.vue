@@ -2,38 +2,50 @@
   <div :class="$style.sidebar">
     <vue-tabs :class="$style.sidebar_tabs">
       <v-tab title="Resources">
+        <v-subheader>
+          <v-btn id="blogTab" 
+                 v-on:click="expandBlog"
+                 flat depressed block>
+            Blogs
+          </v-btn>
+        </v-subheader>
 
-        <!-- expandable list, not sure why it won't show as button but is functional -->
-
-        <button id="blogTab" class="expandResource" v-on:click="expandBlog">
-        Blogs
-        </button>
-
-        <ul id="blogContent">
+        <div id="blogContent">
           <div v-for="content in contents">
               <content-card v-if="content.type == 'blog'" :title=content.title :url=content.url :type=content.type></content-card>
           </div>
-        </ul>
+        </div>
         
-        <button id="articleTab" class="expandResource" v-on:click="expandArticle">
-        Articles
-        </button>
-
-        <ul id="articleContent">
+        <v-divider></v-divider>
+        
+        <v-subheader>
+          <v-btn id="articleTab" 
+                 v-on:click="expandArticle"
+                 flat depressed block>
+            Articles
+          </v-btn>
+        </v-subheader>
+        
+        <div id="articleContent">
           <div v-for="content in contents">
               <content-card v-if="content.type == 'article'" :title=content.title :url=content.url :type=content.type></content-card>
           </div>
-        </ul>
+        </div>
+        
+        <v-divider></v-divider>
+        
       </v-tab>
 
-      <v-tab title="Notes">
+      <v-tab title="Notes">    
         <div>
           <note-card v-bind:label=note.title v-bind:url=note.url></note-card>
         </div>
         
+        <v-divider></v-divider>
+        
         <div v-for="note in edited_notes">
           <content-card v-bind:title=note.title v-bind:url=note.url v-bind:type="note_type"></content-card>
-        </div>
+        </div>      
       </v-tab>
 
       <v-tab title="Elements">
@@ -139,7 +151,8 @@ export default {
     z-index: 1;
   }
   .sidebar_tabs{
-    margin-top: 64px !important;
+    margin-top: 66px !important;
+    font-size: 15px
   }
   .title {
     top: 0;
@@ -153,12 +166,8 @@ export default {
     width: 100%;
   }
 
-.blogContent {
-    display: none;
-    overflow: hidden;
-}
-
-.expandResource {
-  margin-top: 20px;
-}
+  .blogContent {
+      display: none;
+      overflow: hidden;
+  }
 </style>
