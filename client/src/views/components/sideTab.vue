@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <v-navigation-drawer permanent>
+    <v-navigation-drawer>
       <v-toolbar flat>
         <v-list>
           <v-list-tile>
@@ -16,7 +16,7 @@
         
         <v-list-tile v-if="content.type == 'article'"
                      v-for="content in contents"
-                     :key="content.title"
+                     :key="content._id"
                      v-bind:href="content.url">
           <v-list-tile-action>
             <icon name="file-alt"></icon>
@@ -32,7 +32,7 @@
         
         <v-list-tile v-if="content.type == 'blog'"
                      v-for="content in contents"
-                     :key="content.title"
+                     :key="content._id"
                      v-bind:href="content.url">
           <v-list-tile-action>
             <icon name="newspaper-regular"></icon>
