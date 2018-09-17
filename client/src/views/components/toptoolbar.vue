@@ -51,17 +51,17 @@
     <v-toolbar-items>
       
       <v-btn fab flat 
-             v-on:click="toggleSidebar">
+             v-on:click="swapSideTab('note')">
         <icon name="sticky-note-regular" scale="2.3"></icon>
       </v-btn>
       
       <v-btn fab flat 
-             v-on:click="toggleSidebar">
+             v-on:click="swapSideTab('resource')">
         <icon name="light-bulb-regular" scale="2.3"></icon>
       </v-btn>
       
       <v-btn fab flat 
-             v-on:click="toggleSidebar">
+             v-on:click="swapSideTab('related_element')">
         <icon name="share-alt" scale="2.3"></icon>
       </v-btn>
       
@@ -139,6 +139,11 @@ export default {
     },
     toggleSidebar: function() {
       this.$store.dispatch('sidebarBehavior/toggleSidebar');
+    },
+    swapSideTab: function(newTab) {
+      this.$store.dispatch('sidebarBehavior/swapActiveSideTab', {
+        label: newTab
+      });
     }
   },
   props: ['mapTitle', 'mapUrl']
