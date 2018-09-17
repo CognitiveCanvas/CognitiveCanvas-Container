@@ -1,63 +1,50 @@
 <template>
-  <div :class="$style.sidebar">
-    <vue-tabs :class="$style.sidebar_tabs">
-      <v-tab title="Resources">
-        <v-subheader>
-          <v-btn id="blogTab" 
-                 v-on:click="expandBlog"
-                 flat depressed block>
-            Blogs
-          </v-btn>
-        </v-subheader>
-
-        <div id="blogContent">
-          <div v-for="content in contents">
-              <content-card v-if="content.type == 'blog'" :title=content.title :url=content.url :type=content.type></content-card>
-          </div>
-        </div>
+  <div class="sidebar">
+    <v-navigation-drawer permanent>
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">
+              Resources
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+    
+      <v-list dense>
+        <v-subheader>Articles</v-subheader>
         
-        <v-divider></v-divider>
+        <v-list-tile v-if="content.type == 'article'"
+                     v-for="content in contents"
+                     :key="content.title"
+                     v-bind:href="content.url">
+          <v-list-tile-action>
+            <icon name="file-alt"></icon>
+          </v-list-tile-action>
+  
+          <v-list-tile-content>
+            <v-list-tile-title>{{ content.title }}</v-list-tile-title>
+          </v-list-tile-content>
+          
+        </v-list-tile>
         
-        <v-subheader>
-          <v-btn id="articleTab" 
-                 v-on:click="expandArticle"
-                 flat depressed block>
-            Articles
-          </v-btn>
-        </v-subheader>
+        <v-subheader>Blogs</v-subheader>
         
-        <div id="articleContent">
-          <div v-for="content in contents">
-              <content-card v-if="content.type == 'article'" :title=content.title :url=content.url :type=content.type></content-card>
-          </div>
-        </div>
-        
-        <v-divider></v-divider>
-        
-      </v-tab>
-
-      <v-tab title="Notes">    
-        <div>
-          <note-card v-bind:label=note.title v-bind:url=note.url></note-card>
-        </div>
-        
-        <v-divider></v-divider>
-        
-        <div v-for="note in edited_notes">
-          <content-card v-bind:title=note.title v-bind:url=note.url v-bind:type="note_type"></content-card>
-        </div>      
-      </v-tab>
-
-      <v-tab title="Elements">
-        <div v-for="node in rel_nodes">
-          <content-card v-bind:title=node.label v-bind:url=node.id v-bind:type="node_type"></content-card>
-        </div>
-        <div v-for="edge in rel_edges">
-          <content-card v-bind:title=edge.label v-bind:url=edge.id v-bind:type="edge_type"></content-card>
-        </div>
-      </v-tab>
-    </vue-tabs>
-
+        <v-list-tile v-if="content.type == 'blog'"
+                     v-for="content in contents"
+                     :key="content.title"
+                     v-bind:href="content.url">
+          <v-list-tile-action>
+            <icon name="newspaper-regular"></icon>
+          </v-list-tile-action>
+  
+          <v-list-tile-content>
+            <v-list-tile-title>{{ content.title }}</v-list-tile-title>
+          </v-list-tile-content>
+          
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -65,7 +52,7 @@
 import {TweenMax, Power4} from 'gsap'
 
 export default {
-  name: 'sideBar',
+  name: 'sideTab',
   data() {
     return {
     }
@@ -88,12 +75,6 @@ export default {
     },
     note: function() {
       return this.$store.state.map.note
-    },
-    rel_nodes: function() {
-      return this.$store.state.relatedElement.relatedNodes
-    },
-    rel_edges: function() {
-      return this.$store.state.relatedElement.relatedEdges
     },
     edited_notes: function() {
       return this.$store.state.map.noteCollection
@@ -133,18 +114,16 @@ export default {
     }
   }
 }
-
 </script>
 
-<style module>
+<style>
   .sidebar{
     position: fixed;
     right: 0;
-    top: 0;
+    top: 64px;
     width: 300px;
     height: 100vh;
     max-width: 90vw;
-    background: #FAFAFA;
     box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20);
     display: flex;
     flex-direction: column;

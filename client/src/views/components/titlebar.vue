@@ -13,7 +13,7 @@
        <v-menu :nudge-width="100">
         <v-toolbar-title slot="activator">
           <v-btn fab flat>
-            <icon name="user" scale="2.3"></icon>
+            <icon name="user-regular" scale="2.3"></icon>
           </v-btn>
         </v-toolbar-title>
 
@@ -29,7 +29,7 @@
       </v-menu>
       
       <v-btn fab flat>
-        <icon name="question" scale="2.3"></icon>
+        <icon name="question-circle-regular" scale="2.3"></icon>
       </v-btn>
 
     </v-toolbar-items>

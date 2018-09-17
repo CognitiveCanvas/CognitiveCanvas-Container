@@ -19,12 +19,6 @@
     </v-toolbar-title>
     
     <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
     
     <v-toolbar-items class="map_search_bar">
         <input class="map_search_bar_input" 
@@ -42,12 +36,12 @@
       
       <v-btn fab flat
              v-on:click="sendUndo">
-        <icon name="undo" scale="2.3"></icon>
+        <icon name="undo" scale="2"></icon>
       </v-btn>
       
       <v-btn fab flat
              v-on:click="sendRedo">
-        <icon name="repeat" scale="2.3"></icon>
+        <icon name="repeat" scale="2"></icon>
       </v-btn>
 
     </v-toolbar-items>
@@ -58,16 +52,21 @@
       
       <v-btn fab flat 
              v-on:click="toggleSidebar">
-        <icon name="sticky-note" scale="2.3"></icon>
+        <icon name="sticky-note-regular" scale="2.3"></icon>
       </v-btn>
       
       <v-btn fab flat 
              v-on:click="toggleSidebar">
-        <icon name="book" scale="2.3"></icon>
+        <icon name="light-bulb-regular" scale="2.3"></icon>
+      </v-btn>
+      
+      <v-btn fab flat 
+             v-on:click="toggleSidebar">
+        <icon name="share-alt" scale="2.3"></icon>
       </v-btn>
       
       <v-btn fab flat>
-        <icon name="question-circle" scale="2.5"></icon>
+        <icon name="question-circle-regular" scale="2.5"></icon>
       </v-btn>
 
     </v-toolbar-items>

@@ -9,18 +9,19 @@ import titlebar from './views/components/titlebar'
 import toptoolbar from './views/components/toptoolbar'
 import conceptmap from './views/components/conceptmap'
 import sidebar from './views/components/sidebar'
+import sideTab from './views/components/sideTab'
 import contentCard from './views/components/contentCard'
 import createMap from './views/components/createMap'
 import enterMap from './views/components/enterMap'
 import mapFolder from './views/components/mapFolder'
 import noteCard from './views/components/noteCard'
-import 'vue-awesome/icons'
-import Icon from 'vue-awesome/components/Icon'
+import Icon from './states/icons'
 import router from './router/index'
 import store from './states/store'
 import VueTabs from 'vue-nav-tabs'
 import 'vue-nav-tabs/themes/vue-tabs.css'
 import 'vuetify/dist/vuetify.min.css'
+
 
 Vue.use(VueCookie)
 Vue.use(Vuetify)
@@ -43,6 +44,7 @@ var index = {
     'top-toolbar': toptoolbar,
     'concept-map': conceptmap,
     'side-bar': sidebar,
+    'side-tab': sideTab,
     'content-card': contentCard,
     'create-map-card': createMap,
     'enter-map-card': enterMap,
