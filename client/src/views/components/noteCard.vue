@@ -1,9 +1,9 @@
 <template>
-  <div class="card m-2">
-    <div class="card-header">
-      <h1>Note for {{ label }}</h1>
-    </div>
-    <div class="card-body bd-callout-info">
+  <div class="card">
+    <v-list-tile>
+      <h4 class="card-title">Note for {{ label }}</h4>
+    </v-list-tile>
+    <div class="card-body">
       <iframe id="add-Window" v-on:load="noteListener" v-bind:src="url">
         <p>ERROR: Your browser does not support iframes.</p>
       </iframe>
@@ -46,14 +46,15 @@
 </script>
 
 <style>
-  #add-Window {
-    width: 95%; 
-    height: 350px;
+  .card{
+    margin-top: -4px;
   }
-  
-  button {
-    width:100%;
-    height: 20px;
-    font-size: 15;
+  .card-title{
+    padding-top: 15px
+  }
+  #add-Window {
+    margin-top: -1vh;
+    width: 100%; 
+    height: 270px;
   }
 </style>

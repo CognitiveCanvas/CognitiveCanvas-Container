@@ -43,7 +43,7 @@ const actions = {
       resEdges: edges
     })
   },
-  startTracing (context, {label, id, type}) {
+  startTracing (context, {id}) {
     context.commit('setTraceTag', id)
   }
   

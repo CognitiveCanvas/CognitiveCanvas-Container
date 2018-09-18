@@ -8,7 +8,6 @@ const state = {
 // getters
 const getters = {
   sidebarOpen: state => state.sidebarOpen,
-  sidebarActive: state => state.tab_options[state.active_tab]
 }
 
 // mutations
