@@ -182,16 +182,14 @@ export default {
       })
 
       let header = `${constants.host}` + 'note_'
-      console.log("start tracing: ", note.url.slice(header.length))
       self.$store.dispatch("relatedElement/startTracing", {
-        id: note.url.slice(header.length),
+        id: note.url.slice(header.length)
       })
     },
     traceElement: function(element) {
       let self = this
-      console.log("start tracing: ", element.id)
       self.$store.dispatch("relatedElement/startTracing", {
-        id: element.url
+        id: element.id
       })
     }
   },
