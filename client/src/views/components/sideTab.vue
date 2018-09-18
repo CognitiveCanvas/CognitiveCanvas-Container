@@ -23,7 +23,7 @@
       <!-- ACTIVE TAB: RESOURCE -->
       <v-list v-if="active_tab == 0"
               dense>
-        <v-subheader>Articles</v-subheader>
+        <v-subheader v-if="contents.filter(content => content.type == 'article').length>0">Articles</v-subheader>
         
         <v-list-tile v-if="content.type == 'article'"
                      v-for="content in contents"
@@ -40,7 +40,7 @@
           
         </v-list-tile>
         
-        <v-subheader>Blogs</v-subheader>
+        <v-subheader v-if="contents.filter(content => content.type == 'blog').length>0">Blogs</v-subheader>
         
         <v-list-tile v-if="content.type == 'blog'"
                      v-for="content in contents"
@@ -64,7 +64,11 @@
       <v-list v-if="active_tab == 1"
               dense>
         <note-card v-bind:label=note.title v-bind:url=note.url></note-card>
-                        
+        
+        <v-subheader v-if="edited_notes.length>0">All Notes in This Map</v-subheader>
+        
+        <v-subheader v-if="edited_notes.length<=0">There is No Note in This Map Yet!</v-subheader>
+        
         <v-list-tile v-for="note in edited_notes"
                      :key="note._id"
                      class='list_tile'
