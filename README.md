@@ -94,6 +94,10 @@ cd client
 ```
 
 ```
+sudo npm install
+```
+
+```
 sudo npm run-script build
 ```
 
