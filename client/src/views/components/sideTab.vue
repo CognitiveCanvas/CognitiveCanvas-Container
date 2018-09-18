@@ -90,7 +90,7 @@
       <v-list v-if="active_tab == 2"
               dense>
   
-        <v-subheader>Nodes</v-subheader>
+        <v-subheader v-if="rel_nodes.length>0">Nodes</v-subheader>
         
         <v-list-tile v-for="node in rel_nodes"
                      :key="node._id"
@@ -106,7 +106,7 @@
           
         </v-list-tile>
         
-        <v-subheader>Edges</v-subheader>
+        <v-subheader v-if="rel_edges.length>0">Edges</v-subheader>
         
         <v-list-tile v-for="edge in rel_edges"
                      :key="edge._id"
