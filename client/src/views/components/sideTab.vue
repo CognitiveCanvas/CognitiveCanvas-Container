@@ -58,6 +58,8 @@
         </v-list-tile>
       </v-list>
       
+      
+      
       <!-- ACTIVE TAB: NOTE -->
       <v-list v-if="active_tab == 1"
               dense>
@@ -77,6 +79,48 @@
           
         </v-list-tile>
       </v-list>
+      
+      
+      
+      <!-- ACTIVE TAB: RELATED ELEMENTS -->
+      <v-list v-if="active_tab == 2"
+              dense>
+  
+        <v-subheader>Nodes</v-subheader>
+        
+        <v-list-tile v-for="node in rel_nodes"
+                     :key="node._id"
+                     class='list_tile'
+                     v-on:click="traceElement(node)">
+          <v-list-tile-action>
+            <icon name="dot-circle" scale="0.8"></icon>
+          </v-list-tile-action>
+  
+          <v-list-tile-content>
+            <v-list-tile-title>{{ node.label }}</v-list-tile-title>
+          </v-list-tile-content>
+          
+        </v-list-tile>
+        
+        <v-subheader>Edges</v-subheader>
+        
+        <v-list-tile v-for="edge in rel_edges"
+                     :key="edge._id"
+                     class='list_tile'
+                     v-on:click="traceElement(edge)">
+          <v-list-tile-action>
+            <icon name="exchange-alt"></icon>
+          </v-list-tile-action>
+  
+          <v-list-tile-content>
+            <v-list-tile-title>{{ edge.label }}</v-list-tile-title>
+          </v-list-tile-content>
+          
+        </v-list-tile>
+  
+      
+      </v-list>
+      
       
       
     </v-navigation-drawer>
@@ -134,8 +178,16 @@ export default {
       })
 
       let header = `${constants.host}` + 'note_'
+      console.log("start tracing: ", note.url.slice(header.length))
       self.$store.dispatch("relatedElement/startTracing", {
         id: note.url.slice(header.length),
+      })
+    },
+    traceElement: function(element) {
+      let self = this
+      console.log("start tracing: ", element.id)
+      self.$store.dispatch("relatedElement/startTracing", {
+        id: element.url
       })
     }
   },
