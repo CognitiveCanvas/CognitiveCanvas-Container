@@ -42,9 +42,10 @@ export default {
   .new_map{
     top: 100px;
     background-color: #5EB6DD;
+    min-height: 320px;
     max-height: 350px;
     height:42vh;
-    width: 100%;
+    overflow: hidden;
   }
   .new_map h1{
     padding-top: 60px;

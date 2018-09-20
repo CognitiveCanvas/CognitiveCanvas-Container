@@ -94,6 +94,10 @@ cd client
 ```
 
 ```
+sudo npm install
+```
+
+```
 sudo npm run-script build
 ```
 
@@ -120,7 +124,8 @@ sudo service nginx restart
 * **Xiangyu "Steve" Zhao**     
 * **Xinwei "Xavier" Wang**
     
-### User Interface Dev Team (Name Ranked by First Name)
+### User Interface Dev Team
+* **Xinwei "Xavier" Wang**
 * **Helen Cheng**
 * **Joshua Tjong**
 

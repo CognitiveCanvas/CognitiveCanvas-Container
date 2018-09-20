@@ -1,6 +1,6 @@
 <template>
   <div id="error-container">
-    <topbar></topbar>
+    <titlebar></titlebar>
     <div id="error">
       <!-- The following svg path is a Floating Icon for Error Page-->
       <svg width="380px" height="500px" viewBox="0 0 837 1045" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">

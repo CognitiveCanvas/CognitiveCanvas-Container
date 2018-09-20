@@ -11,7 +11,9 @@ const state = {
   maps: [],
   note: null,
   justEditedNote: null,
-  noteCollection: []
+  noteCollection: [],
+  undo_fire: false,
+  redo_fire: false
 }
 
 const getters = {
@@ -59,6 +61,12 @@ const mutations = {
     for (let i = 0; i < elements.length; i++) {
       state.noteCollection.push(new Note(elements[i].label, `${constants.host}` + "note_" + elements[i].id))  
     }
+  },
+  undoStateChange (state, {desire_state}) {
+    state.undo_fire = desire_state;
+  },
+  redoStateChange (state, {desire_state}) {
+    state.redo_fire = desire_state;
   }
 }
 
@@ -229,6 +237,16 @@ const actions = {
   refreshNoteCollection (context, {edited}) {
     context.commit('refreshEditedNotes', {
       elements: edited
+    })
+  },
+  fireUndo (context, {command}) {
+    context.commit('undoStateChange', {
+      desire_state: command
+    })
+  },
+  fireRedo (context, {command}) {
+    context.commit('redoStateChange', {
+      desire_state: command
     })
   }
   

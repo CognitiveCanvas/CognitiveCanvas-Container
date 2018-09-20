@@ -1,11 +1,10 @@
 <template>
   <div id="management">
-    <topbar></topbar>
-    <div class="contain_main">
-     <!--<div class="maps">-->
-        <map-collection />
-      <!--</div>-->
-    </div>
+    <v-app>
+      <titlebar></titlebar>
+      <map-folder class="main" />
+      <div class="main_bkg"></div>
+    </v-app>
   </div>
 </template>
 
@@ -16,7 +15,6 @@ export default {
 </script>
 
 <style>
-
   .management {
     margin: auto;
     padding: auto;
@@ -38,8 +36,16 @@ export default {
     max-height: 500px;
     height: 42vh;
   }
-  .contain_main {
-    margin-top: 60px;
+  .main_bkg {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(34deg, #006A96 16%, #FFCD00 55%, #F5EFEF 100%);
+    position: fixed;
+    opacity: 0.2;
+  }
+  .main {
+    padding-top: 60px;
+    z-index: 1;
   }
   
 </style>

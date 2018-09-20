@@ -1,43 +1,51 @@
 <template>
   <div :class="$style.sidebar">
-    <vue-tabs>
+    <vue-tabs :class="$style.sidebar_tabs">
       <v-tab title="Resources">
+        <v-subheader>
+          <v-btn id="blogTab" 
+                 v-on:click="expandBlog"
+                 flat depressed block>
+            Blogs
+          </v-btn>
+        </v-subheader>
 
-        <!-- expandable list, not sure why it won't show as button but is functional -->
-
-        <button id="blogTab" class="expandResource" v-on:click="expandBlog">
-        Blogs
-        </button>
-
-        <ul id="blogContent">
+        <div id="blogContent">
           <div v-for="content in contents">
-            <li>     
               <content-card v-if="content.type == 'blog'" :title=content.title :url=content.url :type=content.type></content-card>
-            </li>
           </div>
-        </ul>
+        </div>
         
-        <button id="articleTab" class="expandResource" v-on:click="expandArticle">
-        Articles
-        </button>
-
-        <ul id="articleContent">
+        <v-divider></v-divider>
+        
+        <v-subheader>
+          <v-btn id="articleTab" 
+                 v-on:click="expandArticle"
+                 flat depressed block>
+            Articles
+          </v-btn>
+        </v-subheader>
+        
+        <div id="articleContent">
           <div v-for="content in contents">
-            <li>     
               <content-card v-if="content.type == 'article'" :title=content.title :url=content.url :type=content.type></content-card>
-            </li>
           </div>
-        </ul>
+        </div>
+        
+        <v-divider></v-divider>
+        
       </v-tab>
 
-      <v-tab title="Notes">
+      <v-tab title="Notes">    
         <div>
           <note-card v-bind:label=note.title v-bind:url=note.url></note-card>
         </div>
         
+        <v-divider></v-divider>
+        
         <div v-for="note in edited_notes">
           <content-card v-bind:title=note.title v-bind:url=note.url v-bind:type="note_type"></content-card>
-        </div>
+        </div>      
       </v-tab>
 
       <v-tab title="Elements">
@@ -64,7 +72,8 @@ export default {
   },
   mounted () {
     TweenMax.set(this.$el, {
-      x: this.$el.offsetWidth
+      x: 0,
+      y: -this.$el.offsetHeight
     })
   },
   computed: {
@@ -116,9 +125,9 @@ export default {
   },
   watch: {
     open: function (open) {
-      const dX = open ? 0 : this.$el.offsetWidth
+      const dY = open ? 0 : -this.$el.offsetHeight
       TweenMax.to(this.$el, 0.6, {
-        x: dX,
+        y: dY,
         ease: Power4.easeOut
       })
     }
@@ -135,11 +144,16 @@ export default {
     width: 300px;
     height: 100vh;
     max-width: 90vw;
-    background-color: var(--accent-color);
+    background: #FAFAFA;
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20);
     display: flex;
     flex-direction: column;
     overflow: scroll;
     z-index: 1;
+  }
+  .sidebar_tabs{
+    margin-top: 66px !important;
+    font-size: 15px
   }
   .title {
     top: 0;
@@ -153,12 +167,8 @@ export default {
     width: 100%;
   }
 
-.blogContent {
-    display: none;
-    overflow: hidden;
-}
-
-.expandResource {
-  margin-top: 20px;
-}
+  .blogContent {
+      display: none;
+      overflow: hidden;
+  }
 </style>

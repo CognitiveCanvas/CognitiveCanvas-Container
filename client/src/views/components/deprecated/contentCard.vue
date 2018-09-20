@@ -54,7 +54,6 @@ props: ['title','url', 'type']
   .goto_btn {
     background-color:  skyblue;
     color: whitesmoke;
-    font-size: 2.5vh;
   }
   .goto_btn .btn__content {
     padding-bottom: 0.5em;

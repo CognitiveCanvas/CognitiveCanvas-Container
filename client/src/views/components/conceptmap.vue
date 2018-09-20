@@ -23,6 +23,12 @@
       },
       toUpdateNote () {
         return this.$store.state.map.justEditedNote
+      },
+      toUndo () {
+        return this.$store.state.map.undo_fire
+      },
+      toRedo () {
+        return this.$store.state.map.redo_fire
       }
     },
     watch: {
@@ -51,6 +57,32 @@
           query: newEditedNote.url.slice(header.length)
         }
         self.$el.contentWindow.postMessage(toSetEdited, '*')
+      },
+      toUndo (newCmd, oldCmd) {
+        let self = this;
+        if (newCmd) {
+          let undoMsg = {
+            id: "undo",
+          }
+          self.$el.contentWindow.postMessage(undoMsg, '*')
+          // Reset undo state
+          this.$store.dispatch("map/fireUndo", {
+            command: false
+          });
+        }     
+      },
+      toRedo (newCmd, oldCmd) {
+        let self = this;
+        if (newCmd) {
+          let redoMsg = {
+            id: "redo",
+          }
+          self.$el.contentWindow.postMessage(redoMsg, '*')
+          // Reset undo state
+          this.$store.dispatch("map/fireRedo", {
+            command: false
+          });
+        }     
       }
     },
     methods: {
