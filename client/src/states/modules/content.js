@@ -20,6 +20,7 @@ const mutations = {
 
 const actions = {
   queryContent (context, { label }) {
+    label = label.toLowerCase()
     context.commit('updatetoBrowse', label)
     Axios.get(`${constants.api}/queryContent`, {
       params: {

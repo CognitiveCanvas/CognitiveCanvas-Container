@@ -1,11 +1,13 @@
 <template>
   <div id="container">
-    <top-toolbar v-bind:mapTitle=map.title v-bind:mapUrl=map.url></top-toolbar>
-    <div id="map-container">
-      <concept-map :source=map.url></concept-map>
-<!--      <side-bar />-->
-      <side-tab />
-    </div>
+    <v-app>
+      <top-toolbar v-bind:mapTitle=map.title v-bind:mapUrl=map.url></top-toolbar>
+      <div id="map-container">
+        <concept-map :source=map.url></concept-map>
+  <!--      <side-bar />-->
+        <side-tab />
+      </div>
+    </v-app>
   </div>
 </template>
 
