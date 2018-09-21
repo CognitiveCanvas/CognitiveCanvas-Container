@@ -89,50 +89,132 @@
             </v-expansion-panel-content>
             
             <v-expansion-panel-content expand-icon="mdi-menu-down">
-              <div slot="header">Change the Map Title</div>
+              <div slot="header"><icon name="file-invoice"></icon> &nbsp Change the Map Title</div>
               <v-card>
                 <v-card-text>Double-click on the map title to enter the edit mode of the map title</v-card-text>
               </v-card>
             </v-expansion-panel-content>
             
+            
             <v-expansion-panel-content expand-icon="mdi-menu-down">
-              <div slot="header"><icon name="sticky-note-regular"></icon> &nbsp Take Note for Node/Edge</div>
+              <div slot="header"><icon name="dot-circle"></icon> &nbsp Create/Edit/Move/Delete A Node</div>
               <v-card>
                 <v-card-text>
-                  Click on the <icon name="sticky-note-regular"></icon> button to open a sidebar of notes attaching to your nodes/edges on the map. 
+                  Double-click <icon name="mouse-pointer"></icon> or double-tap <icon name="hand-point-up-regular"></icon> anywhere on the canvas to create a node.
                   <br><br>
-                  You need to select a node/edge in order to open the note attached to them and to edit the note.
+                  Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> on a node to select a node.
                   <br><br>
-                  The <icon name="sticky-note-regular"></icon> Note sidebar keep track of all edited notes for you. You can click on one of them to open the note and select the node/edge the note attached to.
+                  Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> on a SELECTED node to edit the label of the node.
+                  <br><br>
+                  Press tab to quick-create a node next to the selected or last created node.
+                  <br><br>
+                  Scroll up or down when hovering over a node to change the size of it.
+                  <br><br>
+                  Press ←↑→↓ to select different nodes using keyboard.
+                  <br><br>
+                  Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> and drag on a node to move the node.
+                  <br><br>
+                  Press backspace or delete <icon name="backspace"></icon> on a selected node to delete the node.
                 </v-card-text>
               </v-card>
             </v-expansion-panel-content>
+            
+            
+            <v-expansion-panel-content expand-icon="mdi-menu-down">
+              <div slot="header"><icon name="exchange-alt"></icon> &nbsp Create/Edit/Move/Delete An Link</div>
+              <v-card>
+                <v-card-text>
+                  Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> and drag from one node <icon name="dot-circle"></icon> to another one <icon name="dot-circle"></icon> to create an link.
+                  <br><br>
+                  Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> on a SELECTED link to edit the label of the link.
+                  <br><br>
+                  links <icon name="exchange-alt"></icon> only move when the connected nodes <icon name="dot-circle"></icon> move.
+                  <br><br>
+                  Press backspace or delete <icon name="backspace"></icon> on a selected link to delete the link.
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+            
+            
+            <v-expansion-panel-content expand-icon="mdi-menu-down">
+              <div slot="header"><icon name="object-group"></icon> &nbsp Create/Move/Delete A Group of Nodes/Links</div>
+              <v-card>
+                <v-card-text>
+                  Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> and drag over an area on map to create a group. All the nodes <icon name="dot-circle"></icon> and links <icon name="exchange-alt"></icon> included in the area is considered within the group.
+                  <br><br>
+                  Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> and drag on a group to move all the nodes/links concurrently in the group.
+                  <br><br>
+                  Backspace or delete <icon name="backspace"></icon> on a group to delete all the nodes/links in the group.
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+            
+            
+            <v-expansion-panel-content expand-icon="mdi-menu-down">
+              <div slot="header"><icon name="paint-brush"></icon> &nbsp Draw and Erase</div>
+              <v-card>
+                <v-card-text>
+                  Select <icon name="paint-brush"></icon> Draw in the tool palette, and you can Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> and drag to draw like you are using a pen.
+                  <br><br>
+                  Select <icon name="eraser"></icon> Eraser in the tool palette, and you can Single-click <icon name="mouse-pointer"></icon> or tap <icon name="hand-point-up-regular"></icon> and drag to erase your drawing by trace. Eraser will directly erase the entire trace.
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+            
+            
+            <v-expansion-panel-content expand-icon="mdi-menu-down">
+              <div slot="header"><icon name="palette"></icon> &nbsp Style Using Tool Palette</div>
+              <v-card>
+                <v-card-text>
+                  Select any tabs in the tool palette <icon name="palette"></icon> to style your nodes <icon name="dot-circle"></icon>, links <icon name="exchange-alt"></icon>, and drawings <icon name="paint-brush"></icon>.
+                  <br><br>
+                  You can also upload images <icon name="image"></icon> as part of the map or background using the upload button.
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+            
+            
+            <v-expansion-panel-content expand-icon="mdi-menu-down">
+              <div slot="header"><icon name="sticky-note-regular"></icon> &nbsp Take Note for Node/Link</div>
+              <v-card>
+                <v-card-text>
+                  Click on the <icon name="sticky-note-regular"></icon> button to open a sidebar of notes attaching to your nodes/links on the map.
+                  <br><br>
+                  You need to select a node/link in order to open the note attached to them and to edit the note.
+                  <br><br>
+                  The <icon name="sticky-note-regular"></icon> Note sidebar keep track of all edited notes for you. You can click on one of them to open the note and select the node/link the note attached to.
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+            
             
             <v-expansion-panel-content expand-icon="mdi-menu-down">
               <div slot="header"><icon name="light-bulb-regular"></icon> &nbsp Check Related Resources</div>
               <v-card>
                 <v-card-text>
-                  Click on the <icon name="light-bulb-regular"></icon> button or directly type keyword into the search bar to open a sidebar of Related Resources based on your selected nodes/edges on the map or keyword typed in the search bar. If you already open another sidebar, click on the <icon name="light-bulb-regular"></icon> button to switch to the Related Resource sidebar.
+                  Click on the <icon name="light-bulb-regular"></icon> button or directly type keyword into the search bar to open a sidebar of Related Resources based on your selected nodes/links on the map or keyword typed in the search bar. If you already open another sidebar, click on the <icon name="light-bulb-regular"></icon> button to switch to the Related Resource sidebar.
                   <br><br>
-                  Select a node/edge automatically search through the related resources based on the label of the selected node/edge.
+                  Select a node/link automatically search through the related resources based on the label of the selected node/link.
                   <br><br>
                   The <icon name="light-bulb-regular"></icon> Resource sidebar sorts the search results based on their types: <icon name="file-alt"></icon> research papers/articles/journals and <icon name="newspaper-regular"></icon> online blogs.
                 </v-card-text>
               </v-card>
             </v-expansion-panel-content>
             
+            
             <v-expansion-panel-content expand-icon="mdi-menu-down">
-              <div slot="header"><icon name="share-alt"></icon> &nbsp Find Related Nodes/Edges</div>
+              <div slot="header"><icon name="share-alt"></icon> &nbsp Find Related Nodes/Links</div>
               <v-card>
                 <v-card-text>
-                  Click on the <icon name="share-alt"></icon> button or directly type keyword into the search bar to open a sidebar of Related Elements based on your selected nodes/edges on the map or keyword typed in the search bar. If you already open another sidebar, click on the <icon name="share-alt"></icon> button to switch to the Related Elements sidebar.
+                  Click on the <icon name="share-alt"></icon> button or directly type keyword into the search bar to open a sidebar of Related Elements based on your selected nodes/links on the map or keyword typed in the search bar. If you already open another sidebar, click on the <icon name="share-alt"></icon> button to switch to the Related Elements sidebar.
                   <br><br>
-                  Select a node/edge or type keyword into the search bar automatically search through all the nodes/edges in the current map based on the label of the selected node/edge or the keyword typed in.
+                  Select a node/link or type keyword into the search bar automatically search through all the nodes/links in the current map based on the label of the selected node/link or the keyword typed in.
                   <br><br>
-                  The <icon name="share-alt"></icon> Related Elements sidebar sorts the search results based on their types: <icon name="dot-circle"></icon> nodes and <icon name="exchange-alt"></icon> edges.
+                  The <icon name="share-alt"></icon> Related Elements sidebar sorts the search results based on their types: <icon name="dot-circle"></icon> nodes and <icon name="exchange-alt"></icon> links.
                 </v-card-text>
               </v-card>
             </v-expansion-panel-content>
+            
             
             <v-expansion-panel-content expand-icon="mdi-menu-down">
               <div slot="header"><icon name="undo"></icon> &nbsp Undo Last Action</div>
@@ -141,42 +223,15 @@
               </v-card>
             </v-expansion-panel-content>
             
+            
             <v-expansion-panel-content expand-icon="mdi-menu-down">
-              <div slot="header"><icon name="repeat"></icon> &nbsp Redo Last undone Action</div>
+              <div slot="header"><icon name="repeat"></icon> &nbsp Redo Last Undone Action</div>
               <v-card>
                 <v-card-text>Click on the <icon name="repeat"></icon> button to redo your last undone action on the map.</v-card-text>
               </v-card>
             </v-expansion-panel-content>
+          
             
-            <v-expansion-panel-content expand-icon="mdi-menu-down">
-              <div slot="header">Logout of My Account</div>
-              <v-card>
-                <v-card-text>Click on the <icon name="user-regular"></icon> button to open a dropdown and click on "Logout" to logout of your account.</v-card-text>
-              </v-card>
-            </v-expansion-panel-content>
-            
-<!--
-            <v-expansion-panel-content expand-icon="mdi-menu-down">
-              <div slot="header">Q: How do I change the name of an existing map?</div>
-              <v-card>
-                <v-card-text>A: You need to click on and enter an existing map in order to change its name.</v-card-text>
-              </v-card>
-            </v-expansion-panel-content>
-            
-            <v-expansion-panel-content expand-icon="mdi-menu-down">
-              <div slot="header">Q: Why my copied map does not update with the original map?</div>
-              <v-card>
-                <v-card-text>A: The copy action create a deep copy of your original map, which means the copied map is a separate map from the moment you copy it from the original one, and no longer changes with the actions in original map.</v-card-text>
-              </v-card>
-            </v-expansion-panel-content>
-            
-            <v-expansion-panel-content expand-icon="mdi-menu-down">
-              <div slot="header">Q: I accidentally delete one of my maps! HELP!!!</div>
-              <v-card>
-                <v-card-text>A: Please (calm down and) contact the Cognitive Canvas System Manager.</v-card-text>
-              </v-card>
-            </v-expansion-panel-content>
--->
           </v-expansion-panel>
           
         </v-card-text>
