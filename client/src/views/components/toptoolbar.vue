@@ -77,7 +77,7 @@
               max-width="600"
               scrollable>
       <v-card>
-        <v-card-title class="headline">CogCanvas User Guide & FAQ</v-card-title>
+        <v-card-title class="headline">CogCanvas User Guide</v-card-title>
 
         <v-card-text>
           <v-expansion-panel>
@@ -169,6 +169,10 @@
                   Select any tabs in the tool palette <icon name="palette"></icon> to style your nodes <icon name="dot-circle"></icon>, links <icon name="exchange-alt"></icon>, and drawings <icon name="paint-brush"></icon>.
                   <br><br>
                   You can also upload images <icon name="image"></icon> as part of the map or background using the upload button.
+                  <br><br>
+                  Scroll up or down when hovering over an image to change the size of it.
+                  <br><br>
+                  All the nodes <icon name="dot-circle"></icon> and links <icon name="exchange-alt"></icon> in an image <icon name="image"></icon>  is pinned to the image and will move with the image's movement.
                 </v-card-text>
               </v-card>
             </v-expansion-panel-content>
@@ -219,7 +223,7 @@
             <v-expansion-panel-content expand-icon="mdi-menu-down">
               <div slot="header"><icon name="undo"></icon> &nbsp Undo Last Action</div>
               <v-card>
-                <v-card-text>Click on the <icon name="undo"></icon> button to undo your last create/move/delete action on the map.</v-card-text>
+                <v-card-text>Click on the <icon name="undo"></icon> button or press Ctrl/Command + z to undo your last create/move/delete action on the map.</v-card-text>
               </v-card>
             </v-expansion-panel-content>
             
@@ -227,7 +231,7 @@
             <v-expansion-panel-content expand-icon="mdi-menu-down">
               <div slot="header"><icon name="repeat"></icon> &nbsp Redo Last Undone Action</div>
               <v-card>
-                <v-card-text>Click on the <icon name="repeat"></icon> button to redo your last undone action on the map.</v-card-text>
+                <v-card-text>Click on the <icon name="repeat"></icon> button or press Ctrl/Command + y to redo your last undone action on the map.</v-card-text>
               </v-card>
             </v-expansion-panel-content>
           

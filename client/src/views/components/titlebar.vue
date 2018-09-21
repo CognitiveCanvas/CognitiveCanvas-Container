@@ -68,7 +68,10 @@
             <v-expansion-panel-content expand-icon="mdi-menu-down">
               <div slot="header">Delete An Existing Map</div>
               <v-card>
-                <v-card-text>Click on the <icon name="trash"></icon> button of a map you want to delete to delete an existing map. Warning: this action cannot be undone. </v-card-text>
+                <v-card-text>
+                  Click on the <icon name="trash"></icon> button of a map you want to delete to delete an existing map.
+                  <br><br>
+                  Warning: This action cannot be undone! </v-card-text>
               </v-card>
             </v-expansion-panel-content>
             
